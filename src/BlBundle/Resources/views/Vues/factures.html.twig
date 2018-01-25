@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Création d'une facture Pro Forma</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="text" placeholder="Numéro">
+            <input type="date" placeholder="Date">
+        </div>
+        <div class="col-lg-6">
+            <input type="text" placeholder="Référence">
+            <input type="text" placeholder="Représentant">
+            <textarea name="adressfact" id="" cols="30" rows="10">Adresse</textarea>
+        </div>
+        <div class="jumbotron">
+            <div class="well">Désignation</div>
+            <div class="well">Quantité</div>
+            <div class="well">P.U. HT</div>
+            <div class="well">%REM</div>
+            <div class="well">Remise HT</div>
+            <div class="well">Montant HT</div>
+            <div class="well">TVA</div>
+            <div class="row">
+                <div class="col-lg-6 well">
+                    <input type="number" placeholder="TOTAL HT">
+                    <input type="number" placeholder="TOTAL TVA">
+                </div>
+                <div class="col-lg-6">
+                    <input type="number" placeholder="NET HT">
+                    <input type="number" placeholder="Total TTC">
+                </div>
+                <div class="well">NET A PAYER</div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success">VALIDER</button>
+    <button class="btn btn-primary">ANNULER</button>
+
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        * {text-align:center;}
+        button {
+            margin-top: 40px;
+        }
+    </style>
+{% endblock %}

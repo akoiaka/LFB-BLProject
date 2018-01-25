@@ -1,0 +1,11 @@
+BlBundle\Entity\Bons:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\BonsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }

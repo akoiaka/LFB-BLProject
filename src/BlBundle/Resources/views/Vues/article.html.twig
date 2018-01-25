@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    logo
+    <button>Fermer la fenêtre</button>
+{% endblock %}
+
+{% block body %}
+    <div class="well" for="article">Libellé ARTICLE</div>
+    <div class="well code" name="code">CODE</div>
+    <div class="row">
+        <div class="col-lg-6 well" name="famille">Famille</div>
+        <div class="col-lg-6" name="vide"></div>
+        <div class="col-lg-6" name="vide2"></div>
+        <div class="col-lg-6" name="prixprod">
+            <div class="well">Prix HT</div>
+            <div class="well">Prix TTC</div>
+            <div class="well">Quantité en stock</div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary btn-danger" style="width: 500px; height: 30px">Supprimer cette fiche</button>
+        <button class="btn btn-primary-blue" style="width: 500px; height: 30px">Modifier cette fiche</button>
+        <button class="btn btn-primary btn-success" style="width: 1000px; height: 30px">Ajouter un nouvel article</button>
+        <button class="btn btn-primary" style="width: 1000px; height: 30px"><a href="{{ path('page1') }}">Revenir sur la page d'accueil</a></button>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        * {text-align:center;}
+        button {
+            margin-top: 40px;
+            display: flex;
+        }
+        .code{
+            width: 80%;
+            margin: auto;
+        }
+
+    </style>
+{% endblock %}
+
+

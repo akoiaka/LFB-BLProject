@@ -1,0 +1,45 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+    {#<head>#}
+        {#<meta charset="UTF-8" />#}
+        {#<title>{% block title %}Welcome!{% endblock %}</title>#}
+        {#{% block stylesheets %}{% endblock %}#}
+        {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
+    {#</head>#}
+    {#<body>#}
+        {#{% block body %}{% endblock %}#}
+        {#{% block javascripts %}{% endblock %}#}
+    {#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../web/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    {#IMPORTANT#}
+    {#!!!  BOOTSTRAP FONCTIONNE ICI AVEC LE CDN MAIS IL FAUT IMPERATIVEMENT LE REPASSER AVEC LE FICHIER LIÉ#}
+    {#AVANT LA CONCLUSION DU PROJET FINAL !!!#}
+    {#<link rel="stylesheet" href="{{ asset('web/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">#}
+    {#<link rel="stylesheet" href="{{ web/bootstrap-3.3.7-dist/css/bootstrap.min.css }}" />#}
+
+    {% block stylesheets %}
+    {% endblock %}
+    {#{% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}#}
+    {#{% endstylesheets %}#}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block javascripts %}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+
+
+</body>
+
+</html>

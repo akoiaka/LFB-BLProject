@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="en-tete">
+    <img>LOGO LFB</img>
+    <button>Fermer la Fenêtre</button>
+
+</div>
+<div>
+<div class="well titre" for="fiche">FICHE CLIENT</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Informations Générales</div>
+  <div class="panel-body nom">
+    <p id="nom">Nom</p>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">Code</li>
+    <li class="list-group-item">SIRET</li>
+    <li class="list-group-item">N.A.F.(A.P.E.)</li>
+    <li class="list-group-item">Représentant</li>
+    <li class="list-group-item">Forme Juridique</li>
+
+  </ul>
+</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Coordonnées</div>
+  <div class="panel-body">
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">Société</li>
+    <li class="list-group-item">Adresse</li>
+    <li class="list-group-item">Code Postal</li>
+    <li class="list-group-item">Ville</li>
+    <li class="list-group-item">Pays</li>
+    <li class="list-group-item">E-mail</li>
+    <li class="list-group-item">Site Internet</li>
+    <li class="list-group-item">Téléphone</li>
+    <li class="list-group-item">Fax</li>
+    <li class="list-group-item">Portable</li>
+    <li class="list-group-item">Telex</li>
+  </ul>
+</div>
+<div class="row endpage">
+    <button class="col-lg-4 left" name="left">preview</button>
+    <div class="col-lg-4">
+        <button class="print" name="print">IMPRIMER</button>
+        <button class="bl" name="bl">Créer un BL</button>
+    </div>
+    <button class="col-lg-4 right" name="right">next</button>
+</div>
+<div>
+        <button class="btn btn-primary btn-danger" style="width: 500px; height: 30px">Supprimer cette fiche</button>
+        <button class="btn btn-primary-blue" style="width: 500px; height: 30px">Modifier cette fiche</button>
+        <button class="btn btn-primary btn-success" style="width: 1000px; height: 30px">Ajouter un nouvel client</button>
+        <button class="btn btn-primary" style="width: 1000px; height: 30px"><a href="{{ path('page1') }}">Revenir sur la page d'accueil</a></button>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        * {}
+        button {
+            margin-top: 40px;
+            display: flex;
+        }
+        select{
+            width: 80%;
+        }
+        .en-tete{
+            width: 10%;
+            display: flex;
+            }
+        .panel{
+        width: 80%;
+        }
+        .left, .right {
+        width: 20%;
+        }
+        .print, .bl{
+        width: 40%;
+        }
+        .endpage{
+        text-align: center
+        }
+        /*#nom{*/
+        /*overflow:scroll;*/
+        /*}*/
+    </style>
+{% endblock %}

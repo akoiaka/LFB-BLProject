@@ -1,0 +1,72 @@
+bl_homepage:
+    path:     /
+    defaults: { _controller: BlBundle:Vues:accueil }
+#
+#bl_accueil:
+#    path:     /accueil
+#    defaults: { _controller: BlBundle:Vues:accueil }
+
+articles:
+    path:     /articles
+    defaults: { _controller: BlBundle:Vues:articles }
+
+
+archives:
+    path:     /archives
+    defaults: { _controller: BlBundle:Vues:archives }
+
+article:
+    path:     /article
+    defaults: { _controller: BlBundle:Vues:article }
+
+bl:
+    path:     /bl
+    defaults: { _controller: BlBundle:Vues:bl }
+
+bllist:
+    path:     /bllist
+    defaults: { _controller: BlBundle:Vues:bllist }
+
+blpreview:
+    path:     /blpreview
+    defaults: { _controller: BlBundle:Vues:blpreview }
+
+client:
+    path:     /client
+    defaults: { _controller: BlBundle:Vues:client }
+
+clients:
+    path:     /clients
+    defaults: { _controller: BlBundle:Vues:clients }
+
+factlist:
+    path:     /factlist
+    defaults: { _controller: BlBundle:Vues:factlist }
+
+factpreview:
+    path:     /factpreview
+    defaults: { _controller: BlBundle:Vues:factpreview }
+
+factures:
+    path:     /factures
+    defaults: { _controller: BlBundle:Vues:factures }
+
+listearticles:
+    path:     /listearticles
+    defaults: { _controller: BlBundle:Vues:listearticles }
+
+listeclients:
+    path:     /listeclients
+    defaults: { _controller: BlBundle:Vues:listeclients }
+
+modifarticle:
+    path:     /modifarticle
+    defaults: { _controller: BlBundle:Vues:modifarticle }
+
+formulaire:
+    path:     /formulaire
+    defaults: { _controller: BlBundle:Vues:formulaire }
+
+
+
+

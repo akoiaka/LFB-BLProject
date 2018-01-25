@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    <div class="en-tete">
+        <img>LOGO LFB</img>
+        <button><a href="{{ path('page1') }}">Annuler</a></button>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <h1>CRÉATION DU BON DE LIVRAISON</h1>
+
+    {#CI-DESSOUS FORMULAIRE PROVISOIRE EN ATTENDANT DE METTRE EN PLACE LES LISTENERS#}
+    <div class="well">
+        <form action="/accueil">
+            Numéro: <input type="text" name="blnum"><br>
+            Référence client: <input type="text" name="blref"><br>
+            Nom client: <input type="text" name="blclient"><br>
+            Représentant / Contact: <input type="text" name="blcontact"><br>
+            Remarque: <input type="text" name="blrem"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    {#FORM GENERATE A TESTER POUR MARDI 23 JANVIER#}
+
+    {#My project contains this relations :#}
+
+    {#Plat -> OneToMany -> IngredPlat -> ManyToOne -> Ingred -> OneToMany -> IngredUser -> ManyToOne -> User#}
+
+    {#(For better comprehension, Plat could be translated to Recipe).#}
+
+    {#IngredPlat has fields "qte" and "unite" (quantity and unit). IngredUser has field "prix" (price). A user in Paris will buy apples a different price than one in New York...#}
+
+    {#I successfully made the part that add ingredients to Recipe, but I don't know how to include the field "prix" in my form so it can be displayed AND edited. Any idea or hint how to achieve that would be welcome.#}
+
+    {#My Controller#}
+
+    {#//...#}
+    {#$repository = $this#}
+    {#->getDoctrine()#}
+    {#->getManager()#}
+    {#->getRepository('AppBundle:Plat');#}
+
+    {#$plat = $repository->find($id);#}
+
+    {#$form = $this->createForm(PlatType::class, $plat);#}
+    {#The PlatType form :#}
+
+    {#//...#}
+    {#$builder#}
+    {#->add('nom', TextType::class)#}
+    {#->add('ingredients', CollectionType::class, array(#}
+    {#'entry_type' => IngredPlatType::class,#}
+    {#'required' => false,#}
+    {#'allow_add'    => true,#}
+    {#'allow_delete' => true,#}
+    {#'by_reference' => false,#}
+    {#'label' => false#}
+    {#))#}
+    {#//...#}
+    {#The IngredPlatType used for the collection#}
+
+    {#//...#}
+    {#private $transformer;#}
+
+    {#public function __construct(IdToIngredTransformer $transformer)#}
+    {#{#}
+    {#$this->transformer = $transformer;#}
+    {#}#}
+
+    {#public function buildForm(FormBuilderInterface $builder, array $options)#}
+    {#{#}
+    {#$builder#}
+    {#->add('ingred', HiddenType::class, array('invalid_message' => Ingrédient non reconnu',))#}
+    {#->add('qte', TextType::class)#}
+    {#->add('unite', HiddenType::class)#}
+    {#->add('isRetire', CheckboxType::class, array('label'    => 'Retiré après cuisson',))#}
+    {#->add('Enregistrer', SubmitType::class)#}
+    {#;#}
+
+    {#$builder->get('ingred')#}
+    {#->addModelTransformer($this->transformer);#}
+    {#}#}
+    {#//...#}
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="well">Numéro</div>
+            <div class="well">{{ "now"|date('d/m/y H:i:s') }}</div>
+            <div class="well">Calendar</div>
+        </div>
+        <div class="col-lg-6">
+            <div class="well">Référence client</div>
+            <div class="well">Nom client</div>
+            <div class="well">Représentant</div>
+            <div class="well">Remarque</div>
+        </div>
+    </div>
+
+
+    <div class="jumbotron">
+        <table class="table table-sm table-hover">
+
+            <thead>
+            <tr>
+                <th scope="col">Indice</th>
+                <th scope="col">Article</th>
+                <th scope="col">Description</th>
+                <th scope="col">Dépôt</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix unitaire HT</th>
+                <th scope="col">Prix unitaire TTC</th>
+                <th scope="col">Remise</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <th scope="row">N1</th>
+                <td>i1</td>
+                <td>A1</td>
+                <td>De1</td>
+                <td>D1</td>
+                <td>Q1</td>
+                <td>HT1</td>
+                <td>TTC1</td>
+                <td>REM1</td>
+            </tr>
+            <tr>
+                <th scope="row">N1</th>
+                <td>i2</td>
+                <td>A2</td>
+                <td>De2</td>
+                <td>D2</td>
+                <td>Q2</td>
+                <td>HT2</td>
+                <td>TTC2</td>
+                <td>REM2</td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="bdp">
+        <button style="width: 300px; height: 60px">Valider</button>
+        <button style="width: 150px; height: 30px">Modifier</button>
+    </div>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        * {text-align:center;}
+        button {
+            margin-top: 40px;
+        }
+    </style>
+{% endblock %}

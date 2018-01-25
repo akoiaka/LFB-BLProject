@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+    <button class="btn btn-primary" style="width: 800px; height: 100px">
+        <a href="{{ path('bllist') }}">BONS DE LIVRAISON</a>
+    </button>
+    <button class="btn btn-primary" style="width: 800px; height: 100px">
+        <a href="{{ path('factlist') }}">FACTURES</a>
+    </button>
+    <button style="width: 800px; height: 100px">
+        <a href="{{ path('bl_homepage') }}">Revenir sur la page d'accueil</a>
+    </button>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        * {text-align:center;}
+        button {
+            margin-top: 80px;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <img>LOGO LFB</img>
+        <button class="btn btn-primary"><a href="{{ path('archives') }}">Fermer</a></button>
+    </div>
+
+    <div class="well titre" for="">LISTE DES FACTURES</div>
+
+    <div class="row">
+        <h6 class="col-lg-3">Période du</h6>
+        <input type="date" min="01/01/2018" max="31/12/2018" maxlength="10" autocomplete="on" class="col-lg-3">
+        <h6 class="col-lg-3">au</h6>
+        <select name="" id="" class="col-lg-3">
+            <option value="date1">date1</option>
+            <option value="date2">brackets date</option>
+        </select>
+    </div>
+
+    {#ci-dessous la div à imprimer#}
+
+    <div class="jumbotron">
+        <table class="table table-sm table-hover">
+            <thead>
+            <tr>
+                <th scope="col">N.</th>
+                <th scope="col">Date</th>
+                <th scope="col">Client</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {#    ci-dessus la div à imprimer#}
+
+    <div class="row endpage">
+        <div class="col-lg-6">
+            <img src="" alt="" name="printpic">
+            <h5>IMPRIMER</h5>
+        </div>
+        <div class="row col-lg-6">
+            <button class="col-lg-6 left" name="left">preview</button>
+            <button class="col-lg-6 right" name="right">next</button>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        body
+        {
+            margin:5%;
+        }
+        * {text-align:center;}
+        button {
+            margin-top: 40px;
+        }
+    </style>
+{% endblock %}

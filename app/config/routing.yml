@@ -1,0 +1,30 @@
+bl:
+    resource: "@BlBundle/Resources/config/routing.yml"
+    type: annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+accueil:
+    resource: "@BlBundle/Resources/config/routing.yml"
+    prefix:   /accueil
+
+bl_articles:
+    resource: "@BlBundle/Resources/config/routing.yml"
+    prefix:   /articles
+
+bl_clients:
+    resource: "@BlBundle/Resources/config/routing.yml"
+    prefix:   /articles
+
+
+
+
+
+#articles:
+#    resource: "@BlBundle/Resources/config/routing.yml"
+#    prefix:   /
+#    requirements:
+#            page: '\d+'
