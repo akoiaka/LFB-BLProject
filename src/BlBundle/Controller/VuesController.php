@@ -6,9 +6,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 class VuesController extends Controller
 {
-
     public function accueilAction()
     {
         return $this->render('BlBundle:Vues:accueil.html.twig');
@@ -29,14 +30,27 @@ class VuesController extends Controller
         return $this->render('BlBundle:Vues:archives.html.twig');
     }
 
-    public function bllistAction()
+    /**
+     * @return Response
+     */
+    public function bllistAction($id)
     {
-        return $this->render('BlBundle:Vues:bllist.html.twig');
+        $em = $this->getDoctrine()->getManager();
+//
+        $bl = $em->getRepository('BlBundle:Bonslivraison')->find($id);
+
+        if (null == $bl)
+        {
+            throw new NotFoundHttpException("le bl".$bl." n'existe pas.");
+        }
+
+        return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
+
     }
 
     public function blAction()
     {
-        return $this->render('BlBundle:Vues:bllist.html.twig');
+        return $this->render('BlBundle:Vues:bl.html.twig');
     }
 
     public function blpreviewAction()

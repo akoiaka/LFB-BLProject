@@ -1,0 +1,34 @@
+BlBundle\Entity\Articles:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\ArticlesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        codeArt:
+            type: string
+            length: 255
+            column: code_art
+        libelleArt:
+            type: string
+            length: 255
+            column: libelle_art
+        familleArt:
+            type: string
+            length: 255
+            column: famille_art
+        prixHTArt:
+            type: decimal
+            precision: 10
+            scale: 0
+            column: prixHT_art
+        prixTTCArt:
+            type: decimal
+            precision: 10
+            scale: 0
+            column: prixTTC_art
+    lifecycleCallbacks: {  }

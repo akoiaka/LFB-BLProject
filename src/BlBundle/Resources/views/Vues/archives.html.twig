@@ -2,15 +2,15 @@
 {% block body %}
 
 
-    <button class="btn btn-primary" style="width: 800px; height: 100px">
-        <a href="{{ path('bllist') }}">BONS DE LIVRAISON</a>
-    </button>
-    <button class="btn btn-primary" style="width: 800px; height: 100px">
-        <a href="{{ path('factlist') }}">FACTURES</a>
-    </button>
-    <button style="width: 800px; height: 100px">
-        <a href="{{ path('bl_homepage') }}">Revenir sur la page d'accueil</a>
-    </button>
+    <a href="{{ path('bllist') }}"><button class="btn btn-primary" style="width: 800px; height: 100px">
+        BONS DE LIVRAISON
+    </button></a>
+    <a href="{{ path('factlist') }}"><button class="btn btn-primary" style="width: 800px; height: 100px">
+        FACTURES
+    </button></a>
+    <a href="{{ path('bl_homepage') }}"><button style="width: 800px; height: 100px">
+        Revenir sur la page d'accueil
+    </button></a>
 
 {% endblock %}
 
