@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class VuesController extends Controller
+class VuesController extends DefaultController
 {
     public function accueilAction()
     {
@@ -30,21 +30,31 @@ class VuesController extends Controller
         return $this->render('BlBundle:Vues:archives.html.twig');
     }
 
-    /**
-     * @return Response
-     */
     public function bllistAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+//        $em = $this->getDoctrine()->getManager();
+////
+//        $bl = $em->getRepository('BlBundle:Bonslivraison')->find($id);
 //
-        $bl = $em->getRepository('BlBundle:Bonslivraison')->find($id);
+//        if (null == $bl)
+//        {
+//            throw new NotFoundHttpException("le bl".$bl." n'existe pas.");
+//        }
+//
+//        return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
 
-        if (null == $bl)
-        {
-            throw new NotFoundHttpException("le bl".$bl." n'existe pas.");
-        }
 
-        return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
+//===========  AUTRE ESSAI ===========
+//        $bl = $this->getDoctrine()
+//            ->getRepository('BlBundle:Bonslivraison')
+//            ->find($id);
+//        if(!$bl){
+//            throw $this->createNotFoundException(
+//                'aucun produit trouvé pour cet id :'.$id
+//            );
+//        }
+//                return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
+//===========  AUTRE ESSAI ===========
 
     }
 

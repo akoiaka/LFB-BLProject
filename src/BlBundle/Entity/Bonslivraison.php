@@ -13,6 +13,7 @@ class Bonslivraison
 {
     /**
      * @var int
+     *
      */
     public $id;
 
@@ -51,10 +52,10 @@ class Bonslivraison
      */
     private $quantiteBl;
 
+    // ici, avec le constructeur, les paramètres que je veux automatiquement importer avec le chargement de la page
     public function __construct()
     {
-        $this->date = new \Datetime();
-        $this->liste = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
 

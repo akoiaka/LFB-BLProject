@@ -18,6 +18,28 @@
     <a href="{{ path('factures') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
             CREER UNE FACTURE PRO FORMA
         </button></a>
+
+    <h1>Essai ajout produit</h1>
+    <form action="{{ path("articles") }}" method="post">
+{{ form_widget(form) }}
+        <input type="submit">
+        </form>
+    <h1>Liste</h1>
+        {#{% for bonlivraison in bl %}#}
+            {#<article>#}
+                {#<header>#}
+                    {#<h2>{{ bl.numeroBl }}</h2>#}
+                    {#<time>{{ bl.date|date ('d M Y') }}</time>#}
+                {#</header>#}
+                {#<div class="content">#}
+                    {#<p>#}
+                        {#{{ bl.descriptionBl }}#}
+                    {#</p>#}
+                {#</div>#}
+            {#</article>#}
+        {#{% endfor %}#}
+
+
 {% endblock %}
 
 {% block stylesheets %}
