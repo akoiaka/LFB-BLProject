@@ -43,5 +43,10 @@ class BonslivraisonType extends AbstractType
         return 'blbundle_bonslivraison';
     }
 
+    public function getName()
+    {
+        return 'blbundle_bonslivraisontype';
+    }
+
 
 }

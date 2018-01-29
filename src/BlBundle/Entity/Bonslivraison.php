@@ -13,12 +13,13 @@ class Bonslivraison
 {
     /**
      * @var int
-     *
      */
     public $id;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $url
+     *
+     * @ORM\Column(name="dateBl", type="datetime")
      */
     private $dateBl;
 
@@ -29,26 +30,36 @@ class Bonslivraison
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="description_bl", type="string", nullable=true)
      */
     private $descriptionBl;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="clientBl", type="string", length=255)
      */
     private $clientBl;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="societeBl", type="string, length=255)
      */
     private $societeBl;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="transporteurBl", type="string", length=255)
      */
     private $transporteurBl;
 
     /**
      * @var int
+     *
+     * @ORM\Column(name="quantite", type="int")
      */
     private $quantiteBl;
 

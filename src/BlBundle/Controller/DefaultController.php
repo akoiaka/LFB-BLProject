@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use BlBundle\Entity\Bonslivraison;
 use BlBundle\Form\BonslivraisonType;
 class DefaultController extends Controller
@@ -17,15 +19,25 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $bl = $em->getRepository("BlBundle:Bonslivraison")->findAll();
         return $this->render('BlBundle:Vues:accueil.html.twig', array(
-            'bons' => $bl));
+            'bl' => $bl));
     }
 
-    public function ajouterAction(){
+    public function ajouterAction($form){
         $em = $this->getDoctrine()->getManager();
         $bl = new Bonslivraison();
-        $form = $this->createForm(new BonslivraisonType(),$bl);
+        $form = $this->createForm(new BonslivraisonType(), $bl);
         // le formulaire a donc comme type BonslivraisonType, et comme contenu $bl
 
+        $request = $this->getRequest();
+        if($request->isMethod('POST')){
+            $form->bindRequest($request);
+
+            $bl = $form->getData();
+            $em->persist($bl);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl("articles"));
+        }
         return $this->render('BlBundle:Vues:accueil.html.twig', array(
             form => createView(),
         ));
