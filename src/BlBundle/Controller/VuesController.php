@@ -102,4 +102,5 @@ class VuesController extends DefaultController
     {
         return $this->render('BlBundle:Vues:modifarticle.html.twig');
     }
+
 }

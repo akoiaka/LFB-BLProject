@@ -2,6 +2,7 @@
 
 namespace BlBundle\Controller;
 
+use Doctrine\DBAL\Types\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,7 @@ class DefaultController extends Controller
             'bl' => $bl));
     }
 
-    public function ajouterAction($form){
+    public function ajouterAction(){
         $em = $this->getDoctrine()->getManager();
         $bl = new Bonslivraison();
         $form = $this->createForm(new BonslivraisonType(), $bl);
@@ -40,6 +41,23 @@ class DefaultController extends Controller
         }
         return $this->render('BlBundle:Vues:accueil.html.twig', array(
             form => createView(),
+        ));
+    }
+
+    public function newAction(Request $resquest)
+    {
+        $task = new Task();
+        $task->setTask('Ecrire des notes');
+        $task->setDueDate(new \DateTime('tomorrow'));
+
+        $form = $this->createFormBuilder($task)
+            ->add('task', TextType::class)
+            ->add('dueDate', DateType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create Task'))
+            ->getForm();
+
+        return $this->render('BlBundle:Vues:accueil.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 //    public function ajouterAction(){
