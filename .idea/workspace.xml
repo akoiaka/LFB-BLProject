@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99146060-5b6e-4877-9054-ec99e2fd67b0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BlBundle/Controller/VuesController.php" afterPath="$PROJECT_DIR$/src/BlBundle/Controller/VuesController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BlBundle/Resources/views/Vues/accueil.html.twig" afterPath="$PROJECT_DIR$/src/BlBundle/Resources/views/Vues/accueil.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -150,11 +148,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accueil.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="accueil.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BlBundle/Resources/views/Vues/accueil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="269">
-              <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#214#248#0#HTML" expanded="true" />
                 <element signature="e#375#409#0#HTML" expanded="true" />
@@ -176,11 +174,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VuesController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VuesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BlBundle/Controller/VuesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="384">
+              <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
               <folding>
                 <element signature="e#39#98#0#PHP" expanded="true" />
               </folding>
@@ -760,7 +758,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69686000" />
+    <option name="totallyTimeSpent" value="69836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1400" y="-285" width="1400" height="1050" extended-state="0" />
@@ -1172,16 +1170,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlBundle/Controller/VuesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#39#98#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BlBundle/Entity/Articles.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
@@ -1248,13 +1236,23 @@
     <entry file="file://$PROJECT_DIR$/src/BlBundle/Resources/views/Vues/accueil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
-          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="e#214#248#0#HTML" expanded="true" />
             <element signature="e#375#409#0#HTML" expanded="true" />
             <element signature="e#531#565#0#HTML" expanded="true" />
             <element signature="e#687#721#0#HTML" expanded="true" />
             <element signature="e#852#886#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlBundle/Controller/VuesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="e#39#98#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
