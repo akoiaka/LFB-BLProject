@@ -1,10 +1,6 @@
 bl_homepage:
-    path:     /
+    path:     /accueil
     defaults: { _controller: BlBundle:Vues:accueil }
-#
-#bl_accueil:
-#    path:     /accueil
-#    defaults: { _controller: BlBundle:Vues:accueil }
 
 articles:
     path:     /articles
