@@ -5,6 +5,7 @@ namespace BlBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use BlBundle\Entity\Bonslivraison;
 
 class BonslivraisonType extends AbstractType
 {
