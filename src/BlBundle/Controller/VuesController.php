@@ -15,6 +15,7 @@ class VuesController extends DefaultController
         return $this->render('BlBundle:Vues:accueil.html.twig');
     }
 
+
     public function articlesAction()
     {
         return $this->render('BlBundle:Vues:listearticles.html.twig');
