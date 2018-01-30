@@ -4,7 +4,7 @@
     <h1>Bienvenue sur votre plateforme de travail</h1>
     <h4>Que souhaitez-vous faire ?</h4>
 
-    <a href="{{ path('articles') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
+    <a href="{{ path('listearticles') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
             CONSULTER LES ARTICLES
         </button></a>
     <a href="{{ path('clients') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
@@ -19,13 +19,26 @@
     <a href="{{ path('factures') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
             CREER UNE FACTURE PRO FORMA
         </button></a>
+    <div>
+        <p>test</p>
+        {#{% for bls in bonslivraison %}#}
+            {#<p>#}
+                {#{{ bls.societe_bl }}#}
+            {#</p>#}
+        {#{% endfor %}#}
+    <?php
+    var_dump($bl);
+    print_r($bl);
+    ?>
+    </div>
+
 
     <h1>Essai ajout produit</h1>
     {#===== TEST1 =====#}
-    <form action="{{ path("articles") }}" method="post">
-{{ form_widget(form, {'method': POST}) }}
-        <input type="submit">
-        </form>
+    {#<form action="{{ path("articles") }}" method="post">#}
+{#{{ form_widget(form, {'method': POST}) }}#}
+        {#<input type="submit">#}
+        {#</form>#}
     {#===== TEST 2 =====#}
     {#{{ form_start(form)}}#}
     {#{{ form_widget(form)}}#}

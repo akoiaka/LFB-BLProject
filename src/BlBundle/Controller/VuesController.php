@@ -2,17 +2,16 @@
 
 namespace BlBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
-class VuesController extends DefaultController
+class VuesController extends Controller
 {
     public function accueilAction()
     {
-        return $this->render('BlBundle:Vues:accueil.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $bl = $em->getRepository("BlBundle:Bonslivraison")->findAll();
+        dump($bl);
+        return $this->render('BlBundle:Vues:accueil.html.twig', array(
+            'bl' => $bl));
     }
 
     public function articlesAction()
