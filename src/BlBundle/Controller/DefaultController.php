@@ -6,18 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Form\BonslivraisonType;
 class DefaultController extends Controller
 {
-//    /**
-//     * @Route('/', name="bl_homepage")
-//     */
-//    public function indexAction()
-//
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//        $bl = $em->getRepository("BlBundle:Bonslivraison")->findAll();
-//        dump($bl);
-//        return $this->render('bl_homepage', array(
-//            'bl' => $bl));
-//    }
 //
     public function ajouterAction(){
         $em = $this->getDoctrine()->getManager();

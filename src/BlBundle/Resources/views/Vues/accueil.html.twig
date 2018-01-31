@@ -4,64 +4,13 @@
     <h1>Bienvenue sur votre plateforme de travail</h1>
     <h4>Que souhaitez-vous faire ?</h4>
 
-    <a href="{{ path('listearticles') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
-            CONSULTER LES ARTICLES
-        </button></a>
-    <a href="{{ path('clients') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
-            VOIR MES CLIENTS
-        </button></a>
-    <a href="{{ path('archives') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
-            CONSULTER LES ARCHIVES
-        </button></a>
+
     <a href="{{ path('bl') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
             CREER UN BON DE LIVRAISON
         </button></a>
     <a href="{{ path('factures') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
             CREER UNE FACTURE PRO FORMA
         </button></a>
-<<<<<<< HEAD
-<p>
-=======
-    <div>
-        <p>test</p>
-        {#{% for bls in bonslivraison %}#}
-            {#<p>#}
-                {#{{ bls.societe_bl }}#}
-            {#</p>#}
-        {#{% endfor %}#}
-    </div>
-
->>>>>>> Newbranch
-
-</p>
-    <h1>Essai ajout produit</h1>
-    {#===== TEST1 =====#}
-    {#<form action="{{ path("articles") }}" method="post">#}
-{#{{ form_widget(form, {'method': POST}) }}#}
-        {#<input type="submit">#}
-        {#</form>#}
-    {#===== TEST 2 =====#}
-    {#{{ form_start(form)}}#}
-    {#{{ form_widget(form)}}#}
-    {#{{ form_end(form) }}#}
-    <h1>Liste</h1>
-    {#===== END TEST =====#}
-
-        {#{% for bonlivraison in bl %}#}
-            {#<article>#}
-                {#<header>#}
-                    {#<h2>{{ bl.numeroBl }}</h2>#}
-                    {#<time>{{ bl.date|date ('d M Y') }}</time>#}
-                {#</header>#}
-                {#<div class="content">#}
-                    {#<p>#}
-                        {#{{ bl.descriptionBl }}#}
-                    {#</p>#}
-                {#</div>#}
-            {#</article>#}
-        {#{% endfor %}#}
-
-
 {% endblock %}
 
 {% block stylesheets %}

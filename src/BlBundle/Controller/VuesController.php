@@ -30,8 +30,16 @@ class VuesController extends Controller
         return $this->render('BlBundle:Vues:archives.html.twig');
     }
 
-    public function bllistAction($id)
+    public function bllistAction()
     {
+        {
+            $em = $this->getDoctrine()->getManager();
+            $bl = $em->getRepository("BlBundle:Bonslivraison")->findAll();
+            return $this->render('BlBundle:Vues:bllist.html.twig',
+                array(
+                    'bl' => $bl));
+        }
+
 //        $em = $this->getDoctrine()->getManager();
 ////
 //        $bl = $em->getRepository('BlBundle:Bonslivraison')->find($id);

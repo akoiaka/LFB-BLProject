@@ -1,5 +1,5 @@
-bl_homepage:
-    path:     /accueil
+accueil:
+    path:     /
     defaults: { _controller: BlBundle:Vues:accueil }
 
 articles:
@@ -62,6 +62,12 @@ modifarticle:
 formulaire:
     path:     /formulaire
     defaults: { _controller: BlBundle:Vues:formulaire }
+
+nouvellefacture:
+    path:     /nouvellefacture/{nom}/{prix}
+    defaults: { _controller: BlBundle:Facturation:nouvellefacture }
+
+
 
 
 

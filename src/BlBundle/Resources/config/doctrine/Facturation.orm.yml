@@ -1,0 +1,72 @@
+BlBundle\Entity\Facturation:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\FacturationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        numFact:
+            type: string
+            length: '30'
+            column: NumFact
+        factDate:
+            type: date
+            column: FactDate
+        clientFact:
+            type: string
+            length: '50'
+            column: ClientFact
+        adresseFact:
+            type: string
+            length: 255
+            column: AdresseFact
+        complAdresseFact:
+            type: string
+            length: 255
+        codePostFact:
+            type: integer
+            column: CodePostFact
+        villeFact:
+            type: string
+            length: 255
+            column: VilleFact
+        paysFact:
+            type: string
+            length: 255
+            column: PaysFact
+        refFact:
+            type: string
+            length: '10'
+            column: RefFact
+        quantiteFact:
+            type: integer
+            column: QuantiteFact
+        pUFact:
+            type: decimal
+            precision: 10
+            scale: 0
+            column: PUFact
+        prixhtFact:
+            type: decimal
+            precision: 10
+            scale: 0
+            column: PrixhtFact
+        totalhtFact:
+            type: decimal
+            precision: 10
+            scale: 0
+            column: TotalhtFact
+        totaltvaFact:
+            type: decimal
+            precision: 10
+            scale: 0
+            column: TotaltvaFact
+        totalttcFact:
+            type: string
+            length: 255
+            column: TotalttcFact
+    lifecycleCallbacks: {  }

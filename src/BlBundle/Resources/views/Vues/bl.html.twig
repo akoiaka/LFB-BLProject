@@ -1,12 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block header %}
-    <div class="en-tete">
-        <img>LOGO LFB</img>
-        <button><a href="{{ path('page1') }}">Annuler</a></button>
-    </div>
-{% endblock %}
 
 {% block body %}
+
     <h1>CRÉATION DU BON DE LIVRAISON</h1>
 
     {#CI-DESSOUS FORMULAIRE PROVISOIRE EN ATTENDANT DE METTRE EN PLACE LES LISTENERS#}
@@ -143,8 +138,9 @@
 
     </div>
     <div class="bdp">
-        <button style="width: 300px; height: 60px">Valider</button>
-        <button style="width: 150px; height: 30px">Modifier</button>
+        <a href="{{ path('accueil') }}"><button class="btn btn-success" style="width: 300px; height: 60px">Valider</button></a>
+        <a href="{{ path('accueil') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">Modifier</button></a>
+        <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
     </div>
 
 
