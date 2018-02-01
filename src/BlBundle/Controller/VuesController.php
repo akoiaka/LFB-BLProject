@@ -4,6 +4,7 @@ namespace BlBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
+use Symfony\Component\Form\Form;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\FormView;
 
 
 
@@ -88,37 +90,61 @@ class VuesController extends Controller
     public function blAction(Request $request)
     {
 
+
 //        return $this->render('BlBundle:Vues:bl.html.twig');
 //    }
 //
 //   public function addAction(Request $request)
 //   {
        // création d'un objet Bonslivraison
-       $bons = new Bonslivraison();
+//       $bons = new Bonslivraison();
+//
+//       // création du FormBuilder grâce au service form factory
+//       $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $bons);
+//
+//       // ajout des champs de l'entité souhaités pour le formulaire
+//       // class est l objet, la classe, qui represente chaque type dans le Core Symfony
+//       // ! valable depuis php 5.5
+//       $formBuilder
+//           ->add('date',              DateType::class)
+//           ->add('numeroBl',          TextType::class)
+//           ->add('clientBl',          TextType::class)
+//           ->add('transporteurBl',    TextType::class)
+//           ->add('societeBl',         TextType::class)
+//           ->add('descriptionBl',     TextareaType::class)
+//           ->add('save',              SubmitType::class)
+//   ;
+//
+//       // génération du formulaire
+//       $form = $formBuilder->getForm();
+//
+//       // passage de la méthode createView() à la vue pour affichage du formulaire
+//       return $this->render('BlBundle:Vues:bl.html.twig', array(
+//           'form' => $form->createView(),
+//
+//       ));
 
-       // création du FormBuilder grâce au service form factory
-       $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $bons);
 
-       // ajout des champs de l'entité souhaités pour le formulaire
-       // class est l objet, la classe, qui represente chaque type dans le Core Symfony
-       // ! valable depuis php 5.5
-       $formBuilder
-           ->add('date',              DateType::class)
-           ->add('numeroBl',          TextType::class)
-           ->add('clientBl',          TextType::class)
-           ->add('transporteurBl',    TextType::class)
-           ->add('societeBl',         TextType::class)
-           ->add('descriptionBl',     TextareaType::class)
-           ->add('save',              SubmitType::class)
-   ;
+        //new test
 
-       // génération du formulaire
-       $form = $formBuilder->getForm();
+        // création d'un objet Bonslivraison
+        $bons = new Bonslivraison();
+        // création du FormBuilder grâce au service form factory
+        $form = $this->createFormBuilder($bons)
+            ->add('date',              DateType::class)
+            ->add('numeroBl',          TextType::class)
+            ->add('clientBl',          TextType::class)
+            ->add('transporteurBl',    TextType::class)
+            ->add('societeBl',         TextType::class)
+            ->add('descriptionBl',     TextareaType::class)
+            ->add('save',              SubmitType::class)
+            ->getForm();
 
-       // passage de la méthode createView() à la vue pour affichage du formulaire
-       return $this->render('BlBundle:Vues:bl.html.twig', array(
-           'form' => $form->createView(),
-       ));
+        // génération du formulaire
+        // passage de la méthode createView() à la vue pour affichage du formulaire
+        return $this->render('BlBundle:Vues:bl.html.twig', array(
+            'form' => $form->createView()
+        ));
 
    }
 
