@@ -68,6 +68,8 @@ class Bonslivraison
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->categories = new ArrayCollection();
+        $this->applications = new ArrayCollection();
     }
 
 
