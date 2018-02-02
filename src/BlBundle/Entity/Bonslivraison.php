@@ -5,6 +5,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use BlBundle\Repository\BonslivraisonRepository;
+use DateTimeInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @ORM\Table()
@@ -18,14 +20,14 @@ class Bonslivraison
     public $id;
 
     /**
-     * @var \DateTime $url
+     * @var \Date
      *
-     * @ORM\Column(name="dateBl", type="datetime")
+     * @ORM\Column(name="dateBl", type="dateTime")
      */
     private $dateBl;
 
     /**
-     * @var int
+     * @var int $url
      */
     private $numeroBl;
 
@@ -46,7 +48,7 @@ class Bonslivraison
     /**
      * @var string
      *
-     * @ORM\Column(name="societeBl", type="string, length=255)
+     * @ORM\Column(name="societeBl", type="string", length=255)
      */
     private $societeBl;
 

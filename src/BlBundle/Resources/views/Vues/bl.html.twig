@@ -1,140 +1,69 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<div class="container">
     <h1>CRÉATION DU BON DE LIVRAISON</h1>
-    <div class="well">{{ "now"|date('d/m/y H:i:s') }}</div>
+    <div class="well">{{ "now"|date(' H:i') }}</div>
 
     {#CI-DESSOUS FORMULAIRE PROVISOIRE EN ATTENDANT DE METTRE EN PLACE LES LISTENERS#}
-<div class="well">
-    {{ form(form) }}
-</div>
+    {#<div class="well form">#}
+        {#{{ form(form) }}#}
+    {#</div>#}
 
     <div class="well">
-        <form action="/accueil">
-            <div class="well">Numéro: <input type="text" name="blnum"></div><br>
-            <div class="well">Référence client: <input type="text" name="blref"></div><br>
-            <div class="well">Nom client: <input type="text" name="blclient"></div><br>
-            <div class="well">Représentant / Contact: <input type="text" name="blcontact"></div><br>
-            <div class="well">Remarque: <textarea name="blrem"></textarea></div><br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-    {#FORM GENERATE A TESTER POUR MARDI 23 JANVIER#}
+             {# Les erreurs générales du formulaire. #}
+             {{ form_errors(form) }}
 
-    {#My project contains this relations :#}
+            {# Génération du label + error + widget pour un champ. #}
+            {{ form_row(form.dateBl) }}
 
-    {#Plat -> OneToMany -> IngredPlat -> ManyToOne -> Ingred -> OneToMany -> IngredUser -> ManyToOne -> User#}
+        {# Génération manuelle et éclatée : #}
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.numeroBl, "Titre de l'annonce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
-    {#(For better comprehension, Plat could be translated to Recipe).#}
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.numeroBl) }}
 
-    {#IngredPlat has fields "qte" and "unite" (quantity and unit). IngredUser has field "prix" (price). A user in Paris will buy apples a different price than one in New York...#}
+            <div class="col-sm-10">
+                {# Génération de l'input. #}
+                {{ form_widget(form.numeroBl, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
 
-    {#I successfully made the part that add ingredients to Recipe, but I don't know how to include the field "prix" in my form so it can be displayed AND edited. Any idea or hint how to achieve that would be welcome.#}
-
-    {#My Controller#}
-
-    {#//...#}
-    {#$repository = $this#}
-    {#->getDoctrine()#}
-    {#->getManager()#}
-    {#->getRepository('AppBundle:Plat');#}
-
-    {#$plat = $repository->find($id);#}
-
-    {#$form = $this->createForm(PlatType::class, $plat);#}
-    {#The PlatType form :#}
-
-    {#//...#}
-    {#$builder#}
-    {#->add('nom', TextType::class)#}
-    {#->add('ingredients', CollectionType::class, array(#}
-    {#'entry_type' => IngredPlatType::class,#}
-    {#'required' => false,#}
-    {#'allow_add'    => true,#}
-    {#'allow_delete' => true,#}
-    {#'by_reference' => false,#}
-    {#'label' => false#}
-    {#))#}
-    {#//...#}
-    {#The IngredPlatType used for the collection#}
-
-    {#//...#}
-    {#private $transformer;#}
-
-    {#public function __construct(IdToIngredTransformer $transformer)#}
-    {#{#}
-    {#$this->transformer = $transformer;#}
-    {#}#}
-
-    {#public function buildForm(FormBuilderInterface $builder, array $options)#}
-    {#{#}
-    {#$builder#}
-    {#->add('ingred', HiddenType::class, array('invalid_message' => Ingrédient non reconnu',))#}
-    {#->add('qte', TextType::class)#}
-    {#->add('unite', HiddenType::class)#}
-    {#->add('isRetire', CheckboxType::class, array('label'    => 'Retiré après cuisson',))#}
-    {#->add('Enregistrer', SubmitType::class)#}
-    {#;#}
-
-    {#$builder->get('ingred')#}
-    {#->addModelTransformer($this->transformer);#}
-    {#}#}
-    {#//...#}
+        {# Idem pour un autre champ. #}
+        <div class="form-group">
+            {{ form_label(form.descriptionBl, "Contenu de l'annonce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.descriptionBl) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.descriptionBl, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
 
 
 
-    <div class="jumbotron">
-        <table class="table table-sm table-hover">
+        {# Génération automatique des champs pas encore écrits.
+           Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+           et tous les champs cachés (type « hidden »). #}
+        {{ form_rest(form) }}
 
-            <thead>
-            <tr>
-                <th scope="col">Indice</th>
-                <th scope="col">Article</th>
-                <th scope="col">Description</th>
-                <th scope="col">Dépôt</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">Prix unitaire HT</th>
-                <th scope="col">Prix unitaire TTC</th>
-                <th scope="col">Remise</th>
-            </tr>
-            </thead>
+        {# Fermeture de la balise <form> du formulaire HTML #}
 
-            <tbody>
-            <tr>
-                <th scope="row">N1</th>
-                <td>i1</td>
-                <td>A1</td>
-                <td>De1</td>
-                <td>D1</td>
-                <td>Q1</td>
-                <td>HT1</td>
-                <td>TTC1</td>
-                <td>REM1</td>
-            </tr>
-            <tr>
-                <th scope="row">N1</th>
-                <td>i2</td>
-                <td>A2</td>
-                <td>De2</td>
-                <td>D2</td>
-                <td>Q2</td>
-                <td>HT2</td>
-                <td>TTC2</td>
-                <td>REM2</td>
-            </tr>
-            </tbody>
 
-        </table>
+        <div class="bdp">
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {#<div>{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary'}}) }}</div>#}
+            <button class="btn btn-success" style="width: 300px; height: 60px">Valider</button>
+            {{ form_end(form) }}
+        </div>
+        {#LE FORMULAIRE DE SAISIE SE TERMINE CI-DESSUS#}
 
-    </div>
-    <div class="bdp">
-        <a href="{{ path('accueil') }}"><button class="btn btn-success" style="width: 300px; height: 60px">Valider</button></a>
-        <a href="{{ path('accueil') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">Modifier</button></a>
+        <a href="{{ path('bl') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">Modifier</button></a>
         <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
     </div>
-
+    </div>
 
 {% endblock %}
 
