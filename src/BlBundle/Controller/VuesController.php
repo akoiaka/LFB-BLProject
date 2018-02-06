@@ -133,7 +133,7 @@ class VuesController extends Controller
                 $request->getSession()->getFlashBag()->add('notice', 'Bon enregistré.');
 
                 //redirection vers la page de visualisation du BL nouvellement créé
-                return $this->redirectToRoute('bllist', array('id' => $bons->getId()));
+                return $this->redirectToRoute('blpreview', array('id' => $bons->getId()));
             }
         }
                     //
