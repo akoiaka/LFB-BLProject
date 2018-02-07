@@ -27,15 +27,12 @@ use Symfony\Component\Form\FormView;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use BlBundle\Repository\CategoryRepository;
 use BlBundle\Repository\BonslivraisonRepository;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 
 
 
 
 
-
-class BonslivraisonType extends AbstractType
+class FactureType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -76,41 +73,9 @@ class BonslivraisonType extends AbstractType
                   // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
                   // $pattern = 'D%';
                   $pattern = '%';
-                  return $repository->getLikeQueryBuilder($pattern);
+         return $repository->getLikeQueryBuilder($pattern);
                   }
-                  ))
-
-          // maintenant nous allons ajouter une eventlistener, fonction qui va écouter un événement
-          ->addEventlistener(
-                FormEvents::PRE_SET_DATA, // 1er argument. PRE_SET_DATA est l event qui nous interesse ici
-                function(FormEvent $event){
-                  // on récupère notre objet Bonslivraison au déclenchement de cet event
-                  $bons = $event->getData();
-
-                  if (null === $bons)
-                  {
-                  return;
-                    // on sort de la fonction sans rien faire, si $bons vaut null
-                  }
-
-                  // si le bon n'est pas créé ou s'il n existe pas en base
-                  if(null === $bons->getId())
-                  {
-                    // // alors ajout du champ published
-                    // $event->getForm()->add(
-                    //   'published', CheckboxType::class, array('required' => false));
-                    //
-                    // return $this->render('BlBundle:Vues:bl.html.twig', array(
-                    //     'form' => $form->createView())),
-                  }
-                  else
-                  {
-                    // $event->getForm()->remove('published');
-
-                    return;
-                  }
-                }
-            );
+              ));
     }
 
 
