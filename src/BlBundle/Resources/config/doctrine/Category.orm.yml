@@ -1,0 +1,11 @@
+BlBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }

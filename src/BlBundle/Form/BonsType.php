@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BonsType extends AbstractType
 {
-/**
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -18,6 +18,19 @@ class BonsType extends AbstractType
         ));
     }
 
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+      ->add('dateBl',            DateTimeType::class)
+//            Le typeDateType que l'on a utilisé affiche 3 champs select
+//            Il existe aussi un type TimezoneType pour choisir le fuseau horaire
+      ->add('numeroBl',          TextType::class)
+      ->add('clientBl',          TextType::class)
+      ->add('societeBl',         TextType::class)
+      ->add('quantiteBl',        TextType::class)
+      ->add('descriptionBl',     TextareaType::class)
+      ->add('transporteurBl',    TextType::class)
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -25,6 +38,6 @@ class BonsType extends AbstractType
     {
         return 'blbundle_bons';
     }
-
+//
 
 }

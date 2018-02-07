@@ -5,6 +5,7 @@ namespace BlBundle\Controller;
 use BlBundle\BlBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
+use BlBundle\Form\BonslivraisonType;
 use Symfony\Component\Form\Form;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -58,32 +59,51 @@ class VuesController extends Controller
                 array(
                     'bl' => $bl));
         }
-
-//        $em = $this->getDoctrine()->getManager();
-////
-//        $bl = $em->getRepository('BlBundle:Bonslivraison')->find($id);
-//
-//        if (null == $bl)
-//        {
-//            throw new NotFoundHttpException("le bl".$bl." n'existe pas.");
-//        }
-//
-//        return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
-
-
-//===========  AUTRE ESSAI ===========
-//        $bl = $this->getDoctrine()
-//            ->getRepository('BlBundle:Bonslivraison')
-//            ->find($id);
-//        if(!$bl){
-//            throw $this->createNotFoundException(
-//                'aucun produit trouvé pour cet id :'.$id
-//            );
-//        }
-//                return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
-//===========  AUTRE ESSAI ===========
-
     }
+
+
+
+        //===========  AUTRE ESSAI ===========
+        //        $bl = $this->getDoctrine()
+        //            ->getRepository('BlBundle:Bonslivraison')
+        //            ->find($id);
+        //        if(!$bl){
+        //            throw $this->createNotFoundException(
+        //                'aucun produit trouvé pour cet id :'.$id
+        //            );
+        //        }
+        //                return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
+        //===========  AUTRE ESSAI ===========
+
+
+
+public function viewAction($id)
+{
+  $em = $this->getDoctrine()->getManager();
+
+  // méthode find($id) pour récupérer un seul bon
+  $bons = $em->getRepository('BlBundle:Bonslivraison')->find($id);
+
+  // $bons est donc une instance de BlBundle\Entity\Bonslivraison
+  // ou null si l'id $id n'existe pas, d'où ce if :
+  if (null === $bons) {
+    throw new NotFoundHttpException("Le bon ".$id." n'existe pas.");
+  // }
+  // // Récupération de la liste des candidatures de l'annonce
+  // $listApplications = $em
+  // ;
+  // // Récupération des AdvertSkill de l'annonce
+  // $listAdvertSkills = $em
+  //   ->getRepository('BlBundle:AdvertSkill')
+  //   ->findBy(array('advert' => $advert))
+  ;
+  return $this->render('BlBundle:Vues:blpreview.html.twig', array(
+    'Bons'           => $bons,
+    // 'listApplications' => $listApplications,
+    // 'listAdvertSkills' => $listAdvertSkills,
+  ));
+}
+}
 
 //    /**
 //     * @Route("/bl",name="liste")
@@ -99,19 +119,27 @@ class VuesController extends Controller
 
         $bons->setDateBl(new \Datetime('now'));
 
-        $form = $this->createFormBuilder($bons)
-            ->add('dateBl',            DateTimeType::class)
-//            Le typeDateType que l'on a utilisé affiche 3 champs select
-//            Il existe aussi un type TimezoneType pour choisir le fuseau horaire
-            ->add('numeroBl',          TextType::class)
-            ->add('clientBl',          TextType::class)
-            ->add('societeBl',         TextType::class)
-            ->add('quantiteBl',        TextType::class)
-            ->add('descriptionBl',     TextareaType::class)
-            ->add('transporteurBl',    TextType::class)
-//            ci-dessous le bouton valider a été commenté car je l ai injecté directement dans la vue (voir bl.html.twig)
-//            ->add('Valider',           SubmitType::class)
-            ->getForm();
+        // ci-dessous nous utilisons la méthode create du service formfactory et appeler le formulaire de BonslivraisonType
+        $form = $this->get('form.factory')->create(BonslivraisonType::class, $bons);
+        // ou tout simplement
+        // $form = $this->createForm(BonslivraisonType::class, $bons)
+
+
+        // en passant par formtype, nous n utiliserons pas la methode createFormBuilder qui est ci-dessous meme si elle fonctionnelle
+
+//         $form = $this->createFormBuilder($bons)
+//             ->add('dateBl',            DateTimeType::class)
+// //            Le typeDateType que l'on a utilisé affiche 3 champs select
+// //            Il existe aussi un type TimezoneType pour choisir le fuseau horaire
+//             ->add('numeroBl',          TextType::class)
+//             ->add('clientBl',          TextType::class)
+//             ->add('societeBl',         TextType::class)
+//             ->add('quantiteBl',        TextType::class)
+//             ->add('descriptionBl',     TextareaType::class)
+//             ->add('transporteurBl',    TextType::class)
+// //            ci-dessous le bouton valider a été commenté car je l ai injecté directement dans la vue (voir bl.html.twig)
+// //            ->add('Valider',           SubmitType::class)
+//             ->getForm();
         // noter qu ici on aurait très bien pu écrire aussi:
         // Symfony\Component\Form\Extension\Core\Type\TextType
 
@@ -119,12 +147,13 @@ class VuesController extends Controller
         // qui est "required" exemple: $formBuilder->add('published', CheckboxType::class, array('required' => false))
 
         // si la requête est en POST
-        if($request->isMethod('POST')) {
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+            {
 //                lien entre requête et formulaire en prépa de synchro avec bdd
-            $form->handleRequest($request);
+            // $form->handleRequest($request);
 
             // vérification de l exactitude des données rentrées
-            if ($form->isValid()) {
+            // if ($form->isValid()) {
                 // enregistrement de l objet Bons dans la base de données
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($bons);
@@ -135,7 +164,6 @@ class VuesController extends Controller
                 //redirection vers la page de visualisation du BL nouvellement créé
                 return $this->redirectToRoute('blpreview', array('id' => $bons->getId()));
             }
-        }
                     //
                     // À ce stade, le formulaire n'est pas valide car :
                     // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
@@ -144,10 +172,11 @@ class VuesController extends Controller
                     // génération du formulaire
                     // passage de la méthode createView() à la vue pour affichage du formulaire
                     return $this->render('BlBundle:Vues:bl.html.twig', array(
-                        'form' => $form->createView()
+                        'form' => $form->createView(),
                     ));
+        }
 
-    }
+
 
 
     public function blpreviewAction()

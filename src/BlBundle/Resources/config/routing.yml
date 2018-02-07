@@ -15,6 +15,11 @@ article:
     path:     /article
     defaults: { _controller: BlBundle:Vues:article }
 
+view:
+    path:     /view
+    defaults: { _controller: BlBundle:Vues:view }
+
+
 bl:
     path:     /bl
     defaults: { _controller: BlBundle:Vues:bl }
@@ -66,9 +71,3 @@ formulaire:
 nouvellefacture:
     path:     /nouvellefacture/{nom}/{prix}
     defaults: { _controller: BlBundle:Facturation:nouvellefacture }
-
-
-
-
-
-
