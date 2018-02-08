@@ -5,7 +5,9 @@ namespace BlBundle\Controller;
 use BlBundle\BlBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
+use BlBundle\Entity\Factures;
 use BlBundle\Form\BonslivraisonType;
+use BlBundle\Form\FacturesType;
 use Symfony\Component\Form\Form;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -161,11 +163,19 @@ public function viewAction($id)
 
                 $request->getSession()->getFlashBag()->add('notice', 'Bon enregistré.');
 
+                $em = $this->getDoctrine()->getManager();
+                $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+                ('id' => $bons));
+                return $this->render('BlBundle:Vues:blpreview.html.twig',
+                    array(
+                        'bl' => $bl));
+
+
                 //redirection vers la page de visualisation du BL nouvellement créé
                 return $this->redirectToRoute('blpreview', array('id' => $bons->getId()));
             }
                     //
-                    // À ce stade, le formulaire n'est pas valide car :
+                    // À ce stade, le formulaire peut ne pas être valide car :
                     // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
                     // - Soit la requête est de type POST, mais le formulaire contient des valeurs invalides, donc on l'affiche de nouveau
 
@@ -177,6 +187,27 @@ public function viewAction($id)
         }
 
 
+    public function BleditAction(Request $request, $id)
+    {
+        $bons = $this->getDoctrine->getRepository('BlBundle:Bonslivraison')->find($id);
+        $form = $this->createForm(BonslivraisonType::class, $bons);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()){
+          $bons = $form->getData();
+
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($bons);
+          $em->flush();
+
+          return $this->redirectToRoute('blpreview.html.twig');
+        }
+        return $this->render(
+          'BlBundle:Vues:bl.html.twig', [
+          'form' => $form->createView(),]
+        );
+    }
 
 
     public function blpreviewAction()
@@ -199,10 +230,29 @@ public function viewAction($id)
         return $this->render('BlBundle:Vues:archives.html.twig');
     }
 
-    public function facturesAction()
+    public function facturesAction(Request $request)
     {
-        return $this->render('BlBundle:Vues:factures.html.twig');
-    }
+      $fact = new Factures();
+      $fact->setdateFacture(new \Datetime('now'));
+      $form = $this->get('form.factory')->create(FacturesType::class, $fact);
+      if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+      {
+      $em = $this->getDoctrine()->getManager();
+                $em->persist($fact);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notice', 'Facture enregistrée.');
+      return $this->redirectToRoute('factpreview', array('id' => $fact->getId()));
+      }
+
+      return $this->render('BlBundle:Vues:factures.html.twig', array(
+                        'form' => $form->createView(),
+                    ));
+      }
+
+    //
+    //     return $this->render('BlBundle:Vues:factures.html.twig');
+    // }
 
     public function listearticlesAction()
     {

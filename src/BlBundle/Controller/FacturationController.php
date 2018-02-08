@@ -14,14 +14,6 @@ class FacturationController extends Controller
 //     */
     public function nouvellefactureAction($nom, $prix)
     {
-        $fact = new Facturation();
-        $fact->setnumFact($nom);
-        $fact->setclientFact($prix);
-        $em=$this->getDoctrine()->getManager();
-        $em->persist($fact);
-        $em->flush();
-
-        return $this->render('BlBundle:Vues:nouvellefacture.html.twig',array('facture' => $fact));
-
+      
     }
 }

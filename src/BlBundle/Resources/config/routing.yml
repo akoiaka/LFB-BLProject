@@ -32,6 +32,10 @@ blpreview:
     path:     /blpreview
     defaults: { _controller: BlBundle:Vues:blpreview }
 
+bledit:
+    path:     /bledit
+    defaults: { _controller: BlBundle:Vues:bledit}
+
 client:
     path:     /client
     defaults: { _controller: BlBundle:Vues:client }

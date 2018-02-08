@@ -51,14 +51,11 @@
     </div>
     {#    ci-dessus la div à imprimer#}
 
-    <div class="row endpage">
-        <div class="col-lg-6">
-            <img src="" alt="" name="printpic">
-            <h5>IMPRIMER</h5>
-        </div>
-        <div class="row col-lg-6">
-            <button class="col-lg-6 left" name="left">preview</button>
-            <button class="col-lg-6 right" name="right">next</button>
+    <div class="row baspage">
+
+        <div class="well">
+          <a href="{{ path('accueil') }}"><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
+          <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
         </div>
     </div>
 {% endblock %}
@@ -76,6 +73,9 @@
             {
                 margin-top: 40px;
             }
-
+        .baspage
+            {
+                text-align: center;
+            }
     </style>
 {% endblock %}

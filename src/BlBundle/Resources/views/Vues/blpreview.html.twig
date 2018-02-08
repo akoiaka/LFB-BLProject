@@ -1,39 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="well">
-<h1>BON DE LIVRAISON</h1>
-<h2>N. </h2>
-<p>{{ "now"|date(' d m Y H:i') }}</p>
-<!-- <div class="">numeroBl</div> -->
-</div>
-    <div class="jumbotron">
+<div class="container">
+
+    <div class="well">
+        <h1>BON DE LIVRAISON</h1>
+        <h2>N. {{ bl.id }}</h2>
+    </div>
+    <div class="jumbotron" id="listebl">
         <table class="table table-sm table-hover">
             <thead>
             <tr>
-                <th scope="col">N.</th>
-                <th scope="col">N. Pièce</th>
-                <th scope="col">Date Pièce</th>
+                <th scope="col" id="numbl" name="numbl">N.</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
                 <th scope="col">Client</th>
                 <th scope="col">Société</th>
-                <th scope="col">Total HT</th>
-                <th scope="col">Total TVA</th>
-                <th scope="col">Total TTC</th>
+                <th scope="col">Transporteur</th>
+                <th scope="col">Quantité</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>{{ "now"|date(' d m Y') }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <th scope="row">{{ bl.id }}</th>
+                    <!-- <td>{{ bl.dateBl.format('j M Y H:i') }}</td> -->
+                    <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                    <td>{{ "now"|date(' d m Y | H:i') }}</td>
+                    <td>{{ bl.descriptionBl }}</td>
+                    <td>{{ bl.clientBl }}</td>
+                    <td>{{ bl.societeBl }}</td>
+                    <td>{{ bl.transporteurBl }}</td>
+                    <td>{{ bl.quantiteBl }}</td>
+                </tr>
             </tbody>
-        </table>
+          </table>
     </div>
 
     {#    ci-dessus la div à imprimer#}
@@ -45,6 +45,8 @@
           <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
         </div>
     </div>
+    </div>
+
 {% endblock %}
 {% block stylesheets %}
     <style>
