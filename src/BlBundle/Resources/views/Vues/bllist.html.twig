@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        <a href="{{ path('accueil') }}"><button class="btn btn-primary">Revenir sur la page ACCUEIL</button></a>
+<div class="container">
+      <div class="well entete">
+        <a href="{{ path('accueil') }}" class="entete"><button class="btn btn-primary entete">Revenir sur la page ACCUEIL</button></a>
+        <a href="{{ path('bl') }}" class="entete"><button class="btn btn-success entete">Créer un nouveau BON DE LIVRAISON</button></a>
     </div>
     <br>
 
@@ -15,26 +17,30 @@
         <table class="table table-sm table-hover">
             <thead>
             <tr>
-                <th scope="col" id="numbl" name="numbl">N.</th>
                 <th scope="col">Date</th>
+                <th scope="col" id="numbl" name="numbl">N.</th>
                 <th scope="col">Description</th>
                 <th scope="col">Client</th>
                 <th scope="col">Société</th>
                 <th scope="col">Transporteur</th>
                 <th scope="col">Quantité</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             {% for bls in bl %}
                 <tr>
-                    <th scope="row">{{ bls.id }}</th>
                     <td>{{ bls.dateBl.format('j, M Y h:m') }}</td>
+                    <th scope="row"><a href="{{ path('blconsult', {'id':bls.id }) }}">{{ bls.id }}</a></th>
                     <td>{{ bls.descriptionBl }}</td>
                     <td>{{ bls.clientBl }}</td>
                     <td>{{ bls.societeBl }}</td>
                     <td>{{ bls.transporteurBl }}</td>
                     <td>{{ bls.quantiteBl }}</td>
+                    <td><a href="{{ path('blconsult', {'id':bls.id }) }}"><button class="btn btn-success">Visualiser le bon</button></a><a href="{{ path('bledit', {'id':bls.id }) }}"><button class="btn btn-primary">Editer</button></a></td>
+
                 </tr>
+
             {% endfor %}
             <tr>
                 <th scope="row"></th>
@@ -58,6 +64,7 @@
           <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
         </div>
     </div>
+</div>
 {% endblock %}
 {% block stylesheets %}
     <style>
@@ -77,5 +84,11 @@
             {
                 text-align: center;
             }
-    </style>
+        .entete
+            {
+                margin: auto;
+                text-align: center;
+                padding-left: 40px;
+            }
+      </style>
 {% endblock %}

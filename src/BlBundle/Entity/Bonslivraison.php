@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints\Date;
 /**
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="BlBundle\Repository\BonslivraisonRepository")
+ * @ORM\OneToMany(targetEntity="BlBundle\Entity\Bonslivraison", mappedBy="id")
+ * @ORM\OrderBy({"order" = "DESC", "id" = "DESC"})
  */
 class Bonslivraison
 {
@@ -253,4 +255,3 @@ class Bonslivraison
         return $this->quantiteBl;
     }
 }
-

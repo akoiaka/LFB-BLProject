@@ -29,12 +29,16 @@ bllist:
     defaults: { _controller: BlBundle:Vues:bllist }
 
 blpreview:
-    path:     /blpreview
+    path:     /blpreview/
     defaults: { _controller: BlBundle:Vues:blpreview }
 
 bledit:
-    path:     /bledit
-    defaults: { _controller: BlBundle:Vues:bledit}
+    path:     /bledit/{id}
+    defaults: { _controller: BlBundle:Vues:bledit }
+
+blconsult:
+    path:     /blconsult/{id}
+    defaults: { _controller: BlBundle:Vues:blconsult }
 
 client:
     path:     /client

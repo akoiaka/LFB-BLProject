@@ -43,7 +43,7 @@ class BonslivraisonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
       // // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
-        $pattern = 'D%';
+        // $pattern = 'D%';
 
         $builder
           ->add('dateBl',            DateTimeType::class)
@@ -65,20 +65,22 @@ class BonslivraisonType extends AbstractType
           //       'allow_add'    => true,
           //       'allow_delete' => true
 
+          // <!-- ci-dessous, les catégories préparées en vue de sélectionner ultérieurement les bons par année ou par un autre critère -->
+          // se référer aussi à {{form.categories}} dans la vue bl (twig)
           // ci-dessous je vais utiliser EntityType pour permettre un choix d options
           // L'option class définit quel est le type d'entité à
           // L'option choice_label définit comment afficher les entités dans le select du formulaire
-          ->add('categories', EntityType::class, array(
-                'class'   => 'BlBundle:Bonslivraison',
-                'choice_label'    => 'numeroBl',
-                'multiple' => false,
-                'query_builder' => function($repository) use($pattern){
-                  // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
-                  // $pattern = 'D%';
-                  $pattern = '%';
-                  return $repository->getLikeQueryBuilder($pattern);
-                  }
-                  ))
+          // ->add('categories', EntityType::class, array(
+          //       'class'   => 'BlBundle:Bonslivraison',
+          //       'choice_label'    => 'numeroBl',
+          //       'multiple' => false,
+          //       'query_builder' => function($repository) use($pattern){
+          //         // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
+          //         // $pattern = 'D%';
+          //         $pattern = '%';
+          //         return $repository->getLikeQueryBuilder($pattern);
+          //         }
+          //         ))
 
           // maintenant nous allons ajouter une eventlistener, fonction qui va écouter un événement
           ->addEventlistener(

@@ -18,4 +18,5 @@ class BonslivraisonRepository extends \Doctrine\ORM\EntityRepository
      ->where('c.numeroBl LIKE :pattern')
      ->setParameter('pattern', $pattern);
   }
+
 }

@@ -56,28 +56,12 @@ class VuesController extends Controller
     {
         {
             $em = $this->getDoctrine()->getManager();
-            $bl = $em->getRepository("BlBundle:Bonslivraison")->findAll();
+            $bl = $em->getRepository("BlBundle:Bonslivraison")->findBy(array(), array('id' => 'DESC'));
             return $this->render('BlBundle:Vues:bllist.html.twig',
                 array(
                     'bl' => $bl));
         }
     }
-
-
-
-        //===========  AUTRE ESSAI ===========
-        //        $bl = $this->getDoctrine()
-        //            ->getRepository('BlBundle:Bonslivraison')
-        //            ->find($id);
-        //        if(!$bl){
-        //            throw $this->createNotFoundException(
-        //                'aucun produit trouvé pour cet id :'.$id
-        //            );
-        //        }
-        //                return $this->render('BlBundle:Vues:bllist.html.twig', array('bl' => $bl));
-        //===========  AUTRE ESSAI ===========
-
-
 
 public function viewAction($id)
 {
@@ -189,26 +173,48 @@ public function viewAction($id)
 
     public function BleditAction(Request $request, $id)
     {
-        $bons = $this->getDoctrine->getRepository('BlBundle:Bonslivraison')->find($id);
+        $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
         $form = $this->createForm(BonslivraisonType::class, $bons);
+        // $form = $this->get('form.factory')->create(BonslivraisonType::class, $bons);
 
         $form->handleRequest($request);
 
-        if ($form->isValid()){
-          $bons = $form->getData();
+        if ($form->isValid())
+        {
+              $bons = $form->getData();
 
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($bons);
-          $em->flush();
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($bons);
+              $em->flush();
 
-          return $this->redirectToRoute('blpreview.html.twig');
+              $em = $this->getDoctrine()->getManager();
+              $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+              ('id' => $bons));
+              return $this->render('BlBundle:Vues:blpreview.html.twig',
+              array('bl' => $bl));
+
+              //redirection vers la page de visualisation du BL nouvellement créé
+              return $this->redirectToRoute('blpreview', array('id' => $bons->getId()));
         }
-        return $this->render(
-          'BlBundle:Vues:bl.html.twig', [
-          'form' => $form->createView(),]
-        );
+
+              return $this->render('BlBundle:Vues:bl.html.twig', ['form' => $form->createView(),]);
     }
 
+    public function BlconsultAction(Request $request, $id)
+    {
+            $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
+            $form = $this->createForm(BonslivraisonType::class, $bons);
+            $form->handleRequest($request);
+
+              $bons = $form->getData();
+
+              $em = $this->getDoctrine()->getManager();
+              $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+              ('id' => $bons));
+              return $this->render('BlBundle:Vues:blconsult.html.twig',
+              array('bl' => $bl));
+
+    }
 
     public function blpreviewAction()
     {
