@@ -27,9 +27,12 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 use BlBundle\Repository\CategoryRepository;
 use BlBundle\Repository\FacturesRepository;
-
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 
 
@@ -44,7 +47,7 @@ class FacturesType extends AbstractType
         // $pattern = 'F%';
 
         $builder
-          ->add('numeroFacture',            DateTimeType::class)
+          ->add('numeroFacture',            TextType::class)
           ->add('dateFacture',              DateTimeType::class)
           ->add('reference',                TextType::class)
           ->add('designation',              TextType::class)
@@ -68,7 +71,28 @@ class FacturesType extends AbstractType
         //  return $repository->getLikeQueryBuilder($pattern);
         //           }
         //       ));
-    }
+
+
+        ->addEventlistener(
+              FormEvents::PRE_SET_DATA,
+              function(FormEvent $event){
+                $fact = $event->getData();
+
+                if (null === $fact)
+                {
+                return;
+                }
+
+                if(null === $fact->getId())
+                {
+
+                }
+                else
+                {
+                  return;
+                }
+              }
+          );}
 
 
     /**

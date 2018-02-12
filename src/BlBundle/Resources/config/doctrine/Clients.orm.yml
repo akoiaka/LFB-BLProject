@@ -1,0 +1,96 @@
+BlBundle\Entity\Clients:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\ClientsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        codeClient:
+            type: string
+            length: '30'
+            nullable: true
+        nomClient:
+            type: string
+            length: '50'
+            nullable: true
+        siret:
+            type: string
+            length: '50'
+            nullable: true
+        adresse1:
+            type: string
+            length: '50'
+            nullable: true
+        adresse2:
+            type: string
+            length: '50'
+            nullable: true
+        adresse3:
+            type: string
+            length: '50'
+            nullable: true
+        codePostal:
+            type: string
+            length: '20'
+            nullable: true
+        ville:
+            type: string
+            length: '30'
+            nullable: true
+        pays:
+            type: string
+            length: '20'
+            nullable: true
+        adresse1Livraison:
+            type: string
+            length: '30'
+            nullable: true
+        adresse2Livraison:
+            type: string
+            length: '30'
+            nullable: true
+        adresse3Livraison:
+            type: string
+            length: '30'
+            nullable: true
+        paysLivraison:
+            type: string
+            length: '20'
+            nullable: true
+        telephone:
+            type: string
+            length: '30'
+            nullable: true
+        portable:
+            type: string
+            length: '30'
+            nullable: true
+        fax:
+            type: string
+            length: '30'
+            nullable: true
+        compteComptable:
+            type: string
+            length: '30'
+            nullable: true
+        codeIso:
+            type: string
+            length: '5'
+            nullable: true
+        codeCEE:
+            type: integer
+            nullable: true
+        numeroIso:
+            type: integer
+            nullable: true
+        codeInsee:
+            type: integer
+            nullable: true
+        contactClient:
+            type: string
+            length: '50'
+    lifecycleCallbacks: {  }

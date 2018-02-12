@@ -1,47 +1,163 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Créer une Facture</h1>
-    <div class="row">
-        <div class="col-lg-6">
-            <input type="text" placeholder="Numéro">
-            <input type="date" placeholder="Date">
-        </div>
-        <div class="col-lg-6">
-            <input type="text" placeholder="Référence">
-            <input type="text" placeholder="Représentant">
-            <textarea name="adressfact" id="" cols="30" rows="10">Adresse</textarea>
-        </div>
-        <div class="jumbotron">
-            <div class="well">Désignation</div>
-            <div class="well">Quantité</div>
-            <div class="well">P.U. HT</div>
-            <div class="well">%REM</div>
-            <div class="well">Remise HT</div>
-            <div class="well">Montant HT</div>
-            <div class="well">TVA</div>
-            <div class="row">
-                <div class="col-lg-6 well">
-                    <input type="number" placeholder="TOTAL HT">
-                    <input type="number" placeholder="TOTAL TVA">
-                </div>
-                <div class="col-lg-6">
-                    <input type="number" placeholder="NET HT">
-                    <input type="number" placeholder="Total TTC">
-                </div>
-                <div class="well">NET A PAYER</div>
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-success">VALIDER</button>
-    <button class="btn btn-primary">ANNULER</button>
 
-    </div>
+    <div class="container">
+        <h1>CRÉATION D'UNE FACTURE</h1>
+        <div class="well">{{ "now"|date(' H:i') }}</div>
+
+        <div class="well">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                 {# Les erreurs générales du formulaire. #}
+                 {{ form_errors(form) }}
+
+                {# Génération du label + error + widget pour un champ. #}
+                {{ form_row(form.dateFacture) }}
+
+            {# Génération manuelle et éclatée : #}
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.numeroFacture, "Numero de Facture", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.numeroFacture) }}
+
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.numeroFacture, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            {# Idem pour le champ Descr. #}
+            <div class="form-group">
+                {{ form_label(form.designation, "Description", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.designation) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.designation, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Client. #}
+                {{ form_label(form.reference, "Référence Client", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.reference) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.reference, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Transporteur. #}
+                {{ form_label(form.quantite, "Quantité", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.quantite) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Société. #}
+                {{ form_label(form.montantHt, "Montant HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.montantHt) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.montantHt, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.puHt, "P.U. HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.puHt) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.puHt, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.tva, "TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.tva) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.tva, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.tauxTva, "Taux TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.tauxTva) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.tauxTva, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.montantTva, "Montant TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.montantTva) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.montantTva, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.totalHt, "Total HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.totalHt) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.totalHt, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.totalTva, "Total TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.totalTva) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.totalTva, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.totalTtc, "Total TTC", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.totalTtc) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(form.totalTtc, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+
+            {{ form_rest(form) }}
+
+
+            <div class="bdp">
+                {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                {#<div>{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary'}}) }}</div>#}
+                <button class="btn btn-success" style="width: 300px; height: 60px">Valider</button>
+
+                {{ form_end(form) }}
+            </div>
+
+            <a href="{{ path('bl') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">Modifier</button></a>
+            <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
+        </div>
+        </div>
+
 {% endblock %}
 {% block stylesheets %}
     <style>
-        * {text-align:center;}
-        button {
+        button
+        {
             margin-top: 40px;
         }
     </style>

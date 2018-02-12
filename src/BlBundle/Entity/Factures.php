@@ -2,128 +2,80 @@
 
 namespace BlBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
-use BlBundle\Repository\FacturesRepository;
-use DateTimeInterface;
-use Symfony\Component\Validator\Constraints\Date;
-
-
 /**
  * Factures
- * @ORM\Entity
- * @ORM\Table(name="factures")
- * @ORM\Entity(repositoryClass="BlBundle\Repository\FacturesRepository")
  */
 class Factures
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="numero_facture", type="string", length=50, nullable=true)
      */
     private $numeroFacture;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date_facture", type="datetime")
      */
     private $dateFacture;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="reference", type="string", length=50, nullable=true)
      */
     private $reference;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="designation", type="string", length=100)
      */
     private $designation;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="quantite", type="integer")
      */
     private $quantite;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="montant_ht", type="decimal", precision=10, scale=0)
      */
     private $montantHt;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="tva", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $tva;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="taux_tva", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $tauxTva;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="montant_tva", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $montantTva;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="total_ht", type="decimal", precision=10, scale=0)
      */
     private $totalHt;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="total_tva", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $totalTva;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="pu_ht", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $puHt;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="total_ttc", type="decimal", precision=10, scale=0)
      */
     private $totalTtc;
-
-    public function __construct()
-    {
-        $this->date = new \DateTime();
-        $this->categories = new ArrayCollection();
-        $this->applications = new ArrayCollection();
-    }
 
 
     /**
@@ -448,3 +400,4 @@ class Factures
         return $this->totalTtc;
     }
 }
+

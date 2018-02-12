@@ -23,6 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormView;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use BlBundle\Repository\CategoryRepository;
@@ -52,7 +53,7 @@ class BonslivraisonType extends AbstractType
           ->add('numeroBl',          TextType::class)
           ->add('clientBl',          TextType::class)
           ->add('societeBl',         TextType::class)
-          ->add('quantiteBl',        TextType::class)
+          ->add('quantiteBl',        IntegerType::class)
           ->add('descriptionBl',     TextareaType::class)
           ->add('transporteurBl',    TextType::class)
 

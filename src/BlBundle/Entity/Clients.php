@@ -2,151 +2,125 @@
 
 namespace BlBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Clients
- *
- * @ORM\Entity
- * @ORM\Table(name="clients")
- * @ORM\Entity(repositoryClass="BlBundle\Repository\ClientsRepository")
  */
 class Clients
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="code_client", type="string", length=30, nullable=true, unique=true)
      */
     private $codeClient;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom_client", type="string", length=50)
      */
     private $nomClient;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="siret", type="string", length=40, nullable=true)
      */
     private $siret;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nafape", type="string", length=40)
-     */
-    private $nafape;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse1", type="string", length=255)
      */
     private $adresse1;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adresse2", type="string", length=255, nullable=true)
      */
     private $adresse2;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adresse3", type="string", length=255, nullable=true)
      */
     private $adresse3;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="code_postal", type="integer")
+     * @var string
      */
     private $codePostal;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="ville", type="string", length=50)
      */
     private $ville;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="pays", type="string", length=50)
      */
     private $pays;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="societe_livraison", type="string", length=50)
-     */
-    private $societeLivraison;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse1_livraison", type="string", length=50)
      */
     private $adresse1Livraison;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adresse2_livraison", type="string", length=50)
      */
     private $adresse2Livraison;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adresse3_livraison", type="string", length=50)
      */
     private $adresse3Livraison;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="code_postal_livraison", type="integer")
+     * @var string
      */
-    private $codePostalLivraison;
+    private $paysLivraison;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom_contact", type="string", length=30, nullable=true)
      */
-    private $nomContact;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="numero_contact", type="integer", nullable=true)
-     */
-    private $numeroContact;
+    private $telephone;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="mail_contact", type="string", length=30, nullable=true)
      */
-    private $mailContact;
+    private $portable;
+
+    /**
+     * @var string
+     */
+    private $fax;
+
+    /**
+     * @var string
+     */
+    private $compteComptable;
+
+    /**
+     * @var string
+     */
+    private $codeIso;
+
+    /**
+     * @var int
+     */
+    private $codeCEE;
+
+    /**
+     * @var int
+     */
+    private $numeroIso;
+
+    /**
+     * @var int
+     */
+    private $codeInsee;
+
+    /**
+     * @var string
+     */
+    private $contactClient;
 
 
     /**
@@ -232,30 +206,6 @@ class Clients
     }
 
     /**
-     * Set nafape
-     *
-     * @param string $nafape
-     *
-     * @return Clients
-     */
-    public function setNafape($nafape)
-    {
-        $this->nafape = $nafape;
-
-        return $this;
-    }
-
-    /**
-     * Get nafape
-     *
-     * @return string
-     */
-    public function getNafape()
-    {
-        return $this->nafape;
-    }
-
-    /**
      * Set adresse1
      *
      * @param string $adresse1
@@ -330,7 +280,7 @@ class Clients
     /**
      * Set codePostal
      *
-     * @param integer $codePostal
+     * @param string $codePostal
      *
      * @return Clients
      */
@@ -344,7 +294,7 @@ class Clients
     /**
      * Get codePostal
      *
-     * @return int
+     * @return string
      */
     public function getCodePostal()
     {
@@ -397,30 +347,6 @@ class Clients
     public function getPays()
     {
         return $this->pays;
-    }
-
-    /**
-     * Set societeLivraison
-     *
-     * @param string $societeLivraison
-     *
-     * @return Clients
-     */
-    public function setSocieteLivraison($societeLivraison)
-    {
-        $this->societeLivraison = $societeLivraison;
-
-        return $this;
-    }
-
-    /**
-     * Get societeLivraison
-     *
-     * @return string
-     */
-    public function getSocieteLivraison()
-    {
-        return $this->societeLivraison;
     }
 
     /**
@@ -496,98 +422,243 @@ class Clients
     }
 
     /**
-     * Set codePostalLivraison
+     * Set paysLivraison
      *
-     * @param integer $codePostalLivraison
+     * @param string $paysLivraison
      *
      * @return Clients
      */
-    public function setCodePostalLivraison($codePostalLivraison)
+    public function setPaysLivraison($paysLivraison)
     {
-        $this->codePostalLivraison = $codePostalLivraison;
+        $this->paysLivraison = $paysLivraison;
 
         return $this;
     }
 
     /**
-     * Get codePostalLivraison
-     *
-     * @return int
-     */
-    public function getCodePostalLivraison()
-    {
-        return $this->codePostalLivraison;
-    }
-
-    /**
-     * Set nomContact
-     *
-     * @param string $nomContact
-     *
-     * @return Clients
-     */
-    public function setNomContact($nomContact)
-    {
-        $this->nomContact = $nomContact;
-
-        return $this;
-    }
-
-    /**
-     * Get nomContact
+     * Get paysLivraison
      *
      * @return string
      */
-    public function getNomContact()
+    public function getPaysLivraison()
     {
-        return $this->nomContact;
+        return $this->paysLivraison;
     }
 
     /**
-     * Set numeroContact
+     * Set telephone
      *
-     * @param integer $numeroContact
+     * @param string $telephone
      *
      * @return Clients
      */
-    public function setNumeroContact($numeroContact)
+    public function setTelephone($telephone)
     {
-        $this->numeroContact = $numeroContact;
+        $this->telephone = $telephone;
 
         return $this;
     }
 
     /**
-     * Get numeroContact
-     *
-     * @return int
-     */
-    public function getNumeroContact()
-    {
-        return $this->numeroContact;
-    }
-
-    /**
-     * Set mailContact
-     *
-     * @param string $mailContact
-     *
-     * @return Clients
-     */
-    public function setMailContact($mailContact)
-    {
-        $this->mailContact = $mailContact;
-
-        return $this;
-    }
-
-    /**
-     * Get mailContact
+     * Get telephone
      *
      * @return string
      */
-    public function getMailContact()
+    public function getTelephone()
     {
-        return $this->mailContact;
+        return $this->telephone;
+    }
+
+    /**
+     * Set portable
+     *
+     * @param string $portable
+     *
+     * @return Clients
+     */
+    public function setPortable($portable)
+    {
+        $this->portable = $portable;
+
+        return $this;
+    }
+
+    /**
+     * Get portable
+     *
+     * @return string
+     */
+    public function getPortable()
+    {
+        return $this->portable;
+    }
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     *
+     * @return Clients
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Set compteComptable
+     *
+     * @param string $compteComptable
+     *
+     * @return Clients
+     */
+    public function setCompteComptable($compteComptable)
+    {
+        $this->compteComptable = $compteComptable;
+
+        return $this;
+    }
+
+    /**
+     * Get compteComptable
+     *
+     * @return string
+     */
+    public function getCompteComptable()
+    {
+        return $this->compteComptable;
+    }
+
+    /**
+     * Set codeIso
+     *
+     * @param string $codeIso
+     *
+     * @return Clients
+     */
+    public function setCodeIso($codeIso)
+    {
+        $this->codeIso = $codeIso;
+
+        return $this;
+    }
+
+    /**
+     * Get codeIso
+     *
+     * @return string
+     */
+    public function getCodeIso()
+    {
+        return $this->codeIso;
+    }
+
+    /**
+     * Set codeCEE
+     *
+     * @param integer $codeCEE
+     *
+     * @return Clients
+     */
+    public function setCodeCEE($codeCEE)
+    {
+        $this->codeCEE = $codeCEE;
+
+        return $this;
+    }
+
+    /**
+     * Get codeCEE
+     *
+     * @return int
+     */
+    public function getCodeCEE()
+    {
+        return $this->codeCEE;
+    }
+
+    /**
+     * Set numeroIso
+     *
+     * @param integer $numeroIso
+     *
+     * @return Clients
+     */
+    public function setNumeroIso($numeroIso)
+    {
+        $this->numeroIso = $numeroIso;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroIso
+     *
+     * @return int
+     */
+    public function getNumeroIso()
+    {
+        return $this->numeroIso;
+    }
+
+    /**
+     * Set codeInsee
+     *
+     * @param integer $codeInsee
+     *
+     * @return Clients
+     */
+    public function setCodeInsee($codeInsee)
+    {
+        $this->codeInsee = $codeInsee;
+
+        return $this;
+    }
+
+    /**
+     * Get codeInsee
+     *
+     * @return int
+     */
+    public function getCodeInsee()
+    {
+        return $this->codeInsee;
+    }
+
+    /**
+     * Set contactClient
+     *
+     * @param string $contactClient
+     *
+     * @return Clients
+     */
+    public function setContactClient($contactClient)
+    {
+        $this->contactClient = $contactClient;
+
+        return $this;
+    }
+
+    /**
+     * Get contactClient
+     *
+     * @return string
+     */
+    public function getContactClient()
+    {
+        return $this->contactClient;
     }
 }
+

@@ -1,145 +1,110 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
 
-    {#ci-dessous la div facture à imprimer#}
-
-    <div name="print">
-        <div class="row">
-            <div class="col-lg-4">
-                <table class="table table-sm table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Facture N.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">xxxxxx</th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-lg-4">
-                <table class="table table-sm table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">00/00/00</th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-lg-4">
-                <table class="table table-sm table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Client</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">xxxxxx</th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="row top">
+          <div class="col-lg-6">
+              <h3>LFB BIOMANUFACTURING</h3>
+              <h4>AVENUE DES CHENES ROUGES<br/>30100 ALES</h4>
+              <h5>Tél       : 04.66.56.40.80<br/>SIRET     : 49927250800015</h5>
+              <br>
+          </div>
+          <div class="col-lg-6 adresse">
+              {{"ADRESSE CLIENT"}}
+          </div>
         </div>
 
-        <div class="row">
-            <div>
-                <img src="" alt="" name="logo">
-                <adress class="lfb" name="">
-                    AVENUE DES CHÊNES ROUGES<br>
-                    30100 ALES</br>
-                    FRANCE<br>
-                    Tel: 04.66.56.40.80</br>
-                    SIRET: 49927250800015</br>
-                </adress>
-            </div>
-            <div>
-                <input type="text" placeholder="Nom Client">
-                <textarea name="adresseclient" id="" cols="30" rows="10">Adresse</textarea>
-            </div>
-            <div class="jumbotron">
-                <table class="table table-sm table-hover">
-                    <thead>
+
+        <div class="well">
+            <h1>FACTURE</h1>
+            <h2>N. {{ fact.id }}</h2>
+            <h3>Date:  {{ "now"|date(' d M Y') }}</h3>
+        </div>
+        <div class="jumbotron" id="listefact">
+            <table class="table table-sm table-hover">
+                <thead>
+                <tr>
+                    <th scope="col" id="reffact" name="reffact">Référence</th>
+                    <th scope="col">Désignation</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">P.U.HT</th>
+                    <th scope="col">Montant HT</th>
+                    <th scope="col">TOTAL HT</th>
+                    <th scope="col">TOTAL TVA</th>
+                    <th scope="col">NET A PAYER</th>
+
+
+
+
+                </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <th scope="col">Référence</th>
-                        <th scope="col">Désignation</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">P.U. HT</th>
-                        <th scope="col">%REM</th>
-                        <th scope="col">Remise HT</th>
-                        <th scope="col">Montant HT</th>
-                        <th scope="col">TVA</th>
+                        <th scope="row">{{ fact.reference }}</th>
+                        <td>{{ fact.designation }}</td>
+                        <td>{{ fact.quantite }}</td>
+                        <td>{{ fact.puHt }}</td>
+                        <td>{{ fact.montantHt }}</td>
+                        <td>{{ fact.totalHt }}</td>
+                        <td>{{ fact.totalTva }}</td>
+                        <td><b>{{ fact.totalTtc }}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>---</td>
-                    </tr>
-                    </tbody>
-                </table>
+                </tbody>
+              </table>
+        </div>
+
+        {#    ci-dessus la div à imprimer#}
+
+        <div class="row endpage">
+
+            <div class="well">
+              <a href="{{ path('accueil') }}"><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
+              <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <input type="text" name="codefact" placeholder="Code">
-                <input type="number" name="basetva" placeholder="Base HT">
-                <input type="text" name="tauxtva" placeholder="Taux TVA">
-                <input type="text" name="montant" placeholder="Montant TVA">
-            </div>
-            <div class="col-lg-6">
-                <input type="text" name="totht" placeholder="TOTAL HT">
-                <input type="number" name="totaltva" placeholder="TOTAL TVA">
-                <input type="text" name="totalttc" placeholder="TOTAL TTC">
-                <input type="text" name="netapayer" placeholder="NET A PAYER">
-            </div>
         </div>
-
-    </div>
-
-    {#ci-dessus la div facture à imprimer#}
-
-    <div class="row">
-        <div class="col-lg-6">
-            <img src="" alt="" name="printpic">
-            <h5>IMPRIMER</h5>
-        </div>
-        <div class="col-lg-6">
-            <button class="btn btn-primary">MODIFIER</button>
-            <button class="btn btn-danger">SUPPRIMER</button>
-            <button class="btn btn-primary">ANNULER</button>
-        </div>
-    </div>
-
 
 {% endblock %}
 
 {% block stylesheets %}
     <style>
-        body{
+        body
+        {
             margin:5%;
         }
-        .table {
-            width: 10%;
-            margin-left: 10%;
-            border: solid 1px dimgrey;}
-        button {
-            margin-top: 40px;
+
+
+        td, tbody, th, tr, thead, table, #listefact
+        {
+          border: solid 1px black;
+
+
+        }
+        .table
+        {
+            border: solid 1px black;
+        }
+
+        .top
+        {
+            width: 90%;
+        }
+
+        .adresse
+        {
+          margin-bottom: 5%;
+              border: solid 2px;
+              height: 200px;
+        }
+
+        .endpage
+        {
+          text-align: center;
+        }
+
+        button
+        {
         }
     </style>
 {% endblock %}

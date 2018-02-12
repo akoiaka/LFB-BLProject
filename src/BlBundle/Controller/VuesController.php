@@ -231,10 +231,7 @@ public function viewAction($id)
         return $this->render('BlBundle:Vues:factlist.html.twig');
     }
 
-    public function factpreviewAction()
-    {
-        return $this->render('BlBundle:Vues:archives.html.twig');
-    }
+
 
     public function facturesAction(Request $request)
     {
@@ -248,17 +245,32 @@ public function viewAction($id)
                 $em->flush();
 
                 $request->getSession()->getFlashBag()->add('notice', 'Facture enregistrée.');
+
+
+
+                $em = $this->getDoctrine()->getManager();
+                $fact = $em->getRepository("BlBundle:Factures")->findOneBy(array
+                ('id' => $fact));
+                return $this->render('BlBundle:Vues:factpreview.html.twig',
+                    array(
+                        'fact' => $fact));
+
+
+
+
       return $this->redirectToRoute('factpreview', array('id' => $fact->getId()));
       }
 
       return $this->render('BlBundle:Vues:factures.html.twig', array(
                         'form' => $form->createView(),
                     ));
-      }
+    }
 
-    //
-    //     return $this->render('BlBundle:Vues:factures.html.twig');
-    // }
+
+    public function factpreviewAction()
+    {
+        return $this->render('BlBundle:Vues:factpreview.html.twig');
+    }
 
     public function listearticlesAction()
     {

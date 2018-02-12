@@ -5,12 +5,23 @@
     <h4>Que souhaitez-vous faire ?</h4>
 
 
-    <a href="{{ path('bl') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
+    <a href="{{ path('bl') }}">
+      <button class="btn btn-primary" style="width: 400px; height: 50px">
             CREER UN BON DE LIVRAISON
-        </button></a>
-    <a href="{{ path('factures') }}"><button class="btn btn-primary" style="width: 400px; height: 50px">
+      </button>
+    </a>
+    <a href="{{ path('factures') }}">
+      <button class="btn btn-primary" style="width: 400px; height: 50px">
             CREER UNE FACTURE PRO FORMA
-        </button></a>
+      </button>
+    </a>
+    <a href="{{ path('archives') }}">
+      <button class="btn btn-primary" style="width: 400px; height: 50px">
+            AUTRE
+      </button>
+    </a>
+
+
 {% endblock %}
 
 {% block stylesheets %}
