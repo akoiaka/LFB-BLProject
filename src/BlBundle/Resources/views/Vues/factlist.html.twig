@@ -8,36 +8,33 @@
 
     {#ci-dessous la div à imprimer#}
 
-    <div class="jumbotron" id="listebl">
+    <div class="jumbotron" id="listefact">
         <table class="table table-sm table-hover">
             <thead>
             <tr>
                 <th scope="col">Date</th>
-                <th scope="col" id="numbl" name="numbl">Numero</th>
+                <th scope="col" id="numfact" name="numfact">Numero</th>
                 <th scope="col">reference</th>
                 <th scope="col">Désignation</th>
                 <th scope="col">Quantité</th>
                 <th scope="col">Total HT</th>
                 <th scope="col">Total TTC</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
-
+            {% for facts in fact %}
                 <tr>
- <!-- A COMPLETER -->
+                    <td>{{ facts.dateFacture.format('j, M Y H:i') }}</td>
+                    <th scope="row">{{ facts.id }}</th>
+                    <td>{{ facts.reference }}</td>
+                    <td>{{ facts.designation }}</td>
+                    <td>{{ facts.quantite }}</td>
+                    <td>{{ facts.totalHt }}</td>
+                    <td>{{ facts.totalTtc }}</td>
                 </tr>
 
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% endfor %}
+
             </tbody>
         </table>
     </div>

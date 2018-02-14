@@ -24,7 +24,6 @@
                 <th scope="col">Société</th>
                 <th scope="col">Transporteur</th>
                 <th scope="col">Quantité</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -37,7 +36,6 @@
                     <td>{{ bls.societeBl }}</td>
                     <td>{{ bls.transporteurBl }}</td>
                     <td>{{ bls.quantiteBl }}</td>
-                    <td><a href="{{ path('blconsult', {'id':bls.id }) }}"><button class="btn btn-success">Visualiser le bon</button></a><a href="{{ path('bledit', {'id':bls.id }) }}"><button class="btn btn-primary">Editer</button></a></td>
 
                 </tr>
 

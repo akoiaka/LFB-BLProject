@@ -9,8 +9,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use BlBundle\BlBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
+use BlBundle\Entity\Clients;
 use BlBundle\Entity\Category;
 use BlBundle\Form\CategoryType;
+use BlBundle\Form\ClientsType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use BlBundle\Form\BonslivraisonType;
 use Symfony\Component\Form\Form;
@@ -24,6 +26,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormView;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use BlBundle\Repository\CategoryRepository;
@@ -44,14 +47,24 @@ class BonslivraisonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
       // // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
-        // $pattern = 'D%';
+        $pattern = 'D%';
 
         $builder
           ->add('dateBl',            DateTimeType::class)
        //            Le typeDateType que l'on a utilisé affiche 3 champs select
        //            Il existe aussi un type TimezoneType pour choisir le fuseau horaire
           ->add('numeroBl',          TextType::class)
-          ->add('clientBl',          TextType::class)
+          ->add('clientBl',          EntityType::class, array(
+                'class'   => 'BlBundle:Clients',
+                'choice_label'    => 'nomClient',
+                'multiple' => false,
+                // 'query_builder' => function($repository) use($pattern){
+                //   // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
+                //   $pattern = 'D%';
+                //   $pattern = '%';
+                //   return $repository->getLikeQueryBuilder($pattern);
+                //   }
+                  ))
           ->add('societeBl',         TextType::class)
           ->add('quantiteBl',        IntegerType::class)
           ->add('descriptionBl',     TextareaType::class)
@@ -66,22 +79,22 @@ class BonslivraisonType extends AbstractType
           //       'allow_add'    => true,
           //       'allow_delete' => true
 
-          // <!-- ci-dessous, les catégories préparées en vue de sélectionner ultérieurement les bons par année ou par un autre critère -->
+          // ci-dessous, les catégories préparées en vue de sélectionner ultérieurement les bons par année ou par un autre critère -->
           // se référer aussi à {{form.categories}} dans la vue bl (twig)
           // ci-dessous je vais utiliser EntityType pour permettre un choix d options
           // L'option class définit quel est le type d'entité à
           // L'option choice_label définit comment afficher les entités dans le select du formulaire
-          // ->add('categories', EntityType::class, array(
-          //       'class'   => 'BlBundle:Bonslivraison',
-          //       'choice_label'    => 'numeroBl',
-          //       'multiple' => false,
-          //       'query_builder' => function($repository) use($pattern){
-          //         // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
-          //         // $pattern = 'D%';
-          //         $pattern = '%';
-          //         return $repository->getLikeQueryBuilder($pattern);
-          //         }
-          //         ))
+          ->add('categories', EntityType::class, array(
+                'class'   => 'BlBundle:Clients',
+                'choice_label'    => 'nomClient',
+                'multiple' => false,
+                'query_builder' => function($repository) use($pattern){
+                  // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
+                  $pattern = 'D%';
+                  $pattern = '%';
+                  return $repository->getLikeQueryBuilder($pattern);
+                  }
+                  ))
 
           // maintenant nous allons ajouter une eventlistener, fonction qui va écouter un événement
           ->addEventlistener(

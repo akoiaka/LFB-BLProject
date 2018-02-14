@@ -54,13 +54,13 @@ class VuesController extends Controller
 
     public function bllistAction()
     {
-        {
+
             $em = $this->getDoctrine()->getManager();
             $bl = $em->getRepository("BlBundle:Bonslivraison")->findBy(array(), array('id' => 'DESC'));
             return $this->render('BlBundle:Vues:bllist.html.twig',
                 array(
                     'bl' => $bl));
-        }
+
     }
 
 public function viewAction($id)
@@ -142,9 +142,10 @@ public function viewAction($id)
             // if ($form->isValid()) {
                 // enregistrement de l objet Bons dans la base de données
                 $em = $this->getDoctrine()->getManager();
+                var_dump(serialize($bons));
+
                 $em->persist($bons);
                 $em->flush();
-
                 $request->getSession()->getFlashBag()->add('notice', 'Bon enregistré.');
 
                 $em = $this->getDoctrine()->getManager();
@@ -178,6 +179,7 @@ public function viewAction($id)
         // $form = $this->get('form.factory')->create(BonslivraisonType::class, $bons);
 
         $form->handleRequest($request);
+
 
         if ($form->isValid())
         {
@@ -226,12 +228,6 @@ public function viewAction($id)
         return $this->render('BlBundle:Vues:client.html.twig');
     }
 
-    public function factlistAction()
-    {
-        return $this->render('BlBundle:Vues:factlist.html.twig');
-    }
-
-
 
     public function facturesAction(Request $request)
     {
@@ -255,9 +251,6 @@ public function viewAction($id)
                     array(
                         'fact' => $fact));
 
-
-
-
       return $this->redirectToRoute('factpreview', array('id' => $fact->getId()));
       }
 
@@ -266,10 +259,36 @@ public function viewAction($id)
                     ));
     }
 
+    public function factlistAction()
+    {
+      $em = $this->getDoctrine()->getManager();
+      $fact = $em->getRepository("BlBundle:Factures")->findBy(array(), array('id' => 'DESC'));
+      return $this->render('BlBundle:Vues:factlist.html.twig',
+      array(
+        'fact' => $fact));
+    }
 
     public function factpreviewAction()
     {
         return $this->render('BlBundle:Vues:factpreview.html.twig');
+    }
+
+
+
+    public function factconsultAction(Request $request, $id)
+    {
+            // $fact = $this->getDoctrine()->getRepository('BlBundle:Factures')->find($id);
+            // $form = $this->createForm(FacturesType::class, $fact);
+            // $form->handleRequest($request);
+            //
+            //   $fact = $form->getData();
+            //
+            //   $em = $this->getDoctrine()->getManager();
+            //   $fact = $em->getRepository("BlBundle:Factures")->findOneBy(array
+            //   ('id' => $fact));
+            //   return $this->render('BlBundle:Vues:factconsult.html.twig',
+            //   array('fact' => $fact));
+
     }
 
     public function listearticlesAction()

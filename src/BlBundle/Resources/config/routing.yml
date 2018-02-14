@@ -56,6 +56,10 @@ factpreview:
     path:     /factpreview
     defaults: { _controller: BlBundle:Vues:factpreview }
 
+factconsult:
+    path:     /factconsult
+    defaults: { _controller: BlBundle:Vues:factconsult }
+
 factures:
     path:     /factures
     defaults: { _controller: BlBundle:Vues:factures }

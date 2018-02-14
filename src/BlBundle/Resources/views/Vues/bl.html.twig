@@ -41,8 +41,10 @@
             </div>
         </div>
 
+
         <div class="form-group">
           {# Idem pour le champ Client. #}
+
             {{ form_label(form.clientBl, "Client", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
             {{ form_errors(form.clientBl) }}
                 <div class="col-sm-10">
@@ -50,6 +52,7 @@
                     {{ form_widget(form.clientBl, {'attr': {'class': 'form-control'}}) }}
                 </div>
         </div>
+
 
         <div class="form-group">
           {# Idem pour le champ Transporteur. #}
@@ -87,10 +90,6 @@
            et tous les champs cachés (type « hidden »). #}
         {{ form_rest(form) }}
 
-        <!-- ci-dessous, les catégories préparées en vue de sélectionner ultérieurement les bons par année ou par un autre critère -->
-        <!-- { form_row(form.categories) }} -->
-          <!-- <a href="#" id="add_category" class="btn btn-default">Ajouter une catégorie</a> -->
-
 
         <div class="bdp">
             {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
@@ -102,8 +101,7 @@
         </div>
         {#LE FORMULAIRE DE SAISIE SE TERMINE CI-DESSUS#}
 
-        <a href="{{ path('bl') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">Modifier</button></a>
-        <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
+        <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Retour</button></a>
     </div>
     </div>
 

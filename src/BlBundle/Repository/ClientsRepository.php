@@ -10,4 +10,11 @@ namespace BlBundle\Repository;
  */
 class ClientsRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function getLikeQueryBuilder($pattern)
+  {
+    return $this
+    ->createQueryBuilder('c')
+    ->where('c.nomClient LIKE :pattern')
+    ->setParameter('pattern', $pattern);
+  }
 }
