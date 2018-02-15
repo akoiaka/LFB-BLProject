@@ -53,19 +53,26 @@ class BonslivraisonType extends AbstractType
           ->add('dateBl',            DateTimeType::class)
        //            Le typeDateType que l'on a utilisé affiche 3 champs select
        //            Il existe aussi un type TimezoneType pour choisir le fuseau horaire
-          ->add('numeroBl',          TextType::class)
           ->add('clientBl',          EntityType::class, array(
                 'class'   => 'BlBundle:Clients',
                 'choice_label'    => 'nomClient',
                 'multiple' => false,
+                ))
+
                 // 'query_builder' => function($repository) use($pattern){
                 //   // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
                 //   $pattern = 'D%';
                 //   $pattern = '%';
                 //   return $repository->getLikeQueryBuilder($pattern);
                 //   }
-                  ))
-          ->add('societeBl',         TextType::class)
+
+
+          ->add('societeBl',          EntityType::class, array(
+                'class'   => 'BlBundle:Articles',
+                'choice_label'    => 'libelleArt',
+                'multiple' => false,
+                ))
+
           ->add('quantiteBl',        IntegerType::class)
           ->add('descriptionBl',     TextareaType::class)
           ->add('transporteurBl',    TextType::class)
@@ -84,17 +91,17 @@ class BonslivraisonType extends AbstractType
           // ci-dessous je vais utiliser EntityType pour permettre un choix d options
           // L'option class définit quel est le type d'entité à
           // L'option choice_label définit comment afficher les entités dans le select du formulaire
-          ->add('categories', EntityType::class, array(
-                'class'   => 'BlBundle:Clients',
-                'choice_label'    => 'nomClient',
-                'multiple' => false,
-                'query_builder' => function($repository) use($pattern){
-                  // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
-                  $pattern = 'D%';
-                  $pattern = '%';
-                  return $repository->getLikeQueryBuilder($pattern);
-                  }
-                  ))
+          // ->add('categories', EntityType::class, array(
+          //       'class'   => 'BlBundle:Clients',
+          //       'choice_label'    => 'nomClient',
+          //       'multiple' => false,
+          //       'query_builder' => function($repository) use($pattern){
+          //         // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
+          //         $pattern = 'D%';
+          //         $pattern = '%';
+          //         return $repository->getLikeQueryBuilder($pattern);
+          //         }
+          //         ))
 
           // maintenant nous allons ajouter une eventlistener, fonction qui va écouter un événement
           ->addEventlistener(

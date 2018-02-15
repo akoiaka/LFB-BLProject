@@ -14,7 +14,8 @@ class ClientsRepository extends \Doctrine\ORM\EntityRepository
   {
     return $this
     ->createQueryBuilder('c')
-    ->where('c.nomClient LIKE :pattern')
+    ->where('c.nomClient LIKE :pattern','c.codeClient LIKE :pattern' )
     ->setParameter('pattern', $pattern);
+
   }
 }

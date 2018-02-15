@@ -167,5 +167,14 @@ class Articles
     {
         return $this->prixTTCArt;
     }
-}
 
+    public function __toString()
+    {
+       return $this->getLibelleArt();
+       return $this->getFamilleArt();
+       return $this->getCodeArt();
+       return $this->getPrixHTArt();
+       return $this->getPrixTTCArt();
+
+    }
+}

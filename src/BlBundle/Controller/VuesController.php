@@ -5,6 +5,10 @@ namespace BlBundle\Controller;
 use BlBundle\BlBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
+use BlBundle\Entity\Clients;
+use BlBundle\Entity\Articles;
+use BlBundle\Entity\ClientsType;
+use BlBundle\Entity\ArticlesType;
 use BlBundle\Entity\Factures;
 use BlBundle\Form\BonslivraisonType;
 use BlBundle\Form\FacturesType;
@@ -151,13 +155,13 @@ public function viewAction($id)
                 $em = $this->getDoctrine()->getManager();
                 $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
                 ('id' => $bons));
-                return $this->render('BlBundle:Vues:blpreview.html.twig',
+                return $this->render('BlBundle:Vues:blprint.html.twig',
                     array(
                         'bl' => $bl));
 
 
                 //redirection vers la page de visualisation du BL nouvellement créé
-                return $this->redirectToRoute('blpreview', array('id' => $bons->getId()));
+                return $this->redirectToRoute('blprint', array('id' => $bons->getId()));
             }
                     //
                     // À ce stade, le formulaire peut ne pas être valide car :
@@ -221,6 +225,11 @@ public function viewAction($id)
     public function blpreviewAction()
     {
         return $this->render('BlBundle:Vues:blpreview.html.twig');
+    }
+
+    public function blprintAction()
+    {
+        return $this->render('BlBundle:Vues:blprint.html.twig');
     }
 
     public function clientAction()

@@ -15,7 +15,7 @@ class BonslivraisonRepository extends \Doctrine\ORM\EntityRepository
  {
    return $this
      ->createQueryBuilder('c')
-     ->where('c.numeroBl LIKE :pattern')
+     ->where('c.descriptionBl LIKE :pattern')
      ->setParameter('pattern', $pattern);
   }
 

@@ -14,7 +14,9 @@ class ArticlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('codeArt')->add('libelleArt')->add('familleArt')->add('prixHTArt')->add('prixTTCArt');
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

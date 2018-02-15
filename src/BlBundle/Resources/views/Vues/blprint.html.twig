@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+
+        <div class="row top">
+          <div class="col-lg-6">
+              <h3>LFB BIOMANUFACTURING</h3>
+              <h4>AVENUE DES CHENES ROUGES<br/>30100 ALES</h4>
+              <h5>Tél       : 04.66.56.40.80<br/>SIRET     : 49927250800015</h5>
+              <br>
+          </div>
+          <div class="col-lg-6 adresse">
+            {% for bls in bl %}
+<p>{{bl.nomClient}}</p>
+{% endfor %}
+          </div>
+        </div>
+
+
+        <div class="well">
+            <h1>BON DE LIVRAISON</h1>
+            <h2>N. {{ bl.id }}</h2>
+            <h3>Date:  {{ "now"|date(' d M Y') }}</h3>
+        </div>
+        <div class="jumbotron" id="listebl">
+            <table class="table table-sm table-hover">
+                <thead>
+                <tr>
+                    <th scope="col" id="numbl" name="numbl">N.</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Société</th>
+                    <th scope="col">Transporteur</th>
+                    <th scope="col">Quantité</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ bl.id }}</th>
+                        <!-- <td>{{ bl.dateBl.format('j M Y H:i') }}</td> -->
+                        <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                        <td>{{ "now"|date(' d m Y | H:i') }}</td>
+                        <td>{{ bl.descriptionBl }}</td>
+                        <td>{{ bl.clientBl }}</td>
+                        <td>{{ bl.societeBl }}</td>
+                        <td>{{ bl.transporteurBl }}</td>
+                        <td>{{ bl.quantiteBl }}</td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+
+        {#    ci-dessus la div à imprimer#}
+
+        <div class="row endpage">
+
+            <div class="well">
+              <a href="{{ path('accueil') }}"><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
+              <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
+            </div>
+        </div>
+        </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body
+        {
+            margin:5%;
+        }
+
+
+        td, tbody, th, tr, thead, table, #listebl
+        {
+          border: solid 1px black;
+
+
+        }
+        .table
+        {
+            border: solid 1px black;
+        }
+
+        .top
+        {
+            width: 90%;
+        }
+
+        .adresse
+        {
+          margin-bottom: 5%;
+              border: solid 2px;
+              height: 200px;
+        }
+
+        .endpage
+        {
+          text-align: center;
+        }
+
+        button
+        {
+        }
+    </style>
+{% endblock %}

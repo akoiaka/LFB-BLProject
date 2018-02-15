@@ -181,6 +181,13 @@ class Clients
         return $this->nomClient;
     }
 
+    public function __toString()
+    {
+       return $this->getNomClient();
+       return $this->getCodeClient();
+       return $this->getSocieteClient();
+    }
+
     /**
      * Set siret
      *
@@ -661,4 +668,3 @@ class Clients
         return $this->contactClient;
     }
 }
-

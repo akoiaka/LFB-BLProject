@@ -17,7 +17,7 @@ class ClientsType extends AbstractType
         ->add('codeClient')
         ->add('nomClient')
         ->add('siret')
-        >add('adresse1')
+        ->add('adresse1')
         ->add('adresse2')
         ->add('adresse3')
         ->add('codePostal')
@@ -44,6 +44,11 @@ class ClientsType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'BlBundle\Entity\Clients'
         ));
+    }
+
+    public function getcodeClient()
+    {
+      return 'codeClient';
     }
 
     /**

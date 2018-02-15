@@ -27,7 +27,9 @@ class Bonslivraison
     private $dateBl;
 
     /**
-     * @var int $url
+     * @var string
+     *
+     * @ORM\Column(name="numero_bl", type="string", nullable=true)
      */
     private $numeroBl;
 
@@ -72,6 +74,7 @@ class Bonslivraison
         $this->date = new \DateTime();
         $this->categories = new ArrayCollection();
         $this->applications = new ArrayCollection();
+        $this->nomClient = new ArrayCollection();
     }
 
 
@@ -109,29 +112,29 @@ class Bonslivraison
         return $this->dateBl;
     }
 
-    /**
-     * Set numeroBl
-     *
-     * @param integer $numeroBl
-     *
-     * @return Bonslivraison
-     */
-    public function setNumeroBl($numeroBl)
-    {
-        $this->numeroBl = $numeroBl;
-
-        return $this;
-    }
-
-    /**
-     * Get numeroBl
-     *
-     * @return int
-     */
-    public function getNumeroBl()
-    {
-        return $this->numeroBl;
-    }
+    // /**
+    //  * Set numeroBl
+    //  *
+    //  * @param integer $numeroBl
+    //  *
+    //  * @return Bonslivraison
+    //  */
+    // public function setNumeroBl($numeroBl)
+    // {
+    //     $this->numeroBl = $numeroBl;
+    //
+    //     return $this;
+    // }
+    //
+    // /**
+    //  * Get numeroBl
+    //  *
+    //  * @return int
+    //  */
+    // public function getNumeroBl()
+    // {
+    //     return $this->numeroBl;
+    // }
 
     /**
      * Set descriptionBl
@@ -178,7 +181,7 @@ class Bonslivraison
      */
     public function getClientBl()
     {
-        return $this->serializeclientBl;
+        return $this->clientBl;
     }
 
     /**
