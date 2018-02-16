@@ -26,6 +26,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormView;
+use Dompdf\Options;
+use Dompdf\Dompdf;
 
 
 
@@ -146,7 +148,7 @@ public function viewAction($id)
             // if ($form->isValid()) {
                 // enregistrement de l objet Bons dans la base de données
                 $em = $this->getDoctrine()->getManager();
-                var_dump(serialize($bons));
+                // var_dump(serialize($bons));
 
                 $em->persist($bons);
                 $em->flush();
@@ -155,6 +157,7 @@ public function viewAction($id)
                 $em = $this->getDoctrine()->getManager();
                 $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
                 ('id' => $bons));
+                $bons->getClients();
                 return $this->render('BlBundle:Vues:blprint.html.twig',
                     array(
                         'bl' => $bl));
@@ -227,9 +230,19 @@ public function viewAction($id)
         return $this->render('BlBundle:Vues:blpreview.html.twig');
     }
 
-    public function blprintAction()
+    public function blprintAction(Request $request, $id)
     {
-        return $this->render('BlBundle:Vues:blprint.html.twig');
+      $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
+      $form = $this->createForm(BonslivraisonType::class, $bons);
+      $form->handleRequest($request);
+
+        $bons = $form->getData();
+
+        $em = $this->getDoctrine()->getManager();
+        $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+        ('id' => $bons));
+        return $this->render('BlBundle:Vues:blprint.html.twig',
+        array('bl' => $bl));
     }
 
     public function clientAction()
@@ -314,5 +327,35 @@ public function viewAction($id)
     {
         return $this->render('BlBundle:Vues:modifarticle.html.twig');
     }
+
+// CI-DESSOUS LA CONVERSION EN PDF POUR IMPRESSION //
+
+public function toPdfAction($BonslivraisonId){
+  // dopdf est installé à partir de Composer: composer require dompdf/dompdf
+  // puis les require (use) nécessaires dans le controller (voir ci-dessus dans les use)
+
+  // On récupère l'objet à afficher
+  $bonslivraisonRepository = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison');
+  $bonslivraison = $bonslivraisonRepository->findoneById($bonslivraisonId);
+
+  // on crée une instance pour définir les options de notre fichier PDF
+  $options = new Options();
+
+  // pour simplifier l affiche, on autorise dopdf à utiliser des url pour les noms de fichier
+  $optons->set('isRemoteEnabled', TRUE);
+
+  // on crée une instance de dompdf avec les options définies
+  $dompdf = new Dompdf($options);
+
+  // on demande ensuite à Symfony de générer le code html correspondant à notre template puis on stocke ce code dans une variable
+  $html = $this->renderView('BlBundle:Bonslivraison:pdfTemplate.html.twig', array('bonslivraison' => $bonslivraison));
+
+  // puis on demande à dompdf de générer le PDF
+  $dompdf->render();
+
+  // on renvoie le flux du fichier pdf dans une Response pour l utilisateur
+  return new Response ($dompdf->stream());
+
+}
 
 }

@@ -1,0 +1,16 @@
+BlBundle\Entity\Transporteurs:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\TransporteursRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        transporteur:
+            type: string
+            length: '30'
+            nullable: true
+    lifecycleCallbacks: {  }

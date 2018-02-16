@@ -11,9 +11,14 @@
               <br>
           </div>
           <div class="col-lg-6 adresse">
-            {% for bls in bl %}
-<p>{{bl.nomClient}}</p>
-{% endfor %}
+                <p>
+                  {{ bl.clientBl.adresse1Livraison }}<br>
+                  {{ bl.clientBl.adresse2Livraison }}<br>
+                  {{ bl.clientBl.adresse3Livraison }}<br>
+                  {{ bl.clientBl.codePostal }}{{ bl.clientBl.ville }}<br>
+                  {{ bl.clientBl.paysLivraison }}<br>
+
+                </p>
           </div>
         </div>
 
@@ -31,7 +36,7 @@
                     <th scope="col">Date</th>
                     <th scope="col">Description</th>
                     <th scope="col">Client</th>
-                    <th scope="col">Société</th>
+                    <th scope="col">Article</th>
                     <th scope="col">Transporteur</th>
                     <th scope="col">Quantité</th>
                 </tr>
@@ -58,7 +63,7 @@
 
             <div class="well">
               <a href="{{ path('accueil') }}"><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
-              <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
+              <a href="{{ path('bllist') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">Liste des Bons de Livraison</button></a>
             </div>
         </div>
         </div>

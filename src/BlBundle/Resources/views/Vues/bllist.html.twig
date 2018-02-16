@@ -24,19 +24,24 @@
                 <th scope="col">Société</th>
                 <th scope="col">Transporteur</th>
                 <th scope="col">Quantité</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             {% for bls in bl %}
                 <tr>
                     <td>{{ bls.dateBl.format('j, M Y h:m') }}</td>
-                    <th scope="row"><a href="{{ path('blconsult', {'id':bls.id }) }}">{{ bls.id }}</a></th>
+                    <th scope="row"><a href="{{ path('blprint', {'id':bls.id }) }}">{{ bls.id }}</a></th>
                     <td>{{ bls.descriptionBl }}</td>
                     <td>{{ bls.clientBl }}</td>
                     <td>{{ bls.societeBl }}</td>
                     <td>{{ bls.transporteurBl }}</td>
                     <td>{{ bls.quantiteBl }}</td>
-
+                    <td>
+                      <a href="{{path('accueil')}}">
+                        <button type="button" name="button">IMPRIMER</button>
+                      </a>
+                    </td>
                 </tr>
 
             {% endfor %}

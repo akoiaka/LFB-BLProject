@@ -10,10 +10,14 @@ use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="BlBundle\Repository\BonslivraisonRepository")
  */
 class Bonslivraison
 {
+    /**
+    * @ORM\ManyToMany(targetEntity="BlBundle\Entity\Clients", cascade={"persist"})
+    */
+    private $clients;
+
     /**
      * @var int
      */
@@ -74,7 +78,36 @@ class Bonslivraison
         $this->date = new \DateTime();
         $this->categories = new ArrayCollection();
         $this->applications = new ArrayCollection();
-        $this->nomClient = new ArrayCollection();
+        $this->clients = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+       return $this->getNomClient();
+       return $this->getCodeClient();
+       return $this->getSocieteClient();
+       return $this->getVille();
+
+    }
+
+    // Noter le singulier, on ajoute une seul client à la fois
+    public function addClient(Client $client)
+    {
+    // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+        $this->clients[] = $client;
+        return $this;
+    }
+
+    public function removeClient(Client $client)
+    {
+    // Ici on utilise une méthode de l'ArrayCollection, pour supprimer le client en argument
+        $this->clients->removeElement($client);
+    }
+
+    // Notez le pluriel, on récupère une liste de catégories ici !
+    public function getClients()
+    {
+        return $this->clients;
     }
 
 

@@ -3,7 +3,7 @@
 namespace BlBundle\Entity;
 
 /**
- * Articles
+ * @ORM\Entity
  */
 class Articles
 {

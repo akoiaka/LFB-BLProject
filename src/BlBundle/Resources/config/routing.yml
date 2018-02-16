@@ -33,7 +33,7 @@ blpreview:
     defaults: { _controller: BlBundle:Vues:blpreview }
 
 blprint:
-    path:     /blprint/
+    path:     /blprint/{id}
     defaults: { _controller: BlBundle:Vues:blprint}
 
 bledit:

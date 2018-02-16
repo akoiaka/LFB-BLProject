@@ -75,7 +75,11 @@ class BonslivraisonType extends AbstractType
 
           ->add('quantiteBl',        IntegerType::class)
           ->add('descriptionBl',     TextareaType::class)
-          ->add('transporteurBl',    TextType::class)
+          ->add('transporteurBl',    EntityType::class, array(
+                'class'   => 'BlBundle:Transporteurs',
+                'choice_label'    => 'transporteur',
+                'multiple' => false,
+                ))
 
           // Ajout de categories dans le Type bonslivraison (pour permettre l imbrication de formulaires Many to Many)
           // 1er argument : nom du champ, ici « categories », car c'est le nom de l'attribut
