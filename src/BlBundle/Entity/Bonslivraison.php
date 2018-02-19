@@ -88,6 +88,7 @@ class Bonslivraison
        return $this->getSocieteClient();
        return $this->getVille();
 
+
     }
 
     // Noter le singulier, on ajoute une seul client à la fois

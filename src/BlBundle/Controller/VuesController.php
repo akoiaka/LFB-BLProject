@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -239,6 +240,7 @@ public function viewAction($id)
         $bons = $form->getData();
 
         $em = $this->getDoctrine()->getManager();
+        $bons = $form->getData();
         $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
         ('id' => $bons));
         return $this->render('BlBundle:Vues:blprint.html.twig',
@@ -341,7 +343,7 @@ public function toPdfAction($BonslivraisonId){
   // on crée une instance pour définir les options de notre fichier PDF
   $options = new Options();
 
-  // pour simplifier l affiche, on autorise dopdf à utiliser des url pour les noms de fichier
+  // pour simplifier l affiche, on autorise dompdf à utiliser des url pour les noms de fichier
   $optons->set('isRemoteEnabled', TRUE);
 
   // on crée une instance de dompdf avec les options définies
@@ -349,6 +351,54 @@ public function toPdfAction($BonslivraisonId){
 
   // on demande ensuite à Symfony de générer le code html correspondant à notre template puis on stocke ce code dans une variable
   $html = $this->renderView('BlBundle:Bonslivraison:pdfTemplate.html.twig', array('bonslivraison' => $bonslivraison));
+
+  // puis on demande à dompdf de générer le PDF
+  $dompdf->render();
+
+  // on renvoie le flux du fichier pdf dans une Response pour l utilisateur
+  return new Response ($dompdf->stream());
+
+}
+
+public function pdfAction(Request $request, $id){
+  // dopdf est installé à partir de Composer: composer require dompdf/dompdf
+  // puis les require (use) nécessaires dans le controller (voir ci-dessus dans les use)
+
+  // On récupère l'objet à afficher
+  // $bonslivraisonRepository = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->findOneById($bonslivraison);
+
+  // $bons = new Bonslivraison();
+  // $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
+  // // $bons = $form->getData();
+
+    $em = $this->getDoctrine()->getManager();
+    $bons = new Bonslivraison();
+
+    $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+    ('id' => $bons));
+
+  // $bonslivraison = $bonslivraisonRepository->findby($id);
+  //
+  // $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
+
+  // $form->handleRequest($request);
+
+  // on crée une instance pour définir les options de notre fichier PDF
+  $options = new Options();
+
+  // pour simplifier l affiche, on autorise dompdf à utiliser des url pour les noms de fichier
+  $options->set('isRemoteEnabled', TRUE);
+
+  // on crée une instance de dompdf avec les options définies
+  $dompdf = new Dompdf($options);
+  $bons = new Bonslivraison($options);
+
+
+  // on demande ensuite à Symfony de générer le code html correspondant à notre template puis on stocke ce code dans une variable
+  $html = $this->renderView('BlBundle:Vues:view.html.twig');
+
+  $dompdf->loadHtml($html);
+
 
   // puis on demande à dompdf de générer le PDF
   $dompdf->render();

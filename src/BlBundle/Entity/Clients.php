@@ -187,6 +187,8 @@ class Clients
        return $this->getCodeClient();
        return $this->getSocieteClient();
        return $this->getVille();
+       return $this->getAdresse1Livraison();
+
 
     }
 

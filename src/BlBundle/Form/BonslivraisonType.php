@@ -13,6 +13,7 @@ use BlBundle\Entity\Clients;
 use BlBundle\Entity\Category;
 use BlBundle\Form\CategoryType;
 use BlBundle\Form\ClientsType;
+use BlBundle\Repository\ClientsRepository;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use BlBundle\Form\BonslivraisonType;
 use Symfony\Component\Form\Form;

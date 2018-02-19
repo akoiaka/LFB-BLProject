@@ -87,3 +87,7 @@ formulaire:
 nouvellefacture:
     path:     /nouvellefacture/{nom}/{prix}
     defaults: { _controller: BlBundle:Facturation:nouvellefacture }
+
+pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: BlBundle:Vues:pdf }
