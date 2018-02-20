@@ -1,21 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Article edit</h1>
+<div class="container">
+<h1>Article edit</h1>
+<div class="well">
+    <div class="">
+      {{ form_start(edit_form) }}
+          {{ form_widget(edit_form) }}
+          <input class="btn btn-success" type="submit" value="Confirmer" />
+      {{ form_end(edit_form) }}
+    </div>
+    <br>
+    <div class="">
+        {{ form_start(delete_form) }}
+            <input class="btn btn-danger" type="submit" value="Supprimer l'article">
+        {{ form_end(delete_form) }}
+    </div>
+    <br>
+    <div class="">
+        <a href="{{ path('articles_index') }}"><button class="btn btn-info" type="button" name="button">Revenir à la liste</button></a>
+    </div>
+</div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('articles_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+</div>
 {% endblock %}
