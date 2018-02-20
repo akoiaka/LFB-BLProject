@@ -3,7 +3,7 @@
 namespace BlBundle\Entity;
 
 /**
- * @ORM\Entity
+ * Clients
  */
 class Clients
 {
@@ -186,10 +186,6 @@ class Clients
        return $this->getNomClient();
        return $this->getCodeClient();
        return $this->getSocieteClient();
-       return $this->getVille();
-       return $this->getAdresse1Livraison();
-
-
     }
 
     /**

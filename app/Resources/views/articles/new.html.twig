@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="container">
+
+    <h1>AJOUT D'UN NOUVEL ARTICLE</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="AJOUTER" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('articles_index') }}">Revenir à la liste</a>
+        </li>
+    </ul>
+  </div>
+
+{% endblock %}

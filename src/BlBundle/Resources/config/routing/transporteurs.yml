@@ -1,0 +1,24 @@
+transporteurs_index:
+    path:     /
+    defaults: { _controller: "BlBundle:Transporteurs:index" }
+    methods:  GET
+
+transporteurs_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlBundle:Transporteurs:show" }
+    methods:  GET
+
+transporteurs_new:
+    path:     /new
+    defaults: { _controller: "BlBundle:Transporteurs:new" }
+    methods:  [GET, POST]
+
+transporteurs_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlBundle:Transporteurs:edit" }
+    methods:  [GET, POST]
+
+transporteurs_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlBundle:Transporteurs:delete" }
+    methods:  DELETE

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    <h1>Ajout d'un nouveau Transporteur</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-success"type="submit" value="Ajouter" />
+    {{ form_end(form) }}
+    <br>
+    <a href="{{ path('transporteurs_index') }}">Revenir à la liste</a>
+  </div>
+{% endblock %}

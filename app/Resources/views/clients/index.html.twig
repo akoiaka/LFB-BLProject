@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+      <h1>LISTE DES CLIENTS</h1>
+      <div class="well">
+        <ul>
+          <div>
+              <a href="{{ path('clients_new') }}"><button class="btn btn-primary" type="button" name="button">Ajouter un nouveau Client</button></a>
+              <a href="{{ path('clients_index') }}"><button class="btn btn-info" type="button" name="button">Revenir sur la liste</button></a>
+          </div>
+        </ul>
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+                <th>Code Client</th>
+                <th>Nom Client</th>
+                <th>SIRET</th>
+                <th>Adresse 1</th>
+                <th>Adresse 2</th>
+                <th>Adresse 3</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Adresse 1 livraison</th>
+                <th>Adresse 2 livraison</th>
+                <th>Adresse 3 livraison</th>
+                <th>Pays livraison</th>
+                <th>Téléphone</th>
+                <th>Portable</th>
+                <th>Fax</th>
+                <th>Compte comptable</th>
+                <th>Code iso</th>
+                <th>Code CEE</th>
+                <th>Numero iso</th>
+                <th>Code insee</th>
+                <th>Contact Client</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr class="info">
+                <td><a href="{{ path('clients_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('clients_show', { 'id': client.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('clients_edit', { 'id': client.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+                <td>{{ client.codeClient }}</td>
+                <td>{{ client.nomClient }}</td>
+                <td>{{ client.siret }}</td>
+                <td>{{ client.adresse1 }}</td>
+                <td>{{ client.adresse2 }}</td>
+                <td>{{ client.adresse3 }}</td>
+                <td>{{ client.codePostal }}</td>
+                <td>{{ client.ville }}</td>
+                <td>{{ client.pays }}</td>
+                <td>{{ client.adresse1Livraison }}</td>
+                <td>{{ client.adresse2Livraison }}</td>
+                <td>{{ client.adresse3Livraison }}</td>
+                <td>{{ client.paysLivraison }}</td>
+                <td>{{ client.telephone }}</td>
+                <td>{{ client.portable }}</td>
+                <td>{{ client.fax }}</td>
+                <td>{{ client.compteComptable }}</td>
+                <td>{{ client.codeIso }}</td>
+                <td>{{ client.codeCEE }}</td>
+                <td>{{ client.numeroIso }}</td>
+                <td>{{ client.codeInsee }}</td>
+                <td>{{ client.contactClient }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

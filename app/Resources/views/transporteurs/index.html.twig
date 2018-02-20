@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+        <h1>LISTE DES TRANSPORTEURS</h1>
+
+<div class="well">
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>N.</th>
+                <th>Transporteur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transporteur in transporteurs %}
+            <tr>
+                <td><a href="{{ path('transporteurs_show', { 'id': transporteur.id }) }}">{{ transporteur.id }}</a></td>
+                <td>{{ transporteur.transporteur }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('transporteurs_show', { 'id': transporteur.id }) }}">voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('transporteurs_edit', { 'id': transporteur.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>
+
+          <a href="{{ path('transporteurs_new') }}"><button type="button" name="button" class="btn btn-success">Ajouter un nouveau Transporteur</button></a>
+          <a href="{{ path('archives') }}"><button type="button" name="button" class="btn btn-primary">Retour</button></a>
+
+  </div>
+{% endblock %}

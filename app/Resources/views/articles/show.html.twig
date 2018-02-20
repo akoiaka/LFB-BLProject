@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    <h1>ARTICLE</h1>
+    <div class="well">
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Codeart</th>
+                <td>{{ article.codeArt }}</td>
+            </tr>
+            <tr>
+                <th>Libelleart</th>
+                <td>{{ article.libelleArt }}</td>
+            </tr>
+            <tr>
+                <th>Familleart</th>
+                <td>{{ article.familleArt }}</td>
+            </tr>
+            <tr>
+                <th>Prixhtart</th>
+                <td>{{ article.prixHTArt }}</td>
+            </tr>
+            <tr>
+                <th>Prixttcart</th>
+                <td>{{ article.prixTTCArt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('articles_index') }}">Revenir à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('articles_edit', { 'id': article.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+{% endblock %}

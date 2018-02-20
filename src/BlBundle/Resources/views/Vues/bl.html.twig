@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container">
     <h1>CRÉATION DU BON DE LIVRAISON</h1>
-    <div class="well">{{ "now"|date(' H:i') }}</div>
+    <!-- <div class="well">{{ "now"|date(' H:i') }}</div> -->
 
     {#<div class="well form">#}
         {#{{ form(form) }}#}
@@ -170,6 +170,9 @@
 {% block stylesheets %}
     <style>
         * {text-align:center;}
+        body html{
+          height:100%;
+        }
         button {
             margin-top: 40px;
         }

@@ -12,12 +12,12 @@
           </div>
           <div class="col-lg-6 adresse">
                 <p>
-                  {{ bl.clientBl.adresse1Livraison }}<br>
-                  {{ bl.clientBl.adresse2Livraison }}<br>
-                  {{ bl.clientBl.adresse3Livraison }}<br>
-                  {{ bl.clientBl.codePostal }}{{ bl.clientBl.ville }}<br>
-                  {{ bl.clientBl.paysLivraison }}<br>
-
+                  <h4><b>{{ bl.clientBl }}</h4>
+                  <h6>{{ bl.clientBl.adresse1Livraison }}</h6>
+                  <h6>{{ bl.clientBl.adresse2Livraison }}<h6>
+                  <h6>{{ bl.clientBl.adresse3Livraison }}</h6>
+                  <h6>{{ bl.clientBl.codePostal }}<span>-</span>{{ bl.clientBl.ville }}</h6>
+                  <h4><b>{{ bl.clientBl.paysLivraison }}</h4><br>
                 </p>
           </div>
         </div>
@@ -28,8 +28,7 @@
             <h2>N. {{ bl.id }}</h2>
             <h3>Date:  {{ "now"|date(' d M Y') }}</h3>
         </div>
-        <div class="jumbotron" id="listebl">
-            <table class="table table-sm table-hover">
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th scope="col" id="numbl" name="numbl">N.</th>
@@ -55,7 +54,6 @@
                     </tr>
                 </tbody>
               </table>
-        </div>
 
         {#    ci-dessus la div à imprimer#}
 
@@ -96,6 +94,8 @@
 
         .adresse
         {
+          text-align: center;
+          padding: 5%;
           margin-bottom: 5%;
               border: solid 2px;
               height: 200px;

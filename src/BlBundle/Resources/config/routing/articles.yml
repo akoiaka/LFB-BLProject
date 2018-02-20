@@ -1,0 +1,24 @@
+articles_index:
+    path:     /
+    defaults: { _controller: "BlBundle:Articles:index" }
+    methods:  GET
+
+articles_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlBundle:Articles:show" }
+    methods:  GET
+
+articles_new:
+    path:     /new
+    defaults: { _controller: "BlBundle:Articles:new" }
+    methods:  [GET, POST]
+
+articles_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlBundle:Articles:edit" }
+    methods:  [GET, POST]
+
+articles_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlBundle:Articles:delete" }
+    methods:  DELETE

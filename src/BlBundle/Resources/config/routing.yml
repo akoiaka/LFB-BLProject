@@ -1,3 +1,15 @@
+bl_articles:
+    resource: "@BlBundle/Resources/config/routing/articles.yml"
+    prefix:   /articles
+
+bl_transporteurs:
+    resource: "@BlBundle/Resources/config/routing/transporteurs.yml"
+    prefix:   /transporteurs
+
+bl_clients:
+    resource: "@BlBundle/Resources/config/routing/clients.yml"
+    prefix:   /clients
+
 accueil:
     path:     /
     defaults: { _controller: BlBundle:Vues:accueil }
@@ -44,13 +56,13 @@ blconsult:
     path:     /blconsult/{id}
     defaults: { _controller: BlBundle:Vues:blconsult }
 
-client:
-    path:     /client
-    defaults: { _controller: BlBundle:Vues:client }
-
-clients:
-    path:     /clients
-    defaults: { _controller: BlBundle:Vues:clients }
+# client:
+#     path:     /client
+#     defaults: { _controller: BlBundle:Vues:client }
+#
+# clients:
+#     path:     /clients
+#     defaults: { _controller: BlBundle:Vues:clients }
 
 factlist:
     path:     /factlist

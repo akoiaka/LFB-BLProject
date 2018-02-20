@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier un Transporteur</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-success"type="submit" value="Modifier" />
+    {{ form_end(edit_form) }}
+    <br>
+    {{ form_start(delete_form) }}
+        <input class="btn btn-danger" type="submit" value="Supprimer">
+    {{ form_end(delete_form) }}
+    <br>
+    <a href="{{ path('transporteurs_index') }}">Revenir à la liste</a>
+</div>
+{% endblock %}

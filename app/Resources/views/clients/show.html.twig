@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>{{client.nomClient}}</h1>
+    <div class="well">
+        <table class="table table-bordered">
+        <tbody>
+            <tr class="info">
+                <th>Numéro Identifiant</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr class="info">
+                <th>Codeclient</th>
+                <td>{{ client.codeClient }}</td>
+            </tr>
+            <tr class="info">
+                <th>Nom du Client</th>
+                <td>{{ client.nomClient }}</td>
+            </tr>
+            <tr class="info">
+                <th>SIRET</th>
+                <td>{{ client.siret }}</td>
+            </tr>
+            <tr class="info">
+                <th>Adresse 1</th>
+                <td>{{ client.adresse1 }}</td>
+            </tr>
+            <tr class="info">
+                <th>Adresse 2</th>
+                <td>{{ client.adresse2 }}</td>
+            </tr>
+            <tr class="info">
+                <th>Adresse 3</th>
+                <td>{{ client.adresse3 }}</td>
+            </tr>
+            <tr class="info">
+                <th>Code postal</th>
+                <td>{{ client.codePostal }}</td>
+            </tr>
+            <tr class="info">
+                <th>Ville</th>
+                <td>{{ client.ville }}</td>
+            </tr>
+            <tr class="info">
+                <th>Pays</th>
+                <td>{{ client.pays }}</td>
+            </tr>
+            <tr class="info">
+                <th>Adresse 1 livraison</th>
+                <td>{{ client.adresse1Livraison }}</td>
+            </tr>
+            <tr class="info">
+                <th>Adresse 2 livraison</th>
+                <td>{{ client.adresse2Livraison }}</td>
+            </tr>
+            <tr class="info">
+                <th>Adresse 3 livraison</th>
+                <td>{{ client.adresse3Livraison }}</td>
+            </tr>
+            <tr class="info">
+                <th>Pays livraison</th>
+                <td>{{ client.paysLivraison }}</td>
+            </tr>
+            <tr class="info">
+                <th>Telephone</th>
+                <td>{{ client.telephone }}</td>
+            </tr>
+            <tr class="info">
+                <th>Portable</th>
+                <td>{{ client.portable }}</td>
+            </tr>
+            <tr class="info">
+                <th>Fax</th>
+                <td>{{ client.fax }}</td>
+            </tr>
+            <tr class="info">
+                <th>Compte comptable</th>
+                <td>{{ client.compteComptable }}</td>
+            </tr>
+            <tr class="info">
+                <th>Code iso</th>
+                <td>{{ client.codeIso }}</td>
+            </tr>
+            <tr class="info">
+                <th>Code CEE</th>
+                <td>{{ client.codeCEE }}</td>
+            </tr>
+            <tr class="info">
+                <th>Numero iso</th>
+                <td>{{ client.numeroIso }}</td>
+            </tr>
+            <tr class="info">
+                <th>Code Insee</th>
+                <td>{{ client.codeInsee }}</td>
+            </tr>
+            <tr class="info">
+                <th>Contact Client</th>
+                <td>{{ client.contactClient }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="">
+          <a href="{{ path('clients_edit', { 'id': client.id }) }}"><button class="btn btn-primary" type="button" name="button">Modifier</button></a>
+    </div>
+    <br>
+    <div class="">
+      {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Supprimer">
+      {{ form_end(delete_form) }}
+    </div>
+    <br>
+    <a href="{{ path('clients_index') }}"><button class="btn btn-info" type="button" name="button">Revenir sur la liste</button></a>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

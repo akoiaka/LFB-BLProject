@@ -13,8 +13,7 @@
 
     {#ci-dessous la div à imprimer#}
 
-    <div class="jumbotron" id="listebl">
-        <table class="table table-sm table-hover">
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th scope="col">Date</th>
@@ -29,8 +28,8 @@
             </thead>
             <tbody>
             {% for bls in bl %}
-                <tr>
-                    <td>{{ bls.dateBl.format('j, M Y h:m') }}</td>
+                <tr class="info">
+                    <td>{{ bls.dateBl.format('j/m/Y') }}</td>
                     <th scope="row"><a href="{{ path('blconsult', {'id':bls.id }) }}">{{ bls.id }}</a></th>
                     <td>{{ bls.descriptionBl }}</td>
                     <td>{{ bls.clientBl }}</td>
@@ -39,7 +38,7 @@
                     <td>{{ bls.quantiteBl }}</td>
                     <td>
                       <a href="{{path('accueil')}}">
-                        <button type="button" name="button">IMPRIMER</button>
+                        <button class="btn btn-warning btn-xs" type="button" name="button">IMPRIMER</button>
                       </a>
                     </td>
                 </tr>
@@ -57,7 +56,6 @@
             </tr>
             </tbody>
         </table>
-    </div>
     {#    ci-dessus la div à imprimer#}
 
     <div class="row baspage">

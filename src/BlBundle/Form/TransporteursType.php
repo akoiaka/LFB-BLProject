@@ -6,21 +6,21 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticlesType extends AbstractType
+class TransporteursType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('codeArt')->add('libelleArt')->add('familleArt')->add('prixHTArt')->add('prixTTCArt');
+        $builder->add('transporteur');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BlBundle\Entity\Articles'
+            'data_class' => 'BlBundle\Entity\Transporteurs'
         ));
     }
 
@@ -29,7 +29,7 @@ class ArticlesType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'blbundle_articles';
+        return 'blbundle_transporteurs';
     }
 
 

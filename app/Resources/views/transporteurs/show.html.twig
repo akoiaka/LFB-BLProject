@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+      <h1>Transporteur</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>N.</th>
+                <td>Transporteur</td>
+            </tr>
+            <tr>
+                <th>{{ transporteur.id }}</th>
+                <td>{{ transporteur.transporteur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('transporteurs_edit', { 'id': transporteur.id }) }}"><button class="btn btn-primary" type="button" name="button">Modifier</button></a>
+    <br/>
+    {{ form_start(delete_form) }}
+        <input class="btn btn-danger" type="submit" value="Supprimer">
+    {{ form_end(delete_form) }}
+    <br/>
+    <a href="{{ path('transporteurs_index') }}">Revenir à la liste</a>
+
+</div>
+{% endblock %}

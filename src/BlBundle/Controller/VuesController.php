@@ -7,11 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
 use BlBundle\Entity\Clients;
 use BlBundle\Entity\Articles;
-use BlBundle\Entity\ClientsType;
 use BlBundle\Entity\ArticlesType;
 use BlBundle\Entity\Factures;
 use BlBundle\Form\BonslivraisonType;
 use BlBundle\Form\FacturesType;
+use BlBundle\Form\ClientsType;
 use Symfony\Component\Form\Form;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -247,9 +247,60 @@ public function viewAction($id)
         array('bl' => $bl));
     }
 
-    public function clientAction()
+    public function clientAction(Request $request)
     {
-        return $this->render('BlBundle:Vues:client.html.twig');
+      $clients = new Clients();
+      $form = $this->get('form.factory')->create(ClientsType::class, $clients);
+      if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+              {
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($clients);
+              $em->flush();
+
+              $request->getSession()->getFlashBag()->add('notice', 'OK, client ajouté en base.');
+              $em = $this->getDoctrine()->getManager();
+              $bl = $em->getRepository("BlBundle:Clients")->findOneBy(array
+              ('id' => $clients));
+              $clients->getClients();
+              return $this->render('BlBundle:Vues:client.html.twig',
+                  array(
+                      'bl' => $bl));
+              return $this->redirectToRoute('client', array('id' => $clients->getId()));
+              }
+                  return $this->render('BlBundle:Vues:client.html.twig', array(
+                      'form' => $form->createView(),
+                  ));
+
+      }
+
+    public function ClienteditAction(Request $request, $id)
+    {
+        $clients = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
+        $form = $this->createForm(BonslivraisonType::class, $clients);
+        // $form = $this->get('form.factory')->create(BonslivraisonType::class, $clients);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isValid())
+        {
+              $clients = $form->getData();
+
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($clients);
+              $em->flush();
+
+              $em = $this->getDoctrine()->getManager();
+              $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+              ('id' => $clients));
+              return $this->render('BlBundle:Vues:blpreview.html.twig',
+              array('bl' => $bl));
+
+              //redirection vers la page de visualisation du BL nouvellement créé
+              return $this->redirectToRoute('blpreview', array('id' => $clients->getId()));
+        }
+
+              return $this->render('BlBundle:Vues:bl.html.twig', ['form' => $form->createView(),]);
     }
 
 

@@ -1,26 +1,52 @@
 {% extends 'base.html.twig' %}
-{% block header %}
-{% endblock %}
+
 {% block body %}
 
+<div class="container">
+    <div class="">
+        <h1></h1>
+    </div>
+    <div class="well">
+          <a href="{{ path('bllist') }}"><button class="btn btn-primary" style="width: 600px; height: 80px">
+            BONS DE LIVRAISON
+          </button></a>
+          <a href="{{ path('factlist') }}"><button class="btn btn-primary" style="width: 600px; height: 80px">
+            FACTURES
+          </button></a>
+          <a href="{{ path('clients_index') }}"><button class="btn btn-primary" style="width: 600px; height: 80px">
+            CLIENTS
+          </button></a>
+          <a href="{{ path('articles') }}"><button class="btn btn-primary" style="width: 600px; height: 80px">
+            ARTICLES
+          </button></a>
+          <a href="{{ path('transporteurs_index') }}"><button class="btn btn-primary" style="width: 600px; height: 80px">
+            TRANSPORTEURS
+          </button></a>
+          <a href="{{ path('accueil') }}"><button style="width: 600px; height: 80px">
+            Revenir sur la page d'accueil
+          </button></a>
+        </div>
+</div>
 
-    <a href="{{ path('bllist') }}"><button class="btn btn-primary" style="width: 800px; height: 100px">
-        BONS DE LIVRAISON
-    </button></a>
-    <a href="{{ path('factlist') }}"><button class="btn btn-primary" style="width: 800px; height: 100px">
-        FACTURES
-    </button></a>
-    <a href="{{ path('accueil') }}"><button style="width: 800px; height: 100px">
-        Revenir sur la page d'accueil
-    </button></a>
 
 {% endblock %}
 
 {% block stylesheets %}
     <style>
-        * {text-align:center;}
-        button {
-            margin-top: 80px;
+        *
+        {
+          text-align:center;
+        }
+        button
+        {
+            margin-top: 10px;
+            padding: auto;
+        }
+
+        .container
+        {
+            margin-top: 20px;
+            padding-top: 3%;
         }
     </style>
 {% endblock %}

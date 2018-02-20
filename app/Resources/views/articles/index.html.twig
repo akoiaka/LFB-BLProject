@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>LISTE DES ARTICLES</h1>
+    <a href="{{ path('articles_new') }}"><button type="button" name="button" class="btn btn-success">Créer un Nouvel Article</button></a>
+    <a href="{{ path('accueil') }}"><button type="button" name="button" class="btn btn-info">Revenir sur la page d'accueil</button></a>
+<div class="well">
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codeart</th>
+                <th>Libelleart</th>
+                <th>Familleart</th>
+                <th>Prixhtart</th>
+                <th>Prixttcart</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr class="active">
+                <td><a href="{{ path('articles_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
+                <td>{{ article.codeArt }}</td>
+                <td>{{ article.libelleArt }}</td>
+                <td>{{ article.familleArt }}</td>
+                <td>{{ article.prixHTArt }}</td>
+                <td>{{ article.prixTTCArt }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('articles_show', { 'id': article.id }) }}">voir cet article</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('articles_edit', { 'id': article.id }) }}">modifier cet article</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>
+
+
+    <ul>
+        <li>
+            <a href="{{ path('articles_new') }}">Créer un Nouvel Article</a>
+        </li>
+    </ul>
+  </div>
+{% endblock %}

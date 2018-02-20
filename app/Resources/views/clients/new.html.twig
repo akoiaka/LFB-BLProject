@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Création d'un nouveau Client</h1>
+    <div class="well">
+      {{ form_start(form) }}
+          {{ form_widget(form) }}
+          <input class="btn btn-success" type="submit" value="Ajouter" />
+      {{ form_end(form) }}
+
+      <a href="{{ path('clients_index') }}"><button class="btn btn-info" type="button" name="button">Revenir sur la liste</button></a>
+
+  </div>
+</div>
+{% endblock %}

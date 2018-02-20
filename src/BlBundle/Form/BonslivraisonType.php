@@ -51,29 +51,20 @@ class BonslivraisonType extends AbstractType
         $pattern = 'D%';
 
         $builder
-          ->add('dateBl',            DateTimeType::class)
-       //            Le typeDateType que l'on a utilisé affiche 3 champs select
-       //            Il existe aussi un type TimezoneType pour choisir le fuseau horaire
+          ->add('dateBl',            DateTimeType::class, array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'label' => 'DATE',))
           ->add('clientBl',          EntityType::class, array(
                 'class'   => 'BlBundle:Clients',
                 'choice_label'    => 'nomClient',
                 'multiple' => false,
                 ))
-
-                // 'query_builder' => function($repository) use($pattern){
-                //   // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
-                //   $pattern = 'D%';
-                //   $pattern = '%';
-                //   return $repository->getLikeQueryBuilder($pattern);
-                //   }
-
-
           ->add('societeBl',          EntityType::class, array(
                 'class'   => 'BlBundle:Articles',
                 'choice_label'    => 'libelleArt',
                 'multiple' => false,
                 ))
-
           ->add('quantiteBl',        IntegerType::class)
           ->add('descriptionBl',     TextareaType::class)
           ->add('transporteurBl',    EntityType::class, array(
@@ -82,33 +73,6 @@ class BonslivraisonType extends AbstractType
                 'multiple' => false,
                 ))
 
-          // Ajout de categories dans le Type bonslivraison (pour permettre l imbrication de formulaires Many to Many)
-          // 1er argument : nom du champ, ici « categories », car c'est le nom de l'attribut
-          // 2e argument : type du champ, ici « CollectionType » qui est une liste de quelque chose
-          // 3e argument : tableau d'options du champ
-          // ->add('categories', CollectionType::class, array(
-          //       'entry_type'   => CategoryType::class,
-          //       'allow_add'    => true,
-          //       'allow_delete' => true
-
-          // ci-dessous, les catégories préparées en vue de sélectionner ultérieurement les bons par année ou par un autre critère -->
-          // se référer aussi à {{form.categories}} dans la vue bl (twig)
-          // ci-dessous je vais utiliser EntityType pour permettre un choix d options
-          // L'option class définit quel est le type d'entité à
-          // L'option choice_label définit comment afficher les entités dans le select du formulaire
-          // ->add('categories', EntityType::class, array(
-          //       'class'   => 'BlBundle:Clients',
-          //       'choice_label'    => 'nomClient',
-          //       'multiple' => false,
-          //       'query_builder' => function($repository) use($pattern){
-          //         // Arbitrairement, on récupère toutes les catégories qui commencent par "D" (sinon je laisse vide %)
-          //         $pattern = 'D%';
-          //         $pattern = '%';
-          //         return $repository->getLikeQueryBuilder($pattern);
-          //         }
-          //         ))
-
-          // maintenant nous allons ajouter une eventlistener, fonction qui va écouter un événement
           ->addEventlistener(
                 FormEvents::PRE_SET_DATA, // 1er argument. PRE_SET_DATA est l event qui nous interesse ici
                 function(FormEvent $event){

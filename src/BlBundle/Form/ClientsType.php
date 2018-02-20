@@ -13,29 +13,7 @@ class ClientsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-        ->add('codeClient')
-        ->add('nomClient')
-        ->add('siret')
-        ->add('adresse1')
-        ->add('adresse2')
-        ->add('adresse3')
-        ->add('codePostal')
-        ->add('ville')
-        ->add('pays')
-        ->add('adresse1Livraison')
-        ->add('adresse2Livraison')
-        ->add('adresse3Livraison')
-        ->add('paysLivraison')
-        ->add('telephone')
-        ->add('portable')
-        ->add('fax')
-        ->add('compteComptable')
-        ->add('codeIso')
-        ->add('codeCEE')
-        ->add('numeroIso')
-        ->add('codeInsee')
-        ->add('contactClient');
+        $builder->add('codeClient')->add('nomClient')->add('siret')->add('adresse1')->add('adresse2')->add('adresse3')->add('codePostal')->add('ville')->add('pays')->add('adresse1Livraison')->add('adresse2Livraison')->add('adresse3Livraison')->add('paysLivraison')->add('telephone')->add('portable')->add('fax')->add('compteComptable')->add('codeIso')->add('codeCEE')->add('numeroIso')->add('codeInsee')->add('contactClient');
     }/**
      * {@inheritdoc}
      */
@@ -44,11 +22,6 @@ class ClientsType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'BlBundle\Entity\Clients'
         ));
-    }
-
-    public function getcodeClient()
-    {
-      return 'codeClient';
     }
 
     /**
