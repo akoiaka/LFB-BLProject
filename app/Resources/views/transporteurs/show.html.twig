@@ -16,13 +16,17 @@
             </tr>
         </tbody>
     </table>
-
+    <div class="">
     <a href="{{ path('transporteurs_edit', { 'id': transporteur.id }) }}"><button class="btn btn-primary" type="button" name="button">Modifier</button></a>
+    </div>
     <br/>
+    <div class="">
     {{ form_start(delete_form) }}
         <input class="btn btn-danger" type="submit" value="Supprimer">
     {{ form_end(delete_form) }}
     <br/>
+  </div>
+
     <a href="{{ path('transporteurs_index') }}">Revenir à la liste</a>
 
 </div>

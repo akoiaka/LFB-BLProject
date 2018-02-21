@@ -240,7 +240,6 @@ public function viewAction($id)
         $bons = $form->getData();
 
         $em = $this->getDoctrine()->getManager();
-        $bons = $form->getData();
         $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
         ('id' => $bons));
         return $this->render('BlBundle:Vues:blprint.html.twig',

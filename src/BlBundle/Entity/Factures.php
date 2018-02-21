@@ -2,11 +2,24 @@
 
 namespace BlBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use BlBundle\Repository\BonslivraisonRepository;
+use DateTimeInterface;
+use Symfony\Component\Validator\Constraints\Date;
+
+
 /**
  * Factures
  */
 class Factures
 {
+   /**
+    * @ORM\ManyToMany(targetEntity="BlBundle\Entity\Clients", cascade={"persist"})
+    */
+    private $clients;
+
     /**
      * @var int
      */
@@ -399,5 +412,44 @@ class Factures
     {
         return $this->totalTtc;
     }
-}
 
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+        // $this->categories = new ArrayCollection();
+        // $this->applications = new ArrayCollection();
+        $this->clients = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+       return $this->getNomClient();
+       return $this->getCodeClient();
+       return $this->getSocieteClient();
+       return $this->getVille();
+       return $this->getDateBl();
+       return $this->getDateTime();
+
+
+    }
+
+    // Noter le singulier, on ajoute une seul client à la fois
+    public function addClient(Client $client)
+    {
+    // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+        $this->clients[] = $client;
+        return $this;
+    }
+
+    public function removeClient(Client $client)
+    {
+    // Ici on utilise une méthode de l'ArrayCollection, pour supprimer le client en argument
+        $this->clients->removeElement($client);
+    }
+
+    // Notez le pluriel, on récupère une liste de catégories ici !
+    public function getClients()
+    {
+        return $this->clients;
+    }
+}

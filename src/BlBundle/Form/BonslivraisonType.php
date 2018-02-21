@@ -51,8 +51,7 @@ class BonslivraisonType extends AbstractType
         $pattern = 'D%';
 
         $builder
-          ->add('dateBl',            DateTimeType::class, array(
-                'widget' => 'single_text',
+          ->add('dateBl',            DateType::class, array(
                 'format' => 'dd-MM-yyyy',
                 'label' => 'DATE',))
           ->add('clientBl',          EntityType::class, array(

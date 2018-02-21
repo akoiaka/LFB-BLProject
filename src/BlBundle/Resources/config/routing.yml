@@ -36,6 +36,11 @@ bl:
     path:     /bl
     defaults: { _controller: BlBundle:Vues:bl }
 
+
+bl2:
+    path:     /bl2
+    defaults: { _controller: BlBundle:Vues:bl2 }
+
 bllist:
     path:     /bllist
     defaults: { _controller: BlBundle:Vues:bllist }

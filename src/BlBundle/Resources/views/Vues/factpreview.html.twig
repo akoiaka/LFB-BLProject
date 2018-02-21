@@ -11,7 +11,14 @@
               <br>
           </div>
           <div class="col-lg-6 adresse">
-              {{"ADRESSE CLIENT"}}
+            <p>
+              <h4><b>{{ fact.reference }}</h4>
+              <h6>{{ fact.reference.adresse1Livraison }}</h6>
+              <h6>{{ fact.reference.adresse2Livraison }}<h6>
+              <h6>{{ fact.reference.adresse3Livraison }}</h6>
+              <h6>{{ fact.reference.codePostal }}<span>-</span>{{ fact.reference.ville }}</h6>
+              <h4><b>{{ fact.reference.paysLivraison }}</h4><br>
+            </p>
           </div>
         </div>
 
@@ -31,8 +38,6 @@
                     <th scope="col">P.U.HT</th>
                     <th scope="col">Montant HT</th>
                     <th scope="col">TOTAL HT</th>
-                    <th scope="col">TOTAL TVA</th>
-                    <th scope="col">NET A PAYER</th>
 
 
 
@@ -47,8 +52,6 @@
                         <td>{{ fact.puHt }}</td>
                         <td>{{ fact.montantHt }}</td>
                         <td>{{ fact.totalHt }}</td>
-                        <td>{{ fact.totalTva }}</td>
-                        <td><b>{{ fact.totalTtc }}</td>
                     </tr>
                 </tbody>
               </table>

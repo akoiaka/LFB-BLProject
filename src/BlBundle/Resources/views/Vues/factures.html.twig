@@ -3,8 +3,7 @@
 {% block body %}
 
     <div class="container">
-        <h1>CRÉATION D'UNE FACTURE</h1>
-        <div class="well">{{ "now"|date(' H:i') }}</div>
+        <h1>CRÉATION D'UNE FACTURE PRO FORMA</h1>
 
         <div class="well">
             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -15,19 +14,6 @@
                 {# Génération du label + error + widget pour un champ. #}
                 {{ form_row(form.dateFacture) }}
 
-            {# Génération manuelle et éclatée : #}
-            <div class="form-group">
-                {# Génération du label. #}
-                {{ form_label(form.numeroFacture, "Numero de Facture", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-                {# Affichage des erreurs pour ce champ précis. #}
-                {{ form_errors(form.numeroFacture) }}
-
-                <div class="col-sm-10">
-                    {# Génération de l'input. #}
-                    {{ form_widget(form.numeroFacture, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
 
             {# Idem pour le champ Descr. #}
             <div class="form-group">
@@ -57,16 +43,16 @@
                         {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
                     </div>
             </div>
-
+<!--
             <div class="form-group">
               {# Idem pour le champ Société. #}
-                {{ form_label(form.montantHt, "Montant HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.montantHt) }}
+                { form_label(form.montantHt, "Montant HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                { form_errors(form.montantHt) }}
                     <div class="col-sm-10">
                         {# Génération de l'input. #}
-                        {{ form_widget(form.montantHt, {'attr': {'class': 'form-control'}}) }}
+                        { form_widget(form.montantHt, {'attr': {'class': 'form-control'}}) }}
                     </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
               {# Idem pour le champ Quantité. #}
@@ -78,63 +64,17 @@
                     </div>
             </div>
 
+<!--
             <div class="form-group">
               {# Idem pour le champ Quantité. #}
-                {{ form_label(form.tva, "TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.tva) }}
+                { form_label(form.totalHt, "Total HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                { form_errors(form.totalHt) }}
                     <div class="col-sm-10">
                         {# Génération de l'input. #}
-                        {{ form_widget(form.tva, {'attr': {'class': 'form-control'}}) }}
+                        { form_widget(form.totalHt, {'attr': {'class': 'form-control'}}) }}
                     </div>
-            </div>
+            </div> -->
 
-            <div class="form-group">
-              {# Idem pour le champ Quantité. #}
-                {{ form_label(form.tauxTva, "Taux TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.tauxTva) }}
-                    <div class="col-sm-10">
-                        {# Génération de l'input. #}
-                        {{ form_widget(form.tauxTva, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-            </div>
-
-            <div class="form-group">
-              {# Idem pour le champ Quantité. #}
-                {{ form_label(form.montantTva, "Montant TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.montantTva) }}
-                    <div class="col-sm-10">
-                        {# Génération de l'input. #}
-                        {{ form_widget(form.montantTva, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-            </div>
-
-            <div class="form-group">
-              {# Idem pour le champ Quantité. #}
-                {{ form_label(form.totalHt, "Total HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.totalHt) }}
-                    <div class="col-sm-10">
-                        {# Génération de l'input. #}
-                        {{ form_widget(form.totalHt, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-            </div>
-
-            <div class="form-group">
-              {# Idem pour le champ Quantité. #}
-                {{ form_label(form.totalTva, "Total TVA", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.totalTva) }}
-                    <div class="col-sm-10">
-                        {# Génération de l'input. #}
-                        {{ form_widget(form.totalTva, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.totalTtc, "Total TTC", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.totalTtc) }}
-                    <div class="col-sm-10">
-                        {{ form_widget(form.totalTtc, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-            </div>
 
 
             {{ form_rest(form) }}
@@ -155,9 +95,12 @@
 {% endblock %}
 {% block stylesheets %}
     <style>
-        button
-        {
-            margin-top: 40px;
+        * {text-align:center;}
+        body html{
+          height:100%;
+        }
+        button {
+            margin-top: 10px;
         }
     </style>
 {% endblock %}

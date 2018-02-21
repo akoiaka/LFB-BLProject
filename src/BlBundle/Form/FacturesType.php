@@ -28,7 +28,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
 use BlBundle\Repository\CategoryRepository;
 use BlBundle\Repository\FacturesRepository;
 use Symfony\Component\Form\FormEvent;
@@ -47,19 +46,23 @@ class FacturesType extends AbstractType
         // $pattern = 'F%';
 
         $builder
-          ->add('numeroFacture',            TextType::class)
-          ->add('dateFacture',              DateTimeType::class)
-          ->add('reference',                TextType::class)
-          ->add('designation',              TextType::class)
-          ->add('quantite',                 IntegerType::class)
-          ->add('montantHt',                NumberType::class)
-          ->add('tva',                      NumberType::class)
-          ->add('tauxTva',                  NumberType::class)
-          ->add('montantTva',               NumberType::class)
-          ->add('totalHt',                  NumberType::class)
-          ->add('totalTva',                 NumberType::class)
-          ->add('puHt',                     NumberType::class)
-          ->add('totalTtc',                 NumberType::class)
+            ->add('dateFacture',            DateType::class, array(
+                  'widget' => 'single_text',
+                  'format' => 'dd-MM-yyyy',
+                  'label' => 'DATE',))
+            ->add('reference',          EntityType::class, array(
+                  'class'   => 'BlBundle:Clients',
+                  'choice_label'    => 'nomClient',
+                  'multiple' => false,
+                  ))
+            ->add('designation',          EntityType::class, array(
+                  'class'   => 'BlBundle:Articles',
+                  'choice_label'    => 'libelleArt',
+                  'multiple' => false,
+                  ))
+            ->add('quantite',        IntegerType::class)
+            ->add('designation',     TextareaType::class)
+            ->add('puHt',            IntegerType::class)
 
          //
         //   ->add('categories', EntityType::class, array(

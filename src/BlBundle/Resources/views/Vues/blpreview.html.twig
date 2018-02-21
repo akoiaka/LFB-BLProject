@@ -43,7 +43,7 @@
         <div class="well">
           <a href="{{ path('accueil') }}"><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
           <a href="{{ path('bl') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">MODIFIER</button></a>
-          <a href="{{ path('blprint') }}"><button class="btn btn-success" style="width: 300px; height: 60px">OK</button></a>
+          <a href="{{ path(('blprint'), {'id':bl.id }) }}"><button class="btn btn-success" style="width: 300px; height: 60px">OK</button></a>
         </div>
     </div>
     </div>

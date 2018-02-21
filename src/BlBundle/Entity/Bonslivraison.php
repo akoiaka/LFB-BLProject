@@ -87,6 +87,8 @@ class Bonslivraison
        return $this->getCodeClient();
        return $this->getSocieteClient();
        return $this->getVille();
+       return $this->getDateBl();
+       return $this->getDateTime();
 
 
     }

@@ -1,0 +1,36 @@
+BlBundle\Entity\Bonslivraison2:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\Bonslivraison2Repository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateBl:
+            type: datetime
+            nullable: true
+        numeroBl:
+            type: string
+            length: 255
+            nullable: true
+        descriptionBl:
+            type: string
+            length: 255
+            nullable: true
+        clientBl:
+            type: string
+            length: 255
+            nullable: true
+        societeBl:
+            type: string
+            length: 255
+            nullable: true
+        transporteurBl:
+            type: string
+            length: 255
+        quantiteBl:
+            type: integer
+    lifecycleCallbacks: {  }
