@@ -1,0 +1,50 @@
+BlBundle\Entity\Bdl:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\BdlRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateBdl:
+            type: datetime
+        numeroBdl:
+            type: string
+            length: '50'
+            nullable: true
+        descriptionBdl:
+            type: string
+            length: 255
+            nullable: true
+        clientBdl:
+            type: string
+            length: '50'
+            nullable: true
+        article1:
+            type: string
+            length: '50'
+            nullable: true
+        article2:
+            type: string
+            length: '50'
+            nullable: true
+        article3:
+            type: string
+            length: '50'
+            nullable: true
+        transporteurBdl:
+            type: string
+            length: '50'
+            nullable: true
+        quantite1:
+            type: integer
+        quantite2:
+            type: integer
+            nullable: true
+        quantite3:
+            type: integer
+            nullable: true
+    lifecycleCallbacks: {  }

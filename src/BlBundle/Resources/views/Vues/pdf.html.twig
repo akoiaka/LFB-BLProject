@@ -1,1 +1,129 @@
-{% extends 'base.html.twig' %}}
+{% block body %}
+<div class="container">
+  <img src="/Applications/MAMP/htdocs/symphony/LFB-BLProject/src/BlBundle/Resources/images/logo1lfb.png" alt="">
+
+        <div class="row top">
+          <div class="col-lg-6">
+              <h4>LFB BIOMANUFACTURING</h4>
+              <h5>AVENUE DES CHENES ROUGES</h5>
+              <h5>30100 ALES</h5>
+              <h6>Tél       : 04.66.56.40.80<br/>SIRET     : 49927250800015</h6>
+              <br>
+          </div>
+          <div class="col-lg-6 adresse">
+            <p>
+              <h4><b>{{ bl.clientBdl }}</h4>
+
+            </p>
+          </div>
+        </div>
+
+
+        <div>
+            <h1>BON DE LIVRAISON</h1>
+            <h2>N. {{ bl.id }}</h2>
+            <h3>Date:  {{ "now"|date(' d M Y') }}</h3>
+        </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col" id="numbl" name="numbl">N.</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Article</th>
+                    <th scope="col">Quantité</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ bl.id }}</th>
+                        <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                        <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                        <td>{{ "now"|date(' d m Y ') }}</td>
+                        <td>{{ bl.descriptionBdl }}</td>
+                        <td>{{ bl.clientBdl }}</td>
+                        <td>{{ bl.article1 }}</td>
+                        <td>{{ bl.quantite1 }}</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ bl.id }}</th>
+                        <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                        <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                        <td>{{ "now"|date(' d m Y ') }}</td>
+                        <td>{{ bl.descriptionBdl }}</td>
+                        <td>{{ bl.clientBdl }}</td>
+                        <td>{{ bl.article2 }}</td>
+                        <td>{{ bl.quantite2 }}</td>
+                    </tr>
+                </tbody><tbody>
+                    <tr>
+                        <th scope="row">{{ bl.id }}</th>
+                        <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                        <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                        <td>{{ "now"|date(' d m Y ') }}</td>
+                        <td>{{ bl.descriptionBdl }}</td>
+                        <td>{{ bl.clientBdl }}</td>
+                        <td>{{ bl.article3 }}</td>
+                        <td>{{ bl.quantite3 }}</td>
+                    </tr>
+                </tbody>
+              </table>
+
+        </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    .container
+    {
+      height:90%;
+    }
+        body
+        {
+            margin:5%;
+        }
+
+
+        td, tbody, th, tr, thead, table, #listebl
+        {
+          border: solid 1px black;
+
+
+        }
+
+      img{
+        width: 150px;
+        height: 100px;
+      }
+        .table
+        {
+            border: solid 1px black;
+        }
+
+        .top
+        {
+            width: 90%;
+        }
+
+        .adresse
+        {
+          padding: 5%;
+          margin-bottom: 5%;
+              border: solid 2px;
+              height: 5%;
+        }
+
+        .endpage
+        {
+          text-align: center;
+        }
+
+        button
+        {
+        }
+    </style>
+{% endblock %}

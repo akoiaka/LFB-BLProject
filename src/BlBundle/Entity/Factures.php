@@ -51,6 +51,17 @@ class Factures
     private $quantite;
 
     /**
+     * @var int
+     */
+    private $quantite2;
+
+    /**
+     * @var int
+     */
+    private $quantite3;
+
+
+    /**
      * @var string
      */
     private $montantHt;
@@ -219,6 +230,54 @@ class Factures
     public function getQuantite()
     {
         return $this->quantite;
+    }
+
+    /**
+     * Set quantite2
+     *
+     * @param integer $quantite2
+     *
+     * @return Factures
+     */
+    public function setQuantite2($quantite2)
+    {
+        $this->quantite2 = $quantite2;
+
+        return $this;
+    }
+
+    /**
+     * Get quantite2
+     *
+     * @return int
+     */
+    public function getQuantite2()
+    {
+        return $this->quantite2;
+    }
+
+    /**
+     * Set quantite3
+     *
+     * @param integer $quantite3
+     *
+     * @return Factures
+     */
+    public function setQuantite3($quantite3)
+    {
+        $this->quantite3 = $quantite3;
+
+        return $this;
+    }
+
+    /**
+     * Get quantite3
+     *
+     * @return int
+     */
+    public function getQuantite3()
+    {
+        return $this->quantite3;
     }
 
     /**

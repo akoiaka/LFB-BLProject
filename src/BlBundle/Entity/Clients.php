@@ -60,7 +60,7 @@ class Clients
     /**
      * @var string
      */
-    private $adresse1Livraison;
+    public $adresse1Livraison;
 
     /**
      * @var string

@@ -5,9 +5,9 @@
     <h1>CRÉATION DU BON DE LIVRAISON</h1>
     <!-- <div class="well">{{ "now"|date(' H:i') }}</div> -->
 
-    {#<div class="well form">#}
+    <!-- {#<div class="well form">#}
         {#{{ form(form) }}#}
-    {#</div>#}
+    {#</div>#} -->
 
     <div class="well">
         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -16,58 +16,97 @@
              {{ form_errors(form) }}
 
             {# Génération du label + error + widget pour un champ. #}
-            {{ form_row(form.dateBl) }}
+            {{ form_row(form.dateBdl) }}
 
         {# Génération manuelle et éclatée : #}
 
         <div class="form-group">
           {# Idem pour le champ Client. #}
 
-            {{ form_label(form.clientBl, "Client", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-            {{ form_errors(form.clientBl) }}
+            {{ form_label(form.clientBdl, "Client", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.clientBdl) }}
                 <div class="col-sm-10">
                     {# Génération de l'input. #}
-                    {{ form_widget(form.clientBl, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.clientBdl, {'attr': {'class': 'form-control'}}) }}
                 </div>
         </div>
 
         <div class="form-group">
-          {# Idem pour le champ Société. #}
-            {{ form_label(form.societeBl, "Article", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-            {{ form_errors(form.societeBl) }}
+          {# Idem pour le champ Articles. #}
+            {{ form_label(form.article1, "Article 1", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.article1) }}
                 <div class="col-sm-10">
                     {# Génération de l'input. #}
-                    {{ form_widget(form.societeBl, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.article1, {'attr': {'class': 'form-control'}}) }}
                 </div>
         </div>
 
         <div class="form-group">
           {# Idem pour le champ Quantité. #}
-            {{ form_label(form.quantiteBl, "Quantité", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-            {{ form_errors(form.quantiteBl) }}
+            {{ form_label(form.quantite1, "Quantité article 1", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.quantite1) }}
                 <div class="col-sm-10">
                     {# Génération de l'input. #}
-                    {{ form_widget(form.quantiteBl, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.quantite1, {'attr': {'class': 'form-control'}}) }}
                 </div>
         </div>
 
+        <div class="form-group">
+          {# Idem pour le champ Articles. #}
+            {{ form_label(form.article2, "Article 2", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.article2) }}
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.article2, {'attr': {'class': 'form-control'}}) }}
+                </div>
+        </div>
+
+        <div class="form-group">
+          {# Idem pour le champ Quantité. #}
+            {{ form_label(form.quantite2, "Quantité article 2", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.quantite2) }}
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.quantite2, {'attr': {'class': 'form-control'}}) }}
+                </div>
+        </div>
+
+        <div class="form-group">
+          {# Idem pour le champ Articles. #}
+            {{ form_label(form.article3, "Article 3", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.article3) }}
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.article3, {'attr': {'class': 'form-control'}}) }}
+                </div>
+        </div>
+
+        <div class="form-group">
+          {# Idem pour le champ Quantité. #}
+            {{ form_label(form.quantite3, "Quantité article 3", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.quantite3) }}
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.quantite3, {'attr': {'class': 'form-control'}}) }}
+                </div>
+        </div>
 
         {# Idem pour le champ Descr. #}
         <div class="form-group">
-            {{ form_label(form.descriptionBl, "Description", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-            {{ form_errors(form.descriptionBl) }}
+            {{ form_label(form.descriptionBdl, "Description", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.descriptionBdl) }}
             <div class="col-sm-10">
-                {{ form_widget(form.descriptionBl, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(form.descriptionBdl, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
 
         <div class="form-group">
           {# Idem pour le champ Transporteur. #}
-            {{ form_label(form.transporteurBl, "Transporteur", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-            {{ form_errors(form.transporteurBl) }}
+            {{ form_label(form.transporteurBdl, "Transporteur", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.transporteurBdl) }}
                 <div class="col-sm-10">
                     {# Génération de l'input. #}
-                    {{ form_widget(form.transporteurBl, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.transporteurBdl, {'attr': {'class': 'form-control'}}) }}
                 </div>
         </div>
 
@@ -94,76 +133,78 @@
     </div>
 
     <!-- CHARGEMENT DE JQUERY - ATTENTION ICI LE CDN - A REMPLACER PAR UN LIEN FICHIER -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- CI DESSOUS UN SCRIPT POUR GENERER DES CHAMPS SUPPLEMENTAIRES.
+    DES TESTS ONT ETE EFFECTUES DURANT LE TEMPS DE STAGE MAIS UN MANQUE DE TEMPS N A PAS PERMIS DE RECUPERER COORECTEMENT LES DONNEES POUR LE REMPLISSAGE DES CHAMPS DU BON DE LIVRAISON. -->
+    <!-- TESTS A APPROFONDIR. -->
+    <!-- POUR CELA, DECOMMENTER LE SCRIPT CI-DESSOUS AINSI QUE LA PARTIE CATEGORIE COMMENTEE DANS BonslivraisonType et Bonslivraison.
 
-<!-- SCRIPT JQUERY POUR AJOUTER LES CATEGORY A L INFINI ET AU BESOIN -->
-<script type="text/javascript">
-    $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#blbundle_bonslivraison_categories');
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-    var index = $container.find(':input').length;
+    {# Voici le script en question : #}
+     <script type="text/javascript">
+      $(document).ready(function() {
+        // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+        var $container = $('div#blbundle_bonslivraison_ajouter');
 
-    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-    $('#add_category').click(function(e) {
-      addCategory($container);
+        // On ajoute un lien pour ajouter une nouvelle catégorie
+        var $addLink = $('<a href="#" id="add_category" class="btn btn-default">Ajouter un article</a>');
+        $container.append($addLink);
 
-      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-      return false;
-    });
+        // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+        $addLink.click(function(e) {
+          addCategory($container);
+          e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+          return false;
+        });
 
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
-      addCategory($container);
-    } else {
-      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-      $container.children('div').each(function() {
-        addDeleteLink($(this));
+        // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+        var index = $container.find(':input').length;
+
+        // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+        if (index == 0) {
+          addCategory($container);
+        } else {
+          // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
+          $container.children('div').each(function() {
+            addDeleteLink($(this));
+          });
+        }
+
+        // La fonction qui ajoute un formulaire Categorie
+        function addCategory($container) {
+          // Dans le contenu de l'attribut « data-prototype », on remplace :
+          // - le texte "__name__label__" qu'il contient par le label du champ
+          // - le texte "__name__" qu'il contient par le numéro du champ
+          var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Article n°' + (index+1))
+              .replace(/__name__/g, index));
+
+          // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+          addDeleteLink($prototype);
+
+          // On ajoute le prototype modifié à la fin de la balise <div>
+          $container.append($prototype);
+
+          // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+          index++;
+        }
+
+        // La fonction qui ajoute un lien de suppression d'une catégorie
+        function addDeleteLink($prototype) {
+          // Création du lien
+          $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+          // Ajout du lien
+          $prototype.append($deleteLink);
+
+          // Ajout du listener sur le clic du lien
+          $deleteLink.click(function(e) {
+            $prototype.remove();
+            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+            return false;
+          });
+        }
       });
-    }
-
-    // La fonction qui ajoute un formulaire CategoryType
-    function addCategory($container) {
-      // Dans le contenu de l'attribut « data-prototype », on remplace :
-      // - le texte "__name__label__" qu'il contient par le label du champ
-      // - le texte "__name__" qu'il contient par le numéro du champ
-      var template = $container.attr('data-prototype')
-        .replace(/__name__label__/g, 'Catégorie n°' + (index+1))
-        .replace(/__name__/g,        index)
-      ;
-
-      // On crée un objet jquery qui contient ce template
-      var $prototype = $(template);
-
-      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-      addDeleteLink($prototype);
-
-      // On ajoute le prototype modifié à la fin de la balise <div>
-      $container.append($prototype);
-
-      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-      index++;
-    }
-
-    // La fonction qui ajoute un lien de suppression d'une catégorie
-    function addDeleteLink($prototype) {
-      // Création du lien
-      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
-      // Ajout du lien
-      $prototype.append($deleteLink);
-
-      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
-      $deleteLink.click(function(e) {
-        $prototype.remove();
-
-        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-        return false;
-      });
-    }
-  });
-</script>
+    </script> 
 
 {% endblock %}
 

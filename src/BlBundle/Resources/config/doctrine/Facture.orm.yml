@@ -1,0 +1,77 @@
+BlBundle\Entity\Facture:
+    type: entity
+    table: null
+    repositoryClass: BlBundle\Repository\FactureRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        numeroF:
+            type: integer
+            nullable: true
+        dateF:
+            type: datetime
+        referenceF:
+            type: string
+            length: '50'
+            nullable: true
+        designationF:
+            type: string
+            length: '50'
+            nullable: true
+        quantite1F:
+            type: integer
+        quantite2F:
+            type: integer
+            nullable: true
+        quantite3F:
+            type: integer
+            nullable: true
+        puHt1:
+            type: decimal
+            precision: 10
+            scale: 0
+        puHt2:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+        puHt3:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+        montantHt1:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+        montantHt2:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+        montantHt3:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+        tvaF:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+        totalHtF:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+        totalttcF:
+            type: decimal
+            precision: 10
+            scale: 0
+            nullable: true
+    lifecycleCallbacks: {  }

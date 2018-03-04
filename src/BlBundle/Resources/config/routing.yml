@@ -85,6 +85,10 @@ factures:
     path:     /factures
     defaults: { _controller: BlBundle:Vues:factures }
 
+facture:
+    path:     /facture
+    defaults: { _controller: BlBundle:Vues:facture }
+
 listearticles:
     path:     /listearticles
     defaults: { _controller: BlBundle:Vues:listearticles }

@@ -20,24 +20,26 @@
                 <th scope="col" id="numbl" name="numbl">N.</th>
                 <th scope="col">Description</th>
                 <th scope="col">Client</th>
-                <th scope="col">Société</th>
+                <th scope="col">Article 1</th>
+                <th scope="col">Article 2</th>
+                <th scope="col">Article 3</th>
                 <th scope="col">Transporteur</th>
-                <th scope="col">Quantité</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             {% for bls in bl %}
                 <tr class="info">
-                    <td>{{ bls.dateBl.format('j/m/Y') }}</td>
+                    <td>{{ bls.dateBdl.format('j/m/Y') }}</td>
                     <th scope="row"><a href="{{ path('blconsult', {'id':bls.id }) }}">{{ bls.id }}</a></th>
-                    <td>{{ bls.descriptionBl }}</td>
-                    <td>{{ bls.clientBl }}</td>
-                    <td>{{ bls.societeBl }}</td>
-                    <td>{{ bls.transporteurBl }}</td>
-                    <td>{{ bls.quantiteBl }}</td>
+                    <td>{{ bls.descriptionBdl }}</td>
+                    <td>{{ bls.clientBdl }}</td>
+                    <td>{{ bls.quantite1 }} - {{ bls.article1 }}</td>
+                    <td>{{ bls.quantite2 }} - {{ bls.article2 }}</td>
+                    <td>{{ bls.quantite3 }} - {{ bls.article3 }}</td>
+                    <td>{{ bls.transporteurBdl }}</td>
                     <td>
-                      <a href="{{path('accueil')}}">
+                      <a href="{{ path('pdf', {'id':bls.id } ) }}">
                         <button class="btn btn-warning btn-xs" type="button" name="button">IMPRIMER</button>
                       </a>
                     </td>
@@ -62,7 +64,6 @@
 
         <div class="well">
           <a href="{{ path('accueil') }}"><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
-          <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">Annuler</button></a>
         </div>
     </div>
 </div>

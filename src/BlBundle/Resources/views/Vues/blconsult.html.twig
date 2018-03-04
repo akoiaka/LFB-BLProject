@@ -11,7 +11,7 @@
               <br>
           </div>
           <div class="col-lg-6 adresse">
-                <p>{{ bl.societeBl }}</p>
+                <p><b>{{ bl.clientBdl }}</p>
           </div>
         </div>
 
@@ -22,32 +22,58 @@
             <h3>Date:  {{ "now"|date(' d M Y') }}</h3>
         </div>
         <div class="jumbotron" id="listebl">
-            <table class="table table-sm table-hover">
-                <thead>
-                <tr>
-                    <th scope="col" id="numbl" name="numbl">N.</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Article</th>
-                    <th scope="col">Transporteur</th>
-                    <th scope="col">Quantité</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">{{ bl.id }}</th>
-                        <!-- <td>{{ bl.dateBl.format('j M Y H:i') }}</td> -->
-                        <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
-                        <td>{{ "now"|date(' d m Y ') }}</td>
-                        <td>{{ bl.descriptionBl }}</td>
-                        <td>{{ bl.clientBl }}</td>
-                        <td>{{ bl.societeBl }}</td>
-                        <td>{{ bl.transporteurBl }}</td>
-                        <td>{{ bl.quantiteBl }}</td>
-                    </tr>
-                </tbody>
-              </table>
+          <table class="table table-hover">
+              <thead>
+              <tr>
+                  <th scope="col" id="numbl" name="numbl">N.</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Client</th>
+                  <th scope="col">Article</th>
+                  <th scope="col">Transporteur</th>
+                  <th scope="col">Quantité</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <th scope="row">{{ bl.id }}</th>
+                      <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                      <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                      <td>{{ "now"|date(' d m Y ') }}</td>
+                      <td>{{ bl.descriptionBdl }}</td>
+                      <td>{{ bl.clientBdl }}</td>
+                      <td>{{ bl.article1 }}</td>
+                      <td>{{ bl.transporteurBdl }}</td>
+                      <td>{{ bl.quantite1 }}</td>
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th scope="row">{{ bl.id }}</th>
+                      <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                      <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                      <td>{{ "now"|date(' d m Y ') }}</td>
+                      <td>{{ bl.descriptionBdl }}</td>
+                      <td>{{ bl.clientBdl }}</td>
+                      <td>{{ bl.article2 }}</td>
+                      <td>{{ bl.transporteurBdl }}</td>
+                      <td>{{ bl.quantite2 }}</td>
+                  </tr>
+              </tbody><tbody>
+                  <tr>
+                      <th scope="row">{{ bl.id }}</th>
+                      <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                      <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                      <td>{{ "now"|date(' d m Y ') }}</td>
+                      <td>{{ bl.descriptionBdl }}</td>
+                      <td>{{ bl.clientBdl }}</td>
+                      <td>{{ bl.article3 }}</td>
+                      <td>{{ bl.transporteurBdl }}</td>
+                      <td>{{ bl.quantite3 }}</td>
+                  </tr>
+              </tbody>
+            </table>
+
         </div>
 
         {#    ci-dessus la div à imprimer#}
@@ -89,6 +115,8 @@
 
         .adresse
         {
+          text-align: center;
+          padding: 5%;
           margin-bottom: 5%;
               border: solid 2px;
               height: 200px;

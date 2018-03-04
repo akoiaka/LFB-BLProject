@@ -12,12 +12,12 @@
           </div>
           <div class="col-lg-6 adresse">
                 <p>
-                  <h4><b>{{ bl.clientBl }}</h4>
-                  <h6>{{ bl.clientBl.adresse1Livraison }}</h6>
-                  <h6>{{ bl.clientBl.adresse2Livraison }}<h6>
-                  <h6>{{ bl.clientBl.adresse3Livraison }}</h6>
-                  <h6>{{ bl.clientBl.codePostal }}<span>-</span>{{ bl.clientBl.ville }}</h6>
-                  <h4><b>{{ bl.clientBl.paysLivraison }}</h4><br>
+                  <h4><b>{{ bl.clientBdl }}</h4>
+                  <h6>{{ bl.clientBdl.adresse1Livraison }}</h6>
+                  <h6>{{ bl.clientBdl.adresse2Livraison }}<h6>
+                  <h6>{{ bl.clientBdl.adresse3Livraison }}</h6>
+                  <h6>{{ bl.clientBdl.codePostal }}<span>-</span>{{ bl.clientBdl.ville }}</h6>
+                  <h4><b>{{ bl.clientBdl.paysLivraison }}</h4><br>
                 </p>
           </div>
         </div>
@@ -43,14 +43,39 @@
                 <tbody>
                     <tr>
                         <th scope="row">{{ bl.id }}</th>
-                        <!-- <td>{{ bl.dateBl.format('j M Y H:i') }}</td> -->
+                        <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
                         <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
                         <td>{{ "now"|date(' d m Y ') }}</td>
-                        <td>{{ bl.descriptionBl }}</td>
-                        <td>{{ bl.clientBl }}</td>
-                        <td>{{ bl.societeBl }}</td>
-                        <td>{{ bl.transporteurBl }}</td>
-                        <td>{{ bl.quantiteBl }}</td>
+                        <td>{{ bl.descriptionBdl }}</td>
+                        <td>{{ bl.clientBdl }}</td>
+                        <td>{{ bl.article1 }}</td>
+                        <td>{{ bl.transporteurBdl }}</td>
+                        <td>{{ bl.quantite1 }}</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ bl.id }}</th>
+                        <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                        <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                        <td>{{ "now"|date(' d m Y ') }}</td>
+                        <td>{{ bl.descriptionBdl }}</td>
+                        <td>{{ bl.clientBdl }}</td>
+                        <td>{{ bl.article2 }}</td>
+                        <td>{{ bl.transporteurBdl }}</td>
+                        <td>{{ bl.quantite2 }}</td>
+                    </tr>
+                </tbody><tbody>
+                    <tr>
+                        <th scope="row">{{ bl.id }}</th>
+                        <!-- <td>{{ bl.dateBdl.format('j M Y H:i') }}</td> -->
+                        <!-- j'affiche la date du jour, mais au besoin pour une date bl ciblée, décommenter ci-dessus -->
+                        <td>{{ "now"|date(' d m Y ') }}</td>
+                        <td>{{ bl.descriptionBdl }}</td>
+                        <td>{{ bl.clientBdl }}</td>
+                        <td>{{ bl.article3 }}</td>
+                        <td>{{ bl.transporteurBdl }}</td>
+                        <td>{{ bl.quantite3 }}</td>
                     </tr>
                 </tbody>
               </table>
@@ -60,7 +85,7 @@
         <div class="row endpage">
 
             <div class="well">
-              <a href="{{ path('accueil') }}"><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
+              <a href="{{ path('pdf', {'id':bl.id } ) }} "><button class="btn btn-success glyphicon glyphicon-print" style="width: 300px; height: 60px"> Imprimer</button></a>
               <a href="{{ path('bllist') }}"><button class="btn btn-primary" style="width: 300px; height: 60px">Liste des Bons de Livraison</button></a>
             </div>
         </div>
@@ -70,10 +95,7 @@
 
 {% block stylesheets %}
     <style>
-        body
-        {
-            margin:5%;
-        }
+
 
 
         td, tbody, th, tr, thead, table, #listebl
@@ -87,10 +109,6 @@
             border: solid 1px black;
         }
 
-        .top
-        {
-            width: 90%;
-        }
 
         .adresse
         {
@@ -98,7 +116,7 @@
           padding: 5%;
           margin-bottom: 5%;
               border: solid 2px;
-              height: 200px;
+              height: 230px;
         }
 
         .endpage
@@ -106,8 +124,5 @@
           text-align: center;
         }
 
-        button
-        {
-        }
     </style>
 {% endblock %}

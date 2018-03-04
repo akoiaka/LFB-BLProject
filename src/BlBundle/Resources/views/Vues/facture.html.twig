@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>CRÉATION D'UNE FACTURE PRO FORMA</h1>
+
+        <div class="well">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                 {# Les erreurs générales du formulaire. #}
+                 {{ form_errors(form) }}
+
+                {# Génération du label + error + widget pour un champ. #}
+                {{ form_row(form.dateF) }}
+
+
+            {# Idem pour le champ Descr. #}
+            <div class="form-group">
+                {{ form_label(form.designationF, "Description", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.designationF) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.designationF, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+              {# Idem pour le champ Client. #}
+                {{ form_label(form.referenceF, "Référence Client", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.referenceF) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.referenceF, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            <div class="form-group">
+              {# Idem pour le champ Transporteur. #}
+                {{ form_label(form.quantite1F, "Quantité", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.quantite1F) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.quantite1F, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.puHt1, "P.U. HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.puHt1) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.puHt1, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.designationF, "Description", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.designationF) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.designationF, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+              {# Idem pour le champ Transporteur. #}
+                {{ form_label(form.quantite2F, "Quantité", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.quantite2F) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.quantite2F, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.puHt2, "P.U. HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.puHt2) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.puHt2, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.designationF, "Description", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.designationF) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.designationF, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+              {# Idem pour le champ Transporteur. #}
+                {{ form_label(form.quantite3F, "Quantité", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.quantite3F) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.quantite3F, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            <div class="form-group">
+              {# Idem pour le champ Quantité. #}
+                {{ form_label(form.puHt3, "P.U. HT", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.puHt3) }}
+                    <div class="col-sm-10">
+                        {# Génération de l'input. #}
+                        {{ form_widget(form.puHt3, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+
+
+            {{ form_rest(form) }}
+
+
+            <div class="bdp">
+                {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                {#<div>{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary'}}) }}</div>#}
+                <button class="btn btn-success" style="width: 300px; height: 60px">Valider</button>
+
+                {{ form_end(form) }}
+            </div>
+
+            <a href="{{ path('accueil') }}"><button class="btn btn-danger" style="width: 300px; height: 60px">RETOUR ACCUEIL</button></a>
+        </div>
+        </div>
+
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        * {text-align:center;}
+        body html{
+          height:100%;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}

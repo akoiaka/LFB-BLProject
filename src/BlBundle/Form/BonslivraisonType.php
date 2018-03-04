@@ -3,18 +3,22 @@
 namespace BlBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use BlBundle\BlBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
+use BlBundle\Entity\Bdl;
+use BlBundle\Form\BdlType;
 use BlBundle\Entity\Clients;
+use BlBundle\Form\ClientsType;
 use BlBundle\Entity\Category;
 use BlBundle\Form\CategoryType;
-use BlBundle\Form\ClientsType;
 use BlBundle\Repository\ClientsRepository;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\Collection;
 use BlBundle\Form\BonslivraisonType;
 use Symfony\Component\Form\Form;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,9 +38,6 @@ use BlBundle\Repository\CategoryRepository;
 use BlBundle\Repository\BonslivraisonRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-
-
-
 
 
 
@@ -71,6 +72,13 @@ class BonslivraisonType extends AbstractType
                 'choice_label'    => 'transporteur',
                 'multiple' => false,
                 ))
+
+                ->add('ajouter', CollectionType::class, array(
+              'entry_type'         => TextType::class,
+              'allow_add'    => true,
+              'allow_delete' => true,
+            ))
+
 
           ->addEventlistener(
                 FormEvents::PRE_SET_DATA, // 1er argument. PRE_SET_DATA est l event qui nous interesse ici
@@ -116,6 +124,13 @@ class BonslivraisonType extends AbstractType
     public function getName()
     {
         return 'blbundle_bonslivraisontype';
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'BlBundle\Entity\Bonslivraison'
+        ));
     }
 
 }

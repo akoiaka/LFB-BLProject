@@ -4,7 +4,7 @@ namespace BlBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use BlBundle\Repository\BonslivraisonRepository;
+use BlBundle\Repository\Bonslivraison2Repository;
 use DateTimeInterface;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -14,23 +14,12 @@ use Symfony\Component\Form\Extension\Core\Type\Collection;
 /**
  * @ORM\Table()
  */
-class Bonslivraison
+class Bonslivraison2
 {
     /**
     * @ORM\ManyToMany(targetEntity="BlBundle\Entity\Articles", cascade={"persist"})
     */
     private $clients;
-
-    /**
-    * @ORM\ManyToMany(targetEntity="BlBundle\Entity\Category", cascade={"persist"})
-    */
-    public $ajouter;
-
-    /**
-    * @ORM\ManyToMany(targetEntity="BlBundle\Entity\Category", cascade={"persist"})
-    */
-    public $categories;
-
 
     /**
      * @var int
@@ -91,11 +80,8 @@ class Bonslivraison
     {
         $this->date = new \DateTime();
         $this->categories = new ArrayCollection();
-        $this->categorie = new ArrayCollection();
         $this->applications = new ArrayCollection();
         $this->clients = new ArrayCollection();
-        $this->category = new ArrayCollection();
-
     }
 
     public function __toString()
@@ -106,8 +92,6 @@ class Bonslivraison
        return $this->getVille();
        return $this->getDateBl();
        return $this->getDateTime();
-       return $this->getajouter();
-       return $this->getCategories();
 
 
     }
@@ -148,7 +132,7 @@ class Bonslivraison
      *
      * @param \DateTime $dateBl
      *
-     * @return Bonslivraison
+     * @return Bonslivraison2
      */
     public function setDateBl($dateBl)
     {
@@ -172,7 +156,7 @@ class Bonslivraison
     //  *
     //  * @param integer $numeroBl
     //  *
-    //  * @return Bonslivraison
+    //  * @return Bonslivraison2
     //  */
     // public function setNumeroBl($numeroBl)
     // {
@@ -196,7 +180,7 @@ class Bonslivraison
      *
      * @param string $descriptionBl
      *
-     * @return Bonslivraison
+     * @return Bonslivraison2
      */
     public function setDescriptionBl($descriptionBl)
     {
@@ -220,7 +204,7 @@ class Bonslivraison
      *
      * @param string $clientBl
      *
-     * @return Bonslivraison
+     * @return Bonslivraison2
      */
     public function setClientBl($clientBl)
     {
@@ -244,7 +228,7 @@ class Bonslivraison
      *
      * @param string $societeBl
      *
-     * @return Bonslivraison
+     * @return Bonslivraison2
      */
     public function setSocieteBl($societeBl)
     {
@@ -268,7 +252,7 @@ class Bonslivraison
      *
      * @param string $transporteurBl
      *
-     * @return Bonslivraison
+     * @return Bonslivraison2
      */
     public function setTransporteurBl($transporteurBl)
     {
@@ -292,7 +276,7 @@ class Bonslivraison
      *
      * @param integer $quantiteBl
      *
-     * @return Bonslivraison
+     * @return Bonslivraison2
      */
     public function setQuantiteBl($quantiteBl)
     {

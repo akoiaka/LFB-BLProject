@@ -5,14 +5,22 @@ namespace BlBundle\Controller;
 use BlBundle\BlBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BlBundle\Entity\Bonslivraison;
+use BlBundle\Form\BonslivraisonType;
 use BlBundle\Entity\Clients;
 use BlBundle\Entity\Articles;
 use BlBundle\Entity\ArticlesType;
 use BlBundle\Entity\Factures;
-use BlBundle\Form\BonslivraisonType;
+use BlBundle\Entity\Facture;
+use BlBundle\Entity\Bdl;
+use BlBundle\Form\BdlType;
 use BlBundle\Form\FacturesType;
+use BlBundle\Form\FactureType;
 use BlBundle\Form\ClientsType;
+use BlBundle\Entity\Category;
+use BlBundle\Form\CategoryType;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\Extension\Core\Type\Collection;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,6 +37,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormView;
 use Dompdf\Options;
 use Dompdf\Dompdf;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 
 
@@ -36,11 +45,8 @@ class VuesController extends Controller
 {
     public function accueilAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $bl = $em->getRepository("BlBundle:Bonslivraison")->findAll();
-        dump($bl);
-        return $this->render('BlBundle:Vues:accueil.html.twig', array(
-            'bl' => $bl));
+
+        return $this->render('BlBundle:Vues:accueil.html.twig');
     }
 
 
@@ -63,7 +69,7 @@ class VuesController extends Controller
     {
 
             $em = $this->getDoctrine()->getManager();
-            $bl = $em->getRepository("BlBundle:Bonslivraison")->findBy(array(), array('id' => 'DESC'));
+            $bl = $em->getRepository("BlBundle:Bdl")->findBy(array(), array('id' => 'DESC'));
             return $this->render('BlBundle:Vues:bllist.html.twig',
                 array(
                     'bl' => $bl));
@@ -75,9 +81,9 @@ public function viewAction($id)
   $em = $this->getDoctrine()->getManager();
 
   // méthode find($id) pour récupérer un seul bon
-  $bons = $em->getRepository('BlBundle:Bonslivraison')->find($id);
+  $bons = $em->getRepository('BlBundle:Bdl')->find($id);
 
-  // $bons est donc une instance de BlBundle\Entity\Bonslivraison
+  // $bons est donc une instance de BlBundle\Entity\Bdl
   // ou null si l'id $id n'existe pas, d'où ce if :
   if (null === $bons) {
     throw new NotFoundHttpException("Le bon ".$id." n'existe pas.");
@@ -103,43 +109,18 @@ public function viewAction($id)
 //     */
     public function blAction(Request $request)
     {
-        // création d'un objet Bonslivraison
-        $bons = new Bonslivraison();
+        // création d'un objet Bdl
+        $bons = new Bdl();
         // création du FormBuilder
         // ajout des champs de l'entité souhaités pour le formulaire
 //      // class est l objet, la classe, qui represente chaque type dans le Core Symfony
 //      // ! valable depuis php 5.5
 
-        $bons->setDateBl(new \Datetime('now'));
+        $bons->setDateBdl(new \Datetime('now'));
 
-        // ci-dessous nous utilisons la méthode create du service formfactory et appeler le formulaire de BonslivraisonType
-        $form = $this->get('form.factory')->create(BonslivraisonType::class, $bons);
-        // ou tout simplement
-        // $form = $this->createForm(BonslivraisonType::class, $bons)
+        // ci-dessous nous utilisons la méthode create du service formfactory et appeler le formulaire de BdlType
+        $form = $this->get('form.factory')->create(BdlType::class, $bons);
 
-
-        // en passant par formtype, nous n utiliserons pas la methode createFormBuilder qui est ci-dessous meme si elle fonctionnelle
-
-//         $form = $this->createFormBuilder($bons)
-//             ->add('dateBl',            DateTimeType::class)
-// //            Le typeDateType que l'on a utilisé affiche 3 champs select
-// //            Il existe aussi un type TimezoneType pour choisir le fuseau horaire
-//             ->add('numeroBl',          TextType::class)
-//             ->add('clientBl',          TextType::class)
-//             ->add('societeBl',         TextType::class)
-//             ->add('quantiteBl',        TextType::class)
-//             ->add('descriptionBl',     TextareaType::class)
-//             ->add('transporteurBl',    TextType::class)
-// //            ci-dessous le bouton valider a été commenté car je l ai injecté directement dans la vue (voir bl.html.twig)
-// //            ->add('Valider',           SubmitType::class)
-//             ->getForm();
-        // noter qu ici on aurait très bien pu écrire aussi:
-        // Symfony\Component\Form\Extension\Core\Type\TextType
-
-        // pour rendre un champ facultatif, utiliser le 3e argument de la méthode $formBuilder->add()
-        // qui est "required" exemple: $formBuilder->add('published', CheckboxType::class, array('required' => false))
-
-        // si la requête est en POST
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
             {
 //                lien entre requête et formulaire en prépa de synchro avec bdd
@@ -155,17 +136,16 @@ public function viewAction($id)
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('notice', 'Bon enregistré.');
 
-                $em = $this->getDoctrine()->getManager();
-                $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+                // $em = $this->getDoctrine()->getManager();
+                $bl = $em->getRepository("BlBundle:Bdl")->findOneBy(array
                 ('id' => $bons));
-                $bons->getClients();
+// print_r($bons);
+
                 return $this->render('BlBundle:Vues:blprint.html.twig',
                     array(
                         'bl' => $bl));
 
 
-                //redirection vers la page de visualisation du BL nouvellement créé
-                return $this->redirectToRoute('blprint', array('id' => $bons->getId()));
             }
                     //
                     // À ce stade, le formulaire peut ne pas être valide car :
@@ -182,9 +162,9 @@ public function viewAction($id)
 
     public function BleditAction(Request $request, $id)
     {
-        $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
-        $form = $this->createForm(BonslivraisonType::class, $bons);
-        // $form = $this->get('form.factory')->create(BonslivraisonType::class, $bons);
+        $bons = $this->getDoctrine()->getRepository('BlBundle:Bdl')->find($id);
+        $form = $this->createForm(BdlType::class, $bons);
+        // $form = $this->get('form.factory')->create(BdlType::class, $bons);
 
         $form->handleRequest($request);
 
@@ -198,9 +178,9 @@ public function viewAction($id)
               $em->flush();
 
               $em = $this->getDoctrine()->getManager();
-              $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+              $bl = $em->getRepository("BlBundle:Bdl")->findOneBy(array
               ('id' => $bons));
-              return $this->render('BlBundle:Vues:blpreview.html.twig',
+              return $this->render('BlBundle:Vues:blprint.html.twig',
               array('bl' => $bl));
 
               //redirection vers la page de visualisation du BL nouvellement créé
@@ -212,38 +192,37 @@ public function viewAction($id)
 
     public function BlconsultAction(Request $request, $id)
     {
-            $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
-            $form = $this->createForm(BonslivraisonType::class, $bons);
+            $bons = $this->getDoctrine()->getRepository('BlBundle:Bdl')->find($id);
+            $form = $this->createForm(BdlType::class, $bons);
             $form->handleRequest($request);
 
               $bons = $form->getData();
 
               $em = $this->getDoctrine()->getManager();
-              $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+              $bl = $em->getRepository("BlBundle:Bdl")->findOneBy(array
               ('id' => $bons));
               return $this->render('BlBundle:Vues:blconsult.html.twig',
               array('bl' => $bl));
 
     }
 
-    public function blpreviewAction()
-    {
-        return $this->render('BlBundle:Vues:blpreview.html.twig');
-    }
 
     public function blprintAction(Request $request, $id)
     {
-      $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
-      $form = $this->createForm(BonslivraisonType::class, $bons);
-      $form->handleRequest($request);
-
-        $bons = $form->getData();
+      $bons = $this->getDoctrine()->getRepository('BlBundle:Bdl')->find($id);
+      // $bonscategories = $this->getDoctrine()->getRepository('BlBundle:Category')->find($id);
+// print_r($bons);
+      // $form = $this->createForm(BdlType::class, $bons);
+      // $form->handleRequest($request);
+      //
+      //   $bons = $form->getData();
 
         $em = $this->getDoctrine()->getManager();
-        $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+        $bl = $em->getRepository("BlBundle:Bdl")->findOneBy(array
         ('id' => $bons));
-        return $this->render('BlBundle:Vues:blprint.html.twig',
-        array('bl' => $bl));
+        // $categories = $form->getData();
+        // return $this->render('BlBundle:Vues:blprint.html.twig',
+        // array('bl' => $bl));
     }
 
     public function clientAction(Request $request)
@@ -274,9 +253,9 @@ public function viewAction($id)
 
     public function ClienteditAction(Request $request, $id)
     {
-        $clients = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
-        $form = $this->createForm(BonslivraisonType::class, $clients);
-        // $form = $this->get('form.factory')->create(BonslivraisonType::class, $clients);
+        $clients = $this->getDoctrine()->getRepository('BlBundle:Bdl')->find($id);
+        $form = $this->createForm(BdlType::class, $clients);
+        // $form = $this->get('form.factory')->create(BdlType::class, $clients);
 
         $form->handleRequest($request);
 
@@ -290,7 +269,7 @@ public function viewAction($id)
               $em->flush();
 
               $em = $this->getDoctrine()->getManager();
-              $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
+              $bl = $em->getRepository("BlBundle:Bdl")->findOneBy(array
               ('id' => $clients));
               return $this->render('BlBundle:Vues:blpreview.html.twig',
               array('bl' => $bl));
@@ -329,6 +308,36 @@ public function viewAction($id)
       }
 
       return $this->render('BlBundle:Vues:factures.html.twig', array(
+                        'form' => $form->createView(),
+                    ));
+    }
+
+    public function factureAction(Request $request)
+    {
+      $fact = new Facture();
+      $fact->setdateF(new \Datetime('now'));
+      $form = $this->get('form.factory')->create(FactureType::class, $fact);
+      if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+      {
+      $em = $this->getDoctrine()->getManager();
+                $em->persist($fact);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notice', 'Facture enregistrée.');
+
+
+
+                $em = $this->getDoctrine()->getManager();
+                $fact = $em->getRepository("BlBundle:Facture")->findOneBy(array
+                ('id' => $fact));
+                return $this->render('BlBundle:Vues:factpreview.html.twig',
+                    array(
+                        'fact' => $fact));
+
+      return $this->redirectToRoute('factpreview', array('id' => $fact->getId()));
+      }
+
+      return $this->render('BlBundle:Vues:facture.html.twig', array(
                         'form' => $form->createView(),
                     ));
     }
@@ -380,82 +389,37 @@ public function viewAction($id)
         return $this->render('BlBundle:Vues:modifarticle.html.twig');
     }
 
-// CI-DESSOUS LA CONVERSION EN PDF POUR IMPRESSION //
+    public function pdfAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bl = $em->getRepository('BlBundle:Bdl')->findOneById($id);
+// print_r($bl);
+// die();
 
-public function toPdfAction($BonslivraisonId){
-  // dopdf est installé à partir de Composer: composer require dompdf/dompdf
-  // puis les require (use) nécessaires dans le controller (voir ci-dessus dans les use)
+        // On crée une  instance pour définir les options de notre fichier pdf
+        $options = new Options();
+        // Pour simplifier l'affichage des images, on autorise dompdf à utiliser
+        // des  url pour les nom de  fichier
+        $options->set('isRemoteEnabled', TRUE);
+        // On crée une instance de dompdf avec  les options définies
+        $dompdf = new Dompdf($options);
+        // On demande à Symfony de générer  le code html  correspondant à
+        // notre template, et on stocke ce code dans une variable
+        $html = $this->renderView(
+            'BlBundle:Vues:pdf.html.twig',
+            array('bl' => $bl)
+        );
 
-  // On récupère l'objet à afficher
-  $bonslivraisonRepository = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison');
-  $bonslivraison = $bonslivraisonRepository->findoneById($bonslivraisonId);
-
-  // on crée une instance pour définir les options de notre fichier PDF
-  $options = new Options();
-
-  // pour simplifier l affiche, on autorise dompdf à utiliser des url pour les noms de fichier
-  $optons->set('isRemoteEnabled', TRUE);
-
-  // on crée une instance de dompdf avec les options définies
-  $dompdf = new Dompdf($options);
-
-  // on demande ensuite à Symfony de générer le code html correspondant à notre template puis on stocke ce code dans une variable
-  $html = $this->renderView('BlBundle:Bonslivraison:pdfTemplate.html.twig', array('bonslivraison' => $bonslivraison));
-
-  // puis on demande à dompdf de générer le PDF
-  $dompdf->render();
-
-  // on renvoie le flux du fichier pdf dans une Response pour l utilisateur
-  return new Response ($dompdf->stream());
-
-}
-
-public function pdfAction(Request $request, $id){
-  // dopdf est installé à partir de Composer: composer require dompdf/dompdf
-  // puis les require (use) nécessaires dans le controller (voir ci-dessus dans les use)
-
-  // On récupère l'objet à afficher
-  // $bonslivraisonRepository = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->findOneById($bonslivraison);
-
-  // $bons = new Bonslivraison();
-  // $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
-  // // $bons = $form->getData();
-
-    $em = $this->getDoctrine()->getManager();
-    $bons = new Bonslivraison();
-
-    $bl = $em->getRepository("BlBundle:Bonslivraison")->findOneBy(array
-    ('id' => $bons));
-
-  // $bonslivraison = $bonslivraisonRepository->findby($id);
-  //
-  // $bons = $this->getDoctrine()->getRepository('BlBundle:Bonslivraison')->find($id);
-
-  // $form->handleRequest($request);
-
-  // on crée une instance pour définir les options de notre fichier PDF
-  $options = new Options();
-
-  // pour simplifier l affiche, on autorise dompdf à utiliser des url pour les noms de fichier
-  $options->set('isRemoteEnabled', TRUE);
-
-  // on crée une instance de dompdf avec les options définies
-  $dompdf = new Dompdf($options);
-  $bons = new Bonslivraison($options);
+        // On envoie le code html  à notre instance de dompdf
+        $dompdf->loadHtml($html);
+        // On demande à dompdf de générer le  pdf
+        $dompdf->set_paper("a4", "portrait");
 
 
-  // on demande ensuite à Symfony de générer le code html correspondant à notre template puis on stocke ce code dans une variable
-  $html = $this->renderView('BlBundle:Vues:view.html.twig');
+        $dompdf->render();
+        // On renvoie  le flux du fichier pdf dans une  Response pour l'utilisateur
+        $dompdf->stream();
+      }
 
-  $dompdf->loadHtml($html);
-
-
-  // puis on demande à dompdf de générer le PDF
-  $dompdf->render();
-
-  // on renvoie le flux du fichier pdf dans une Response pour l utilisateur
-  return new Response ($dompdf->stream());
-
-}
 
 }

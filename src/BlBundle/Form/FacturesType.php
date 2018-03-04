@@ -49,7 +49,8 @@ class FacturesType extends AbstractType
             ->add('dateFacture',            DateType::class, array(
                   'widget' => 'single_text',
                   'format' => 'dd-MM-yyyy',
-                  'label' => 'DATE',))
+                  'label' => 'DATE',
+                  ))
             ->add('reference',          EntityType::class, array(
                   'class'   => 'BlBundle:Clients',
                   'choice_label'    => 'nomClient',
@@ -61,7 +62,6 @@ class FacturesType extends AbstractType
                   'multiple' => false,
                   ))
             ->add('quantite',        IntegerType::class)
-            ->add('designation',     TextareaType::class)
             ->add('puHt',            IntegerType::class)
 
          //
